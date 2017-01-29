@@ -1,1 +1,79 @@
-/* Empty. Add your own CSS if you like */
+.chords {
+    margin: 0 auto;
+    background-image: url(../img/chords/chords-top.png);
+    width: 282px;
+    height: 352px;
+    position: relative;
+}
+
+.chords > img {
+    position: absolute;
+}
+
+.fret-G1 {
+    left: 53px;
+    top: 57px;
+}
+.fret-C1 {
+    left: 100px;
+    top: 57px;
+}
+.fret-E1 {
+    left: 149px;
+    top: 57px;
+}
+.fret-A1 {
+    left: 195px;
+    top: 57px;
+}
+
+.fret-G2 {
+    left: 53px;
+    top: 105px;
+}
+.fret-C2 {
+    left: 100px;
+    top: 105px;
+}
+.fret-E2 {
+    left: 149px;
+    top: 105px;
+}
+.fret-A2 {
+    left: 195px;
+    top: 105px;
+}
+
+.fret-G3 {
+    left: 53px;
+    top: 151px;
+}
+.fret-C3 {
+    left: 100px;
+    top: 151px;
+}
+.fret-E3 {
+    left: 149px;
+    top: 151px;
+}
+.fret-A3 {
+    left: 195px;
+    top: 151px;
+}
+
+.fret-G4 {
+    left: 53px;
+    top: 198px;
+}
+.fret-C4 {
+    left: 100px;
+    top: 198px;
+}
+.fret-E4 {
+    left: 149px;
+    top: 198px;
+}
+.fret-A4 {
+    left: 195px;
+    top: 198px;
+}
