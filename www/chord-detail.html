@@ -1,0 +1,14 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-stable">
+        <h1 class="title">{{current_chord.name}} - {{current_chord.french_name}}</h1>
+        <button class="button button-icon icon ion-close" ng-click="hideChord()"></button>
+    </ion-header-bar>
+    <ion-content>
+        <ul class="list">
+            <li class="item"><img src="img/chords/A.jpg" /></li>
+        </ul>
+        <div class="padding">
+            <button ng-click="hideChord()" class="button button-block button-positive">OK</button>
+        </div>
+    </ion-content>
+</ion-modal-view>

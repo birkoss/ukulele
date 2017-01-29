@@ -30,7 +30,6 @@
                     <li class="item item-choice">
                         <div ng-repeat="single_chord_type in chord_types">
                             <ion-radio menu-close name="chord_type" ng-model="$parent.filters['chord_type']" ng-value="'{{single_chord_type.name}}'">{{single_chord_type.name}}</ion-radio>
-
                         </div>
                     </li>
                 </ul>
@@ -40,12 +39,12 @@
         <ion-side-menu-content>
             <ion-pane>
               <ion-header-bar class="bar-stable">
-                <h1 class="title">Ukulele Chords</h1>
+                <h1 class="title">Ukulele</h1>
                 <button class="button button-clear button-positive" ng-click="showChordTypes()">{{filters['chord_type']}}</button>
               </ion-header-bar>
               <ion-content>
                   <div class="list" collection-repeat="chord in chords">
-                      <div class="item item-icon-left" ng-click="showChord()">
+                      <div class="item item-icon-left" ng-click="showChord(chord)">
                           <i class="icon ion-music-note"></i>
                           {{chord.name}}
                           <span class="item-note">{{chord.french_name}}</span>
