@@ -44,7 +44,7 @@
               </ion-header-bar>
               <ion-content>
                   <div class="list" collection-repeat="chord in chords">
-                      <div class="item item-icon-left" ng-click="showChord(chord)">
+                      <div class="item item-icon-left chord" ng-class="{flat:chord.name.length>1}" ng-click="showChord(chord)">
                           <i class="icon ion-music-note"></i>
                           {{chord.name}}
                           <span class="item-note">{{chord.french_name}}</span>

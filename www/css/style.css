@@ -5,6 +5,9 @@
     height: 352px;
     position: relative;
 }
+.chords.middle {
+    background-image: url(../img/chords/chords-middle.png);
+}
 
 .chords > img {
     position: absolute;
@@ -76,4 +79,17 @@
 .fret-A4 {
     left: 195px;
     top: 198px;
+}
+
+.scale {
+    text-align: center;
+    color: #ccc;
+}
+.scale.active {
+    color: inherit;
+    font-weight: bold;
+}
+
+.chord.flat {
+    background-color: #f4f4f4;
 }

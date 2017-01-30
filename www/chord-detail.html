@@ -5,9 +5,14 @@
     </ion-header-bar>
     <ion-content>
         <ul class="list">
+            <li class="item item-divider">
+                <div class="row">
+                    <span class="col scale" ng-class="{'active':scale_parts.indexOf($index+1)>=0}" ng-repeat="scale in current_scale track by $index">{{scale}}</span>
+                </div>
+            </li>
             <li class="item">
-                <div class="chords">
-                    <img src="img/fingers/1.png" class="fret-G1" />
+                <div class="chords {{current_chord.chords['Major'][0]['Position']}}">
+                    <img ng-repeat="(fret, finger) in current_chord.chords['Major'][0]['Fingers']" src="img/fingers/{{finger}}.png" class="fret-{{fret}}" />
                 </div>
             </li>
         </ul>
