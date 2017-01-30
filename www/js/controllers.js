@@ -23,6 +23,15 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
         var scale_modifier = [2, 2, 1, 2, 2, 2, 1];
         $scope.scale_parts = [1, 3, 5];
 
+        $scope.strings = ['G', 'C', 'E', 'A'];
+        $scope.notes = {'G':'G', 'C':'C', 'E':'E', 'A':'A'};
+        $scope.fingers = [0, 0, 0, 1];
+
+        for (var finger in chord.chords['Major'][0]['Fingers']) {
+            var string = finger.substr(0, 1);
+            var fret = finger.substr(1, 1);
+        }
+
         var scales = $scope.scales.concat($scope.scales);
         for (var i=0; i<scales.length; i++) {
             if (scales[i] == chord.name || (scales[i].indexOf('/' + chord.name) >= 0 || scales[i].indexOf(chord.name + '/') >= 0)) {

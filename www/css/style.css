@@ -93,3 +93,18 @@
 .chord.flat {
     background-color: #f4f4f4;
 }
+
+.item.item-divider.legend {
+    text-align: center;
+}
+.item.legend {
+    padding: 4px;
+}
+.item.legend > .row {
+    max-width: 185px;
+    margin: 0 auto;
+    padding: 0;
+}
+.item.legend > .row > span.col {
+    text-align: center;
+}

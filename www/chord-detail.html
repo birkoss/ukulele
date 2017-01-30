@@ -15,6 +15,30 @@
                     <img ng-repeat="(fret, finger) in current_chord.chords['Major'][0]['Fingers']" src="img/fingers/{{finger}}.png" class="fret-{{fret}}" />
                 </div>
             </li>
+            <li class="item item-divider legend">
+                Strings:
+            </li>
+            <li class="item legend">
+                <div class="row">
+                    <span class="col" ng-repeat="string in strings track by $index">{{string}}</span>
+                </div>
+            </li>
+            <li class="item item-divider legend">
+                Notes:
+            </li>
+            <li class="item legend">
+                <div class="row">
+                    <span class="col" ng-repeat="(string, note) in notes track by $index">{{note}}</span>
+                </div>
+            </li>
+            <li class="item item-divider legend">
+                Fingers:
+            </li>
+            <li class="item legend">
+                <div class="row">
+                    <span class="col" ng-repeat="finger in fingers track by $index">{{finger}}</span>
+                </div>
+            </li>
         </ul>
         <div class="padding">
             <button ng-click="hideChord()" class="button button-block button-positive">OK</button>
