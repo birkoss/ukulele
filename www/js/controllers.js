@@ -33,6 +33,7 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
 
         $scope.chord_paths = {'top': '', 'middle': ''};
 
+        // Determine the fret frame and labels
         $scope.fret_frame = 'top';
         $scope.fret_labels = [1, 2, 3, 4];
         if( chord.chords['Major'][0]['Position'] == 'middle' ) {
@@ -40,12 +41,10 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
             $scope.fret_labels = [2, 3, 4, 5];
         }
 
-        for (var finger in chord.chords['Major'][0]['Fingers']) {
-            var string = finger.substr(0, 1);
-            var fret = finger.substr(1, 1);
-        }
-
+        // Double scales to help us loop through it
         var scales = $scope.scales.concat($scope.scales);
+
+        // Find the complete scale for this chord
         for (var i=0; i<scales.length; i++) {
             // Start with the correct chord
             if (scales[i] == chord.name || scales[i].split('/').indexOf(chord.name) >= 0) {
@@ -63,6 +62,23 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
                     $scope.current_scale.push( scale );
                 }
                 break;
+            }
+        }
+
+        // Determine the note from this chord
+        for (var finger in chord.chords['Major'][0]['Fingers']) {
+            var string = finger.substr(0, 1);
+            var fret = parseInt(finger.substr(1, 1));
+
+            for (var i=0; i<scales.length; i++) {
+                if (scales[i] == string) {
+                    $scope.notes[string] = scales[i + fret];
+                    if ($scope.notes[string].indexOf('/') >= 0) {
+                        var parts = $scope.notes[string].split('/');
+                        $scope.notes[string] = ($scope.current_scale.indexOf(parts[0]) ? parts[0] : parts[1]);
+                    }
+                    break;
+                }
             }
         }
 
