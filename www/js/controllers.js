@@ -24,11 +24,9 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
         // The current chord type (from the selected filters)
         var single_chord_type = ChordTypesFactory.get($scope.filters['chord_type']);
 
-
         $scope.strings = ['G', 'C', 'E', 'A'];
         $scope.scale = [];
         $scope.scale_parts = single_chord_type.scale_parts;
-
 
         // Double scales to help us loop through it
         var scales = $scope.scales.concat($scope.scales);
