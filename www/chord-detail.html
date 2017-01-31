@@ -13,10 +13,7 @@
             <li class="item">
                 <div class="chords">
                     <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="300" viewBox="0 0 210 300">
-                        <text x="-16" y="73" fill="black">1</text>
-                        <text x="-16" y="128" fill="black">2</text>
-                        <text x="-16" y="185" fill="black">3</text>
-                        <text x="-16" y="238" fill="black">4</text>
+                        <text ng-repeat="fret_label in fret_labels track by $index" class="fret-label fret-label-{{$index + 1}}" x="-16" y="0" fill="black">{{fret_label}}</text>
                         <g id="chord-top">
                         <path style="fill:#000000" d="{{chord_path}}" />
                         </g>

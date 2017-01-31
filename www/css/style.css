@@ -70,6 +70,22 @@
     transform: translate(165px, 164px);
 }
 
+.fret-label {
+    fill: #000000;
+}
+.fret-label-1 {
+    transform: translate(0, 73px);
+}
+.fret-label-2 {
+    transform: translate(0, 128px);
+}
+.fret-label-3 {
+    transform: translate(0, 185px);
+}
+.fret-label-4 {
+    transform: translate(0, 238px);
+}
+
 .scale {
     text-align: center;
     color: #ccc;
