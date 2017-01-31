@@ -153,6 +153,7 @@ ukuleleApp.factory('ChordsFactory', function() {
                 'chords': {
                     'Major': [{
                         'Position': 'middle',
+                        'Start': 2,
                         'Fingers': {
                             'C3': '1',
                             'A3': '1',

@@ -50,7 +50,7 @@
             </li>
             <li class="item legend">
                 <div class="row">
-                    <span class="col" ng-repeat="finger in fingers track by $index">{{finger}}</span>
+                    <span class="col" ng-repeat="(string, finger) in fingers track by $index">{{finger}}</span>
                 </div>
             </li>
         </ul>

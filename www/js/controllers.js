@@ -29,7 +29,7 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
 
         $scope.strings = ['G', 'C', 'E', 'A'];
         $scope.notes = {'G':'G', 'C':'C', 'E':'E', 'A':'A'};
-        $scope.fingers = [0, 0, 0, 1];
+        $scope.fingers = {'G': 0, 'C': 0, 'E': 0, 'A': 0};
 
         $scope.chord_paths = {'top': '', 'middle': ''};
 
@@ -97,6 +97,10 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
                     }
                     break;
                 }
+            }
+
+            if (fret > $scope.fingers[string]) {
+                $scope.fingers[string] = fret;
             }
         }
 
