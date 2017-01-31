@@ -75,7 +75,7 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
                     $scope.notes[string] = scales[i + fret];
                     if ($scope.notes[string].indexOf('/') >= 0) {
                         var parts = $scope.notes[string].split('/');
-                        $scope.notes[string] = ($scope.current_scale.indexOf(parts[0]) ? parts[0] : parts[1]);
+                        $scope.notes[string] = ($scope.current_scale.indexOf(parts[0]) ? parts[1] : parts[0]);
                     }
                     break;
                 }
