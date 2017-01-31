@@ -3,11 +3,21 @@
     position: relative;
     text-align: center;
 }
+
+.chords svg text {
+    font-size: 20px;
+}
+
 .chords > svg {
 /* width: 100%;
     height: auto; */
 }
-
+.note-border {
+    fill: #000000;
+}
+.note-filling {
+    fill: #ffffff;
+}
 .fret-G1 {
     transform: translate(3px, 0);
 }

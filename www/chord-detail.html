@@ -12,15 +12,19 @@
             </li>
             <li class="item">
                 <div class="chords">
-                    <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="210" height="300" viewBox="0 0 210 300">
+                    <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="300" viewBox="0 0 210 300">
+                        <text x="-16" y="73" fill="black">1</text>
+                        <text x="-16" y="128" fill="black">2</text>
+                        <text x="-16" y="185" fill="black">3</text>
+                        <text x="-16" y="238" fill="black">4</text>
                         <g id="chord-top">
                         <path style="fill:#000000" d="{{chord_path}}" />
                         </g>
 
                         <g ng-repeat="(fret, finger) in current_chord.chords['Major'][0]['Fingers']" class="notes fret-{{fret}}">
-                        <path style="fill:#000000" d="M 14.414842,85.18643 C 4.5178927,80.61869 0.29151272,69.35564 4.8048927,59.57648 c 7.0253593,-15.2219 28.1945493,-15.2219 35.2199093,0 7.45561,16.15412 -9.45583,33.06556 -25.60996,25.60995 z" />
-                        <path style="fill:#ff0000;fill-opacity:1" d="m 29.993162,80.80268 c 10.5108,-7.08323 10.5108,-19.36918 0,-26.45241 -6.73344,-4.53766 -15.55421,-2.14306 -20.80452,5.64788 -8.45009928,12.5391 8.26543,29.25462 20.80452,20.80453 z" />
-                        <path style="fill:#000000" d="{{finger_paths[finger]}}" />
+                        <path class="note-border" d="M 14.414842,85.18643 C 4.5178927,80.61869 0.29151272,69.35564 4.8048927,59.57648 c 7.0253593,-15.2219 28.1945493,-15.2219 35.2199093,0 7.45561,16.15412 -9.45583,33.06556 -25.60996,25.60995 z" />
+                        <path class="note-filling" d="m 29.993162,80.80268 c 10.5108,-7.08323 10.5108,-19.36918 0,-26.45241 -6.73344,-4.53766 -15.55421,-2.14306 -20.80452,5.64788 -8.45009928,12.5391 8.26543,29.25462 20.80452,20.80453 z" />
+                        <text x="17" y="76" fill="black">{{finger}}</text>
                         </g>    
                     </svg>
                 </div>
