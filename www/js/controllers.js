@@ -42,9 +42,9 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
         }
 
         var scales = $scope.scales.concat($scope.scales);
-        console.log(scales);
         for (var i=0; i<scales.length; i++) {
-            if (scales[i] == chord.name) {
+            // Start with the correct chord
+            if (scales[i] == chord.name || scales[i].split('/').indexOf(chord.name) >= 0) {
                 $scope.current_scale.push(chord.name);
                 for (var j=0; j<scale_modifier.length; j++) {
                     i += scale_modifier[j];
