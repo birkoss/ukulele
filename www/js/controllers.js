@@ -45,6 +45,8 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
         var scales = $scope.scales.concat($scope.scales);
 
         // Find the complete scale for this chord
+        // - Cannot have both flat and charp in the same scale
+        // - Cannot repeat a note
         for (var i=0; i<scales.length; i++) {
             // Start with the correct chord
             if (scales[i] == chord.name || scales[i].split('/').indexOf(chord.name) >= 0) {
@@ -54,8 +56,15 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
                     var inline_scales = scales[i].split('/');
                     var scale = inline_scales[0];
                     if (inline_scales.length > 1) {
-                        // Choose the best name
+                        // Choose the best note if it's a dual note (charp/flat)
+
+                        // If the previous note start with the same letter, use the flat
                         if ($scope.current_scale[$scope.current_scale.length-1].substr(0, 1) == scale.substr(0, 1)) {
+                            scale = inline_scales[1];
+                        }
+
+                        // If the first note is a flat, use a flat
+                        if (chord.name.substr(1, 1) == 'b') {
                             scale = inline_scales[1];
                         }
                     }
