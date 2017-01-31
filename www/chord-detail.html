@@ -5,12 +5,22 @@
     </ion-header-bar>
     <ion-content>
         <ul class="list">
-            <li class="item item-divider">
+            <li class="item item-divider legend">Scale</li>
+            <li class="item">
                 <div class="row">
                     <span class="col scale" ng-class="{'active':scale_parts.indexOf($index+1)>=0}" ng-repeat="scale in current_scale track by $index">{{scale}}</span>
                 </div>
             </li>
-            <li class="item" ng-repeat="single_chord in current_chords">
+            <li class="item item-divider legend">
+                Strings:
+            </li>
+            <li class="item legend">
+                <div class="row">
+                    <span class="col" ng-repeat="string in strings track by $index">{{string}}</span>
+                </div>
+            </li>
+            <div ng-repeat="single_chord in current_chords">
+                <li class="item">
                 <div class="chords">
                     <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="300" viewBox="0 0 210 300">
                         <text ng-repeat="fret_label in single_chord.fret_labels track by $index" class="fret-label fret-label-{{$index + 1}}" x="-16" y="0" fill="black">{{fret_label}}</text>
@@ -28,31 +38,24 @@
                         </g>    
                     </svg>
                 </div>
-                <div class="item item-divider legend">
+                </li>
+                <li class="item item-divider legend">
                     Notes:
-                </div>
-                <div class="item legend">
+                </li>
+                <li class="item legend">
                     <div class="row">
                         <span class="col" ng-repeat="(string, note) in single_chord.notes track by $index">{{note}}</span>
                     </div>
-                </div>
-                <div class="item item-divider legend">
+                </li>
+                <li class="item item-divider legend">
                     Fingers:
-                </div>
-                <div class="item legend">
+                </li>
+                <li class="item legend">
                     <div class="row">
                         <span class="col" ng-repeat="(string, finger) in single_chord.fingers track by $index">{{finger}}</span>
                     </div>
-                </div>
-            </li>
-            <li class="item item-divider legend">
-                Strings:
-            </li>
-            <li class="item legend">
-                <div class="row">
-                    <span class="col" ng-repeat="string in strings track by $index">{{string}}</span>
-                </div>
-            </li>
+                </li>
+            </div>
         </ul>
         <div class="padding">
             <button ng-click="hideChord()" class="button button-block button-positive">OK</button>
