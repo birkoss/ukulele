@@ -22,7 +22,51 @@
   <body ng-app="UkuleleApp" ng-controller="ChordsList">
 
     <ion-side-menus>
-        <ion-side-menu side="right">
+        <ion-side-menu side="left">
+            <ion-header-bar class="bar-stable">
+                <h1 class="title">Options</h1>
+            </ion-header-bar>
+            <ion-content>
+                <ul class="list">
+                    <li class="item item-toggle">
+                        Show scale
+                        <label class="toggle toggle-assertive">
+                            <input type="checkbox" ng-model="options['show_scale']" />
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </li>
+                    <li class="item item-toggle">
+                        Show strings
+                        <label class="toggle toggle-assertive">
+                            <input type="checkbox" ng-model="options['show_strings']" />
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </li>
+                    <li class="item item-toggle">
+                        Show notes
+                        <label class="toggle toggle-assertive">
+                            <input type="checkbox" ng-model="options['show_notes']" />
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </li>
+                    <li class="item item-toggle">
+                        Show fingers
+                        <label class="toggle toggle-assertive">
+                            <input type="checkbox" ng-model="options['show_fingers']" />
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </li>
+                </ul>
+            </ion-content>
+        </ion-side-menu><ion-side-menu side="right">
             <ion-header-bar class="bar-stable">
                 <h1 class="title">Chord types</h1>
             </ion-header-bar>
@@ -40,7 +84,8 @@
         <ion-side-menu-content>
             <ion-pane>
               <ion-header-bar class="bar-stable">
-                <h1 class="title">Ukulele</h1>
+                  <button class="button button-icon" ng-click="showOptions()"><i class="icon ion-navicon"></i></button>
+                <h1 class="title">Chords</h1>
                 <button class="button button-clear button-positive" ng-click="showChordTypes()">{{filters['chord_type']}}</button>
               </ion-header-bar>
               <ion-content>

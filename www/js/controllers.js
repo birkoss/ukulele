@@ -2,6 +2,8 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
 
     $scope.filters = {'chord_type': 'Major'};
 
+    $scope.options = {'show_notes':true, 'show_scale':true, 'show_fingers':true, 'show_strings':true};
+
     $scope.chords = ChordsFactory.get();
     $scope.chord_types = ChordTypesFactory.get();
 
@@ -141,5 +143,10 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
     /* Toggle the filters side-menu (from the button) */
     $scope.showChordTypes = function() {
         $ionicSideMenuDelegate.toggleRight();
+    };
+
+    /* Toggle the options side-menu (from the button) */
+    $scope.showOptions = function() {
+        $ionicSideMenuDelegate.toggleLeft();
     };
 });
