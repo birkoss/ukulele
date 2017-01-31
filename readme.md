@@ -8,3 +8,4 @@ TODO
 - Adding Minor and 7th chords
 
 - Favorites list (Allow the addition of multiple chords from different types) for a quick bookmark
+  - Tabs: Chords, Favorites (maybe settings)
