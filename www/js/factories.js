@@ -180,7 +180,7 @@ ukuleleApp.factory('ChordTypesFactory', function() {
             });
             types.push({
                 'name': 'Minor',
-                'scale': [1, 1, 1, 1],
+                'scale': [2, 1, 2, 2, 1, 2, 2],
                 'scale_parts': [1, 3, 5],
             });
 
