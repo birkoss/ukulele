@@ -17,29 +17,18 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
 
     /* Show/Hide chord detail in a modal */
     $scope.showChord = function(chord) {
+
         // The current chord from ChordFactory
         $scope.current_chord = chord;
        
         // The current chord type (from the selected filters)
         var single_chord_type = ChordTypesFactory.get($scope.filters['chord_type']);
 
-        // The scale of the current chord & the parts to highlight
-        $scope.current_scale = [];
-        $scope.scale_parts = single_chord_type.scale_parts;
 
         $scope.strings = ['G', 'C', 'E', 'A'];
-        $scope.notes = {'G':'G', 'C':'C', 'E':'E', 'A':'A'};
-        $scope.fingers = {'G': 0, 'C': 0, 'E': 0, 'A': 0};
+        $scope.scale = [];
+        $scope.scale_parts = single_chord_type.scale_parts;
 
-        $scope.chord_paths = {'top': '', 'middle': ''};
-
-        // Determine the fret frame and labels
-        $scope.fret_frame = 'top';
-        $scope.fret_labels = [1, 2, 3, 4];
-        if( chord.chords['Major'][0]['Position'] == 'middle' ) {
-            $scope.fret_frame = 'middle';
-            $scope.fret_labels = [2, 3, 4, 5];
-        }
 
         // Double scales to help us loop through it
         var scales = $scope.scales.concat($scope.scales);
@@ -47,6 +36,7 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
         // Find the complete scale for this chord
         // - Cannot have both flat and charp in the same scale
         // - Cannot repeat a note
+        $scope.current_scale = [];
         for (var i=0; i<scales.length; i++) {
             // Start with the correct chord
             if (scales[i] == chord.name || scales[i].split('/').indexOf(chord.name) >= 0) {
@@ -83,26 +73,64 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
             }
         }
 
-        // Determine the note from this chord
-        for (var finger in chord.chords['Major'][0]['Fingers']) {
-            var string = finger.substr(0, 1);
-            var fret = parseInt(finger.substr(1, 1));
+        // Build all available chords for this chord (and chord type)
+        var chords = [];
+        for (var c=0; c<chord.chords[ $scope.filters['chord_type'] ].length; c++) {
+            var chord_single_chord = chord.chords[$scope.filters['chord_type']][c];
 
-            for (var i=0; i<scales.length; i++) {
-                if (scales[i] == string) {
-                    $scope.notes[string] = scales[i + fret];
-                    if ($scope.notes[string].indexOf('/') >= 0) {
-                        var parts = $scope.notes[string].split('/');
-                        $scope.notes[string] = ($scope.current_scale.indexOf(parts[0]) >= 0 ? parts[0] : parts[1]);
+            var single_chord = {};
+            single_chord['index'] = c;
+
+            single_chord['notes'] = {'G':'G', 'C':'C', 'E':'E', 'A':'A'};
+            single_chord['fingers'] = {'G': 0, 'C': 0, 'E': 0, 'A': 0};
+
+            single_chord['fret_position'] = (chord_single_chord['Position'] == undefined ? 'top' : chord_single_chord['Position']);
+
+            // Place the correct fret labels (depending on the start position)
+            var fret_start = (chord_single_chord['Start'] == undefined ? 1 : chord_single_chord['Start']);
+            single_chord['fret_labels'] = [];
+            for (var i=0; i<4; i++) {
+                single_chord['fret_labels'].push(i+fret_start);
+            }
+
+            // Place the finger on the fret (depending on the start position)
+            single_chord['fret_fingers'] = {};
+            for (finger_position in chord_single_chord['Fingers']) {
+                var finger = chord_single_chord['Fingers'][finger_position];
+                var position = parseInt(finger_position.substr(1, 1));
+                if (fret_start > 1) {
+                    position -= (fret_start-1);
+                }
+                single_chord['fret_fingers'][ finger_position.substr(0,1) + position ] = finger;
+            }
+
+            // Show the notes and fingers for that chord
+            for (var finger_position in chord_single_chord['Fingers']) {
+                var string = finger_position.substr(0, 1);
+                var fret = parseInt(finger_position.substr(1, 1));
+
+                // Place notes
+                for (var i=0; i<scales.length; i++) {
+                    if (scales[i] == string) {
+                        single_chord['notes'][string] = scales[i + fret];
+                        if (single_chord['notes'][string].indexOf('/') >= 0) {
+                            var parts = single_chord['notes'][string].split('/');
+                            single_chord['notes'][string] = ($scope.current_scale.indexOf(parts[0]) >= 0 ? parts[0] : parts[1]);
+                        }
+                        break;
                     }
-                    break;
+                }
+
+                // Place fingers
+                if (fret > single_chord['fingers'][string]) {
+                    single_chord['fingers'][string] = fret;
                 }
             }
-
-            if (fret > $scope.fingers[string]) {
-                $scope.fingers[string] = fret;
-            }
+            
+            chords.push(single_chord);
         }
+
+        $scope.current_chords = chords;
 
         $scope.modal_chord_detail.show();
     };
