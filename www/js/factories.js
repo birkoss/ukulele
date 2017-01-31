@@ -154,9 +154,10 @@ ukuleleApp.factory('ChordsFactory', function() {
                     'Major': [{
                         'Position': 'middle',
                         'Fingers': {
-                            'C2': '1',
-                            'A2': '2',
-                            'E3': '3',
+                            'C3': '1',
+                            'A3': '1',
+                            'E4': '2',
+                            'G5': '4',
                         }
                     }]
                 }
