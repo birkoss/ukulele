@@ -9,6 +9,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                 'chords': {
                     'Major': [{
                         'Fingers':{'C1':'1', 'G2':'2'}
+                    }],
+                    'Minor': [{
+                        'Fingers':{'G2':'2'}
                     }]
                 }
             });
