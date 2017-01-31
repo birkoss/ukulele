@@ -1,84 +1,63 @@
 .chords {
     margin: 0 auto;
-    background-image: url(../img/chords/chords-top.png);
-    width: 282px;
-    height: 352px;
     position: relative;
+    text-align: center;
 }
-.chords.middle {
-    background-image: url(../img/chords/chords-middle.png);
-}
-
-.chords > img {
-    position: absolute;
+.chords > svg {
+/* width: 100%;
+    height: auto; */
 }
 
 .fret-G1 {
-    left: 53px;
-    top: 57px;
+    transform: translate(3px, 0);
 }
 .fret-C1 {
-    left: 100px;
-    top: 57px;
+    transform: translate(55px, 0);
 }
 .fret-E1 {
-    left: 149px;
-    top: 57px;
+    transform: translate(110px, 0);
 }
 .fret-A1 {
-    left: 195px;
-    top: 57px;
+    transform: translate(165px, 0);
 }
 
 .fret-G2 {
-    left: 53px;
-    top: 105px;
+    transform: translate(3px, 54px);
 }
 .fret-C2 {
-    left: 100px;
-    top: 105px;
+    transform: translate(55px, 54px);
 }
 .fret-E2 {
-    left: 149px;
-    top: 105px;
+    transform: translate(110px, 54px);
 }
 .fret-A2 {
-    left: 195px;
-    top: 105px;
+    transform: translate(165px, 54px);
 }
 
 .fret-G3 {
-    left: 53px;
-    top: 151px;
+    transform: translate(3px, 109px);
 }
 .fret-C3 {
-    left: 100px;
-    top: 151px;
+    transform: translate(55px, 109px);
 }
 .fret-E3 {
-    left: 149px;
-    top: 151px;
+    transform: translate(110px, 109px);
 }
 .fret-A3 {
-    left: 195px;
-    top: 151px;
+    transform: translate(165px, 109px);
 }
 
 .fret-G4 {
-    left: 53px;
-    top: 198px;
+    transform: translate(3px, 164px);
 }
 .fret-C4 {
-    left: 100px;
-    top: 198px;
+    transform: translate(55px, 164px);
 }
 .fret-E4 {
-    left: 149px;
-    top: 198px;
+    transform: translate(110px, 164px);
 }
 .fret-A4 {
-    left: 195px;
-    top: 198px;
+    transform: translate(165px, 164px);
 }
 
 .scale {
