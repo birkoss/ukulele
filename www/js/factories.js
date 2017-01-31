@@ -170,12 +170,28 @@ ukuleleApp.factory('ChordsFactory', function() {
 
 ukuleleApp.factory('ChordTypesFactory', function() {
     return {
-        get: function() {
+        get: function(chord_type) {
             var types = [];
 
-            types.push({'name': 'Major'});
-            types.push({'name': 'Minor'});
+            types.push({
+                'name': 'Major',
+                'scale': [2, 2, 1, 2, 2, 2, 1],
+                'scale_parts': [1, 3, 5],
+            });
+            types.push({
+                'name': 'Minor',
+                'scale': [1, 1, 1, 1],
+                'scale_parts': [1, 3, 5],
+            });
 
+            if (chord_type != undefined) {
+                for (var i=0; i<types.length; i++) {
+                    if (types[i].name == chord_type) {
+                        return types[i];
+                    }
+                }
+            }
+            
             return types;
         }
     }
