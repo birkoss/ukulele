@@ -67,7 +67,16 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
                         if (chord.name.substr(1, 1) == 'b') {
                             scale = inline_scales[1];
                         }
+                    } else {
+                        // Special case where a Cb (instead of B) or a E# (instead of F) may be required...
+                        if (scale == 'B' || scale == 'F') {
+                            var scale_special_case = {'B': 'Cb', 'F': 'E#'};
+                            if ($scope.current_scale[$scope.current_scale.length-1].substr(0, 1) == scale) {
+                                scale = scale_special_case[scale];
+                            }
+                        }
                     }
+
                     $scope.current_scale.push( scale );
                 }
                 break;
@@ -84,7 +93,7 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
                     $scope.notes[string] = scales[i + fret];
                     if ($scope.notes[string].indexOf('/') >= 0) {
                         var parts = $scope.notes[string].split('/');
-                        $scope.notes[string] = ($scope.current_scale.indexOf(parts[0]) ? parts[1] : parts[0]);
+                        $scope.notes[string] = ($scope.current_scale.indexOf(parts[0]) >= 0 ? parts[0] : parts[1]);
                     }
                     break;
                 }
