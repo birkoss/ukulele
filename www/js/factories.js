@@ -123,6 +123,10 @@ ukuleleApp.factory('ChordsFactory', function() {
             });
 
             return chords;
+        },
+        get_french_names: function() {
+            var names = {'A':'La', 'B':'Si', 'C':'Do', 'D':'Ré', 'E':'Mi', 'F':'Fa', 'G':'Sol'};
+            return names;
         }
     }
 

@@ -1,4 +1,4 @@
-var ukuleleApp = angular.module('UkuleleApp', ['ionic'])
+var ukuleleApp = angular.module('UkuleleApp', ['ionic', 'LocalStorageModule'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -17,3 +17,7 @@ var ukuleleApp = angular.module('UkuleleApp', ['ionic'])
     }
   });
 })
+
+.config(function(localStorageServiceProvider) {
+    localStorageServiceProvider.setPrefix('ukulele');
+});
