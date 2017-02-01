@@ -24,7 +24,7 @@
 
     <link rel="import" href="lib/chord-finger/chord-finger.html" />
   </head>
-  <body ng-app="UkuleleApp" ng-controller="ChordsList">
+  <body ng-app="UkuleleApp" ng-controller="ChordsList" ng-init="generateChordsList()">
 
     <ion-side-menus>
         <ion-side-menu side="left">
@@ -36,7 +36,7 @@
                     <li class="item item-toggle">
                         Show scale
                         <label class="toggle toggle-assertive">
-                            <input type="checkbox" ng-model="options['show_scale']" />
+                            <input type="checkbox" ng-model="options['show_scale']" ng-change="configChanged('options')" />
                             <div class="track">
                                 <div class="handle"></div>
                             </div>
@@ -45,7 +45,7 @@
                     <li class="item item-toggle">
                         Show strings
                         <label class="toggle toggle-assertive">
-                            <input type="checkbox" ng-model="options['show_strings']" />
+                            <input type="checkbox" ng-model="options['show_strings']" ng-change="configChanged('options')" />
                             <div class="track">
                                 <div class="handle"></div>
                             </div>
@@ -54,7 +54,7 @@
                     <li class="item item-toggle">
                         Show notes
                         <label class="toggle toggle-assertive">
-                            <input type="checkbox" ng-model="options['show_notes']" />
+                            <input type="checkbox" ng-model="options['show_notes']" ng-change="configChanged('options')" />
                             <div class="track">
                                 <div class="handle"></div>
                             </div>
@@ -63,7 +63,7 @@
                     <li class="item item-toggle">
                         Show fingers
                         <label class="toggle toggle-assertive">
-                            <input type="checkbox" ng-model="options['show_fingers']" />
+                            <input type="checkbox" ng-model="options['show_fingers']" ng-change="configChanged('options')" />
                             <div class="track">
                                 <div class="handle"></div>
                             </div>
@@ -72,7 +72,7 @@
                     <li class="item item-toggle">
                         Show French names
                         <label class="toggle toggle-assertive">
-                            <input type="checkbox" ng-model="options['show_in_french']" />
+                            <input type="checkbox" ng-model="options['show_in_french']" ng-change="configChanged('options')" />
                             <div class="track">
                                 <div class="handle"></div>
                             </div>
@@ -88,7 +88,7 @@
                 <ul class="list">
                     <li class="item item-choice">
                         <div ng-repeat="single_chord_type in chord_types">
-                            <ion-radio menu-close name="chord_type" ng-model="$parent.filters['chord_type']" ng-value="'{{single_chord_type.name}}'">{{single_chord_type.name}}</ion-radio>
+                            <ion-radio menu-close name="chord_type" ng-model="$parent.filters['chord_type']" ng-change="configChanged('filters')" ng-value="'{{single_chord_type.name}}'">{{single_chord_type.name}}</ion-radio>
                         </div>
                     </li>
                 </ul>
@@ -103,10 +103,10 @@
                 <button class="button button-clear button-positive" ng-click="showChordTypes()">{{filters['chord_type']}}</button>
               </ion-header-bar>
               <ion-content>
-                  <div class="list" collection-repeat="chord in filtered_chords = (chords | chordsByType:filters['chord_type'])">
-                      <div class="item item-icon-left chord" ng-class="{flat:chord.name.length>1}" ng-click="showChord(chord)">
+                  <div class="list" collection-repeat="chord in chords_list">
+                      <div class="item item-icon-left chord" ng-class="{flat:chord.alt_name}" ng-click="showChord(chord.id)">
                           <i class="icon ion-music-note"></i>
-                          {{chord.name | replaceName}}<span ng-show="chord.alt_name"> / {{chord.alt_name}}</span>
+                          {{chord.name}}<span ng-show="chord.alt_name"> / {{chord.alt_name}}</span>
                       </div>
                   </div>
               </ion-content>

@@ -1,6 +1,6 @@
 <ion-modal-view>
     <ion-header-bar class="bar-stable">
-        <h1 class="title">{{current_chord.name}} - {{current_chord.french_name}}</h1>
+        <h1 class="title">{{current_chord.name}}<span ng-show="current_chord.alt_name"> / {{current_chord.alt_name}}</span></h1>
         <button class="button button-icon icon ion-close" ng-click="hideChord()"></button>
     </ion-header-bar>
     <ion-content>
@@ -8,7 +8,7 @@
             <li ng-show="options['show_scale']" class="item item-divider legend">Scale</li>
             <li ng-show="options['show_scale']" class="item">
                 <div class="row">
-                    <span class="col scale" ng-class="{'active':scale_parts.indexOf($index+1)>=0}" ng-repeat="scale in current_scale track by $index">{{scale}}</span>
+                    <span class="col scale" ng-class="{'active':scale_parts.indexOf($index+1)>=0}" ng-repeat="scale in current_scale track by $index">{{scale | replaceName}}</span>
                 </div>
             </li>
             <li ng-show="options['show_strings']" class="item item-divider legend">
@@ -16,7 +16,7 @@
             </li>
             <li ng-show="options['show_strings']" class="item legend">
                 <div class="row">
-                    <span class="col" ng-repeat="string in strings track by $index">{{string}}</span>
+                    <span class="col" ng-repeat="string in strings track by $index">{{string | replaceName}}</span>
                 </div>
             </li>
             <div ng-repeat="single_chord in current_chords">
@@ -44,7 +44,7 @@
                 </li>
                 <li ng-show="options['show_notes']" class="item legend">
                     <div class="row">
-                        <span class="col" ng-repeat="(string, note) in single_chord.notes track by $index">{{note}}</span>
+                        <span class="col" ng-repeat="(string, note) in single_chord.notes track by $index">{{note | replaceName}}</span>
                     </div>
                 </li>
                 <li ng-show="options['show_fingers']" class="item item-divider legend">
