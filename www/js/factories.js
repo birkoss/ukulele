@@ -16,8 +16,8 @@ ukuleleApp.factory('ChordsFactory', function() {
                 }
             });
             chords.push({
-                'name': 'Bb', 
-                'alt_name':'A#',
+                'name': 'B♭', 
+                'alt_name':'A♯',
                 'french_name': 'SI b',
                 'chords': {
                     'Major': [{
@@ -44,8 +44,8 @@ ukuleleApp.factory('ChordsFactory', function() {
                 }
             });
             chords.push({
-                'name':'Db', 
-                'alt_name':'C#',
+                'name':'D♭', 
+                'alt_name':'C♯',
                 'french_name':'RÉ b',
                 'chords':{
                     'Major':[{
@@ -63,8 +63,8 @@ ukuleleApp.factory('ChordsFactory', function() {
                 }
             });
             chords.push({
-                'name':'Eb', 
-                'alt_name':'D#',
+                'name':'E♭', 
+                'alt_name':'D♯',
                 'french_name':'MI b',
                 'chords':{
                     'Major':[{
@@ -91,8 +91,8 @@ ukuleleApp.factory('ChordsFactory', function() {
                 }
             });
             chords.push({
-                'name':'Gb', 
-                'alt_name':'F#',
+                'name':'G♭', 
+                'alt_name':'F♯',
                 'french_name':'SOL b',
                 'chords':{
                     'Major':[{
@@ -110,8 +110,8 @@ ukuleleApp.factory('ChordsFactory', function() {
                 }
             });
             chords.push({
-                'name':'Ab', 
-                'alt_name':'C#',
+                'name':'A♭', 
+                'alt_name':'G♯',
                 'french_name':'LA b',
                 'chords':{
                     'Major':[{

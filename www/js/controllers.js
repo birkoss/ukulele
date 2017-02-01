@@ -7,7 +7,7 @@ ukuleleApp.controller('ChordsList', function($scope, $ionicModal, $ionicSideMenu
     $scope.chords = ChordsFactory.get();
     $scope.chord_types = ChordTypesFactory.get();
 
-    $scope.scales = ['A', 'A#/Bb', 'B', 'C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab'];
+    $scope.scales = ['A', 'A♯/B♭', 'B', 'C', 'C♯/D♭', 'D', 'D♯/E♭', 'E', 'F', 'F♯/G♭', 'G', 'G♯/A♭'];
 
     /* Prepare the chord detail modal */
     $ionicModal.fromTemplateUrl('chord-detail.html', {
