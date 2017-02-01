@@ -22,6 +22,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                 'chords': {
                     'Major': [{
                         'Fingers':{'A1':'1', 'E1':'1', 'C2':'2', 'G3':'3'}
+                    }],
+                    'Minor': [{
+                        'Fingers':{'G3':'3', 'C1':'1', 'E1':'1', 'A1':'1'}
                     }]
                 }
             });
@@ -31,6 +34,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                 'chords':{
                     'Major':[{
                         'Fingers':{'A2':'1', 'E2':'1', 'C3':'2', 'G4':'3'}
+                    }],
+                    'Minor':[{
+                        'Fingers':{'G4':'3', 'C2':'2', 'E2':'2', 'A2':'2'}
                     }]
                 }
             });
@@ -40,6 +46,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                 'chords':{
                     'Major':[{
                         'Fingers':{'A3':'3'}
+                    }],
+                    'Minor':[{
+                        'Fingers':{'C3':'1', 'E3':'1', 'A3':'1'}
                     }]
                 }
             });
@@ -50,6 +59,10 @@ ukuleleApp.factory('ChordsFactory', function() {
                 'chords':{
                     'Major':[{
                         'Fingers':{'G1':'1', 'C1':'1', 'E1':'1', 'A4':'4'}
+                    }],
+                    'Minor':[{
+                        // @TODO Should disable the A string
+                        'Fingers':{'G1':'1', 'C1':'1'}
                     }]
                 }
             });
@@ -59,6 +72,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                 'chords':{
                     'Major':[{
                         'Fingers':{'G2':'1', 'C2':'2', 'E2':'3'}
+                    }],
+                    'Minor':[{
+                        'Fingers':{'G2':'2', 'C2':'3', 'E1':'1'}
                     }]
                 }
             });
@@ -69,6 +85,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                 'chords':{
                     'Major':[{
                         'Fingers':{'A1':'1', 'C3':'2', 'E3':'3'}
+                    }],
+                    'Minor':[{
+                        'Fingers':{'G3':'3', 'C3':'4', 'E2':'2', 'A1':'1'}
                     }]
                 }
             });
@@ -78,6 +97,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                 'chords':{
                     'Major':[{
                         'Fingers':{'A1':'1', 'G4':'2', 'C4':'3', 'E4':'4'}
+                    }],
+                    'Minor':[{
+                        'Fingers':{'C4':'3', 'E3':'2', 'A2':'1'}
                     }]
                 }
             });
@@ -87,6 +109,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                 'chords':{
                     'Major':[{
                         'Fingers':{'E1':'1', 'G2':'2'}
+                    }],
+                    'Minor':[{
+                        'Fingers':{'G1':'1', 'E1':'2', 'A3':'4'}
                     }]
                 }
             });
@@ -97,6 +122,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                 'chords':{
                     'Major':[{
                         'Fingers':{'C1':'1', 'A1':'1', 'E2':'2', 'G3':'3'}
+                    }],
+                    'Minor':[{
+                        'Fingers':{'G2':'2', 'C1':'1', 'E2':'3'}
                     }]
                 }
             });
@@ -106,6 +134,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                 'chords':{
                     'Major':[{
                         'Fingers':{'C2':'1', 'A2':'2', 'E3':'3'}
+                    }],
+                    'Minor':[{
+                        'Fingers':{'C2':'2', 'E3':'3', 'A1':'1'}
                     }]
                 }
             });
@@ -118,6 +149,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                         'Position':'middle',
                         'Start':2,
                         'Fingers':{'C3':'1', 'A3':'1', 'E4':'2', 'G5':'4'}
+                    }],
+                    'Minor':[{
+                        'Fingers':{'G4':'3', 'C3':'2', 'E4':'4', 'A2':'1'}
                     }]
                 }
             });

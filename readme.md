@@ -13,3 +13,7 @@ TODO
 
 - Favorites list (Allow the addition of multiple chords from different types) for a quick bookmark
   - Tabs: Chords, Favorites (maybe settings)
+
+- Fix fingers showing 0 3 3 3 in Cm instead of 0 1 1 1
+
+- Fix the @TODO
