@@ -28,7 +28,6 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
             var chord = {
                 'id':single_chord.name,
                 'name':$filter('replaceName')(single_chord.name),
-                'first_chord':$scope.buildChord(single_chord.name, $scope.filters['chord_type'], 0),
             };
 
             if (single_chord.alt_name) {
@@ -37,6 +36,8 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
             
             // Only add chords having that type available
             if (single_chord.chords[$scope.filters['chord_type']] != undefined) {
+                // Can only build the chord if it's available in the current chord type...
+                chord['first_chord'] = $scope.buildChord(single_chord.name, $scope.filters['chord_type'], 0);
                 list.push(chord);
             }
         }
