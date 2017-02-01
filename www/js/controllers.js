@@ -7,6 +7,14 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
     $scope.chords = ChordsFactory.get();
     $scope.chord_types = ChordTypesFactory.get();
 
+    $scope.chord_families = {};
+    for (var i=0; i<$scope.chord_types.length; i++) {
+        if ($scope.chord_families[$scope.chord_types[i].chord] == undefined) {
+            $scope.chord_families[$scope.chord_types[i].chord] = [];
+        }
+        $scope.chord_families[$scope.chord_types[i].chord].push($scope.chord_types[i].name);
+    }
+
     $scope.scales = ['A', 'A♯/B♭', 'B', 'C', 'C♯/D♭', 'D', 'D♯/E♭', 'E', 'F', 'F♯/G♭', 'G', 'G♯/A♭'];
 
     $scope.chords_list = [];

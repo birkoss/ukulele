@@ -17,3 +17,5 @@ TODO
 - Fix fingers showing 0 3 3 3 in Cm instead of 0 1 1 1
 
 - Fix the @TODO
+
+- Add in the card, the chord type suffix (ie: m for minor)

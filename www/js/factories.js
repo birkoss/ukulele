@@ -173,11 +173,13 @@ ukuleleApp.factory('ChordTypesFactory', function() {
 
             types.push({
                 'name': 'Major',
+                'chord': 'Triad',
                 'scale': [2, 2, 1, 2, 2, 2, 1],
                 'scale_parts': [1, 3, 5],
             });
             types.push({
                 'name': 'Minor',
+                'chord': 'Triad',
                 'scale': [2, 1, 2, 2, 1, 2, 2],
                 'scale_parts': [1, 3, 5],
             });
