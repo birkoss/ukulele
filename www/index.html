@@ -102,10 +102,16 @@
                 <button class="button button-clear button-positive" ng-click="showChordTypes()">{{filters['chord_type']}}</button>
               </ion-header-bar>
               <ion-content>
-                  <div class="list" collection-repeat="chord in chords_list">
-                      <div class="item item-icon-left chord" ng-class="{flat:chord.alt_name}" ng-click="showChord(chord.id)">
-                          <i class="icon ion-music-note"></i>
-                          {{chord.name}}<span ng-show="chord.alt_name"> / {{chord.alt_name}}</span>
+                  <div class="cards">
+                      <div class="card_container" ng-repeat="chord in chords_list" ng-click="showChord(chord.id)">
+                          <div class="list card">
+                          <div class="item item-image">
+                              <chord-finger fingers="chord.first_chord['fret_fingers']" position="chord.first_chord['fret_position']"></chord-finger>
+                          </div>
+                          <div class="item item-text-wrap">
+                              {{chord.name}}<span ng-show="chord.alt_name"> / {{chord.alt_name}}</span>
+                          </div>
+                      </div>
                       </div>
                   </div>
               </ion-content>

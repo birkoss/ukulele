@@ -1,3 +1,21 @@
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 10px;
+    background-color: #f4f4f4;
+}
+.cards .card_container {
+    width: 33%;
+}
+.cards .card_container .card {
+    margin-bottom: inherit;
+}
+.cards .card_container .item-image {
+    padding: 16px 0;
+}
+.cards .card_container .item-text-wrap {
+    text-align: center;
+}
 .chords {
     margin: 0 auto;
     position: relative;
@@ -8,15 +26,18 @@
     font-size: 20px;
 }
 
-.chords > svg {
-/* width: 100%;
-    height: auto; */
+div.card .chords > svg {
+    width: 64px;;
+    height: auto; 
 }
 .note-border {
     fill: #000000;
 }
 .note-filling {
     fill: #ffffff;
+}
+div.card .chords > svg .note-filling {
+   fill: #000000; 
 }
 .fret-G1 {
     transform: translate(3px, 0);
