@@ -12,6 +12,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                     }],
                     'Minor': [{
                         'Fingers':{'G2':'2'}
+                    }],
+                    '7': [{
+                        'Fingers':{'C1':'1'}
                     }]
                 }
             });
@@ -25,6 +28,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                     }],
                     'Minor': [{
                         'Fingers':{'G3':'3', 'C1':'1', 'E1':'1', 'A1':'1'}
+                    }],
+                    '7': [{
+                        'Fingers':{'G1':'1', 'C2':'2', 'E1':'1', 'A1':'1'}
                     }]
                 }
             });
@@ -37,6 +43,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                     }],
                     'Minor':[{
                         'Fingers':{'G4':'3', 'C2':'2', 'E2':'2', 'A2':'2'}
+                    }],
+                    '7': [{
+                        'Fingers':{'G2':'1', 'C3':'2', 'E2':'1', 'A2':'1'}
                     }]
                 }
             });
@@ -49,6 +58,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                     }],
                     'Minor':[{
                         'Fingers':{'C3':'1', 'E3':'1', 'A3':'1'}
+                    }],
+                    '7': [{
+                        'Fingers':{'A1':'1'}
                     }]
                 }
             });
@@ -63,6 +75,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                     'Minor':[{
                         // @TODO Should disable the A string
                         'Fingers':{'G1':'1', 'C1':'1'}
+                    }],
+                    '7':[{
+                        'Fingers':{'G1':'1', 'C1':'1', 'E1':'1', 'A2':'2'}
                     }]
                 }
             });
@@ -75,6 +90,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                     }],
                     'Minor':[{
                         'Fingers':{'G2':'2', 'C2':'3', 'E1':'1'}
+                    }],
+                    '7':[{
+                        'Fingers':{'G2':'1', 'C2':'1', 'E2':'1', 'A3':'2'}
                     }]
                 }
             });
@@ -88,6 +106,11 @@ ukuleleApp.factory('ChordsFactory', function() {
                     }],
                     'Minor':[{
                         'Fingers':{'G3':'3', 'C3':'4', 'E2':'2', 'A1':'1'}
+                    }],
+                    '7':[{
+                        'Position':'middle',
+                        'Start':2,
+                        'Fingers':{'G3':'1', 'C3':'1', 'E3':'1', 'A4':'2'}
                     }]
                 }
             });
@@ -100,6 +123,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                     }],
                     'Minor':[{
                         'Fingers':{'C4':'3', 'E3':'2', 'A2':'1'}
+                    }],
+                    '7':[{
+                        'Fingers':{'G1':'1', 'C2':'2', 'A2':'3'}
                     }]
                 }
             });
@@ -112,6 +138,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                     }],
                     'Minor':[{
                         'Fingers':{'G1':'1', 'E1':'2', 'A3':'4'}
+                    }],
+                    '7':[{
+                        'Fingers':{'G2':'2', 'C3':'3', 'E1':'1', 'A3':'4'}
                     }]
                 }
             });
@@ -125,6 +154,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                     }],
                     'Minor':[{
                         'Fingers':{'G2':'2', 'C1':'1', 'E2':'3'}
+                    }],
+                    '7':[{
+                        'Fingers':{'G3':'2', 'C4':'3', 'E2':'1', 'A4':'4'}
                     }]
                 }
             });
@@ -137,6 +169,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                     }],
                     'Minor':[{
                         'Fingers':{'C2':'2', 'E3':'3', 'A1':'1'}
+                    }],
+                    '7':[{
+                        'Fingers':{'C2':'2', 'E1':'1', 'A2':'3'}
                     }]
                 }
             });
@@ -152,6 +187,9 @@ ukuleleApp.factory('ChordsFactory', function() {
                     }],
                     'Minor':[{
                         'Fingers':{'G4':'3', 'C3':'2', 'E4':'4', 'A2':'1'}
+                    }],
+                    '7':[{
+                        'Fingers':{'G1':'1', 'C3':'3', 'E2':'2', 'A3':'4'}
                     }]
                 }
             });
@@ -182,6 +220,12 @@ ukuleleApp.factory('ChordTypesFactory', function() {
                 'chord': 'Triad',
                 'scale': [2, 1, 2, 2, 1, 2, 2],
                 'scale_parts': [1, 3, 5],
+            });
+            types.push({
+                'name': '7',
+                'chord': 'Seventh',
+                'scale': [2, 2, 1, 2, 2, 2, 1],
+                'scale_parts': [1, 3, 5, 7],
             });
 
             if (chord_type != undefined) {
