@@ -17,6 +17,17 @@ ukuleleApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvi
         }
     })
 
+    .state('tab.chord-detail', {
+        url: '/chords/:chordId',
+        views: {
+            'tab-chords-list': {
+                templateUrl: 'views/chords/detail.html',
+                controller: 'ChordDetail',
+
+            }
+        }
+    })
+
     .state('tab.chords-favorites', {
         url: '/chords-favorites',
         views: {

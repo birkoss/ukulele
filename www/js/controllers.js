@@ -1,4 +1,38 @@
-ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ionicSideMenuDelegate, $ionicPopover, ChordTypesFactory, ConfigService, ChordsService) {
+ukuleleApp.controller('ChordDetail', function($scope, $stateParams, $filter, ChordsService, ChordTypesFactory, ConfigService) {
+    $scope.filters = ConfigService.load('filters');
+    $scope.options = ConfigService.load('options');
+
+    var chord_id = $stateParams.chordId;
+
+    var single_chord_type = ChordTypesFactory.get($scope.filters['chord_type']);
+
+    var chord = ChordsService.get(chord_id);
+
+    // The current chord from ChordFactory
+    $scope.current_chord = {
+        'name':$filter('replaceName')(chord.name) + single_chord_type.suffix,
+    };
+
+    if (chord.alt_name) {
+        $scope.current_chord['name'] += ' / ' + $filter('replaceName')(chord.alt_name) + single_chord_type.suffix;
+    }
+
+
+    $scope.strings = ['G', 'C', 'E', 'A'];
+    $scope.scale_parts = single_chord_type.scale_parts;
+
+    $scope.current_scale = ChordsService.buildScale(chord.name, $scope.filters['chord_type']);
+
+    var chords = [];
+    for (var c=0; c<chord.chords[ $scope.filters['chord_type'] ].length; c++) {
+        var single_chord = ChordsService.generate(chord_id, $scope.filters['chord_type'], c);
+        chords.push(single_chord);
+    }
+
+    $scope.current_chords = chords;
+});
+
+ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ionicSideMenuDelegate, $ionicPopover, $state, ChordTypesFactory, ConfigService, ChordsService) {
 
     $scope.filters = ConfigService.load('filters');
 
@@ -63,6 +97,10 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
         }
         $scope.chords_list = list;
     }
+
+    $scope.showDetail = function(chord_id) {
+        $state.go('tab.chord-detail', {'chordId':chord_id});
+    };
 
     /* Show/Hide chord detail in a modal */
     $scope.showChord = function(chord_id) {
