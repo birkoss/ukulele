@@ -83,7 +83,7 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
         $scope.strings = ['G', 'C', 'E', 'A'];
         $scope.scale_parts = single_chord_type.scale_parts;
 
-        $scope.current_scale = $scope.buildScale(chord.name, $scope.filters['chord_type']);
+        $scope.current_scale = ChordsService.buildScale(chord.name, $scope.filters['chord_type']);
 
         var chords = [];
         for (var c=0; c<chord.chords[ $scope.filters['chord_type'] ].length; c++) {
