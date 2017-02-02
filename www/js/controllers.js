@@ -63,14 +63,6 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
         $scope.popups['filters'] = popover;
     });
 
-    /* Prepare the chord detail modal */
-    $ionicModal.fromTemplateUrl('chord-detail.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.modal_chord_detail = modal;
-    });
-
     /* Generate the chords list (depending of the current chord type, and the language) */
     $scope.generateChordsList = function() {
         var single_chord_type = ChordTypesFactory.get($scope.filters['chord_type']);
@@ -102,55 +94,14 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
         $state.go('tab.chord-detail', {'chordId':chord_id});
     };
 
-    /* Show/Hide chord detail in a modal */
-    $scope.showChord = function(chord_id) {
-        var single_chord_type = ChordTypesFactory.get($scope.filters['chord_type']);
-
-        var chord = ChordsService.get(chord_id);
-
-        // The current chord from ChordFactory
-        $scope.current_chord = {
-            'name':$filter('replaceName')(chord.name) + single_chord_type.suffix,
-        };
-
-        if (chord.alt_name) {
-            $scope.current_chord['alt_name'] = $filter('replaceName')(chord.alt_name) + single_chord_type.suffix;
-        }
-       
-
-        $scope.strings = ['G', 'C', 'E', 'A'];
-        $scope.scale_parts = single_chord_type.scale_parts;
-
-        $scope.current_scale = ChordsService.buildScale(chord.name, $scope.filters['chord_type']);
-
-        var chords = [];
-        for (var c=0; c<chord.chords[ $scope.filters['chord_type'] ].length; c++) {
-            var single_chord = ChordsService.generate(chord_id, $scope.filters['chord_type'], c);
-            chords.push(single_chord);
-        }
-
-        $scope.current_chords = chords;
-
-        $scope.modal_chord_detail.show();
-    };
-
-    /* Hide the modal */
-    $scope.hideChord = function() {
-        $scope.current_chord = null;
-
-        $scope.modal_chord_detail.hide();
-    }
-
     /* Toggle the filters side-menu (from the button) */
     $scope.showChordTypes = function($event) {
-        //$ionicSideMenuDelegate.toggleRight();
         $scope.current_popup = $scope.popups['filters'];
         $scope.current_popup.show($event);
     };
 
     /* Toggle the options side-menu (from the button) */
     $scope.showOptions = function($event) {
-        //$ionicSideMenuDelegate.toggleLeft();
         $scope.current_popup = $scope.popups['options'];
         $scope.current_popup.show($event);
     };
