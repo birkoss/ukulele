@@ -73,7 +73,7 @@ ukuleleApp.factory('ChordsFactory', function() {
                         'Fingers':{'G1':'1', 'C1':'1', 'E1':'1', 'A4':'4'}
                     }],
                     'Minor':[{
-                        // @TODO Should disable the A string
+                        'Mute':['A'],
                         'Fingers':{'G1':'1', 'C1':'1'}
                     }],
                     '7':[{
@@ -227,7 +227,7 @@ ukuleleApp.factory('ChordTypesFactory', function() {
                 'name': '7',
                 'chord': 'Seventh',
                 'suffix': '7',
-                'scale': [2, 2, 1, 2, 2, 1, 1],
+                'scale': [2, 2, 1, 2, 2, 1, 2],
                 'scale_parts': [1, 3, 5, 7],
             });
 
