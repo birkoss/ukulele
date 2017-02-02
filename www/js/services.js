@@ -1,4 +1,7 @@
-ukuleleApp.factory('ChordsService', function() {
+ukuleleApp.factory('ChordsService', function(ChordTypesFactory, ConfigService) {
+
+    var scales = ['A', 'A♯/B♭', 'B', 'C', 'C♯/D♭', 'D', 'D♯/E♭', 'E', 'F', 'F♯/G♭', 'G', 'G♯/A♭'];
+
     var chords = [];
 
     chords.push({
@@ -195,6 +198,125 @@ ukuleleApp.factory('ChordsService', function() {
         get_french_names: function() {
             var names = {'A':'La', 'B':'Si', 'C':'Do', 'D':'Ré', 'E':'Mi', 'F':'Fa', 'G':'Sol'};
             return names;
+        },
+        generate: function(chord_id, chord_type, chord_index) {
+            var chord = this.get(chord_id);
+            var scale = this.buildScale(chord_id, chord_type);
+
+            // Build all available chords for this chord (and chord type)
+            var chord_single_chord = chord.chords[ConfigService.load('filters')['chord_type']][chord_index];
+
+            var single_chord = {};
+            single_chord['index'] = chord_index;
+
+            single_chord['notes'] = {'G':'G', 'C':'C', 'E':'E', 'A':'A'};
+            single_chord['frets'] = {'G': 0, 'C': 0, 'E': 0, 'A': 0};
+
+            single_chord['fret_position'] = (chord_single_chord['Position'] == undefined ? 'top' : chord_single_chord['Position']);
+
+            // Place the correct fret labels (depending on the start position)
+            var fret_start = (chord_single_chord['Start'] == undefined ? 1 : chord_single_chord['Start']);
+            single_chord['fret_labels'] = [];
+            for (var i=0; i<4; i++) {
+                single_chord['fret_labels'].push(i+fret_start);
+            }
+
+            // Place the finger on the fret (depending on the start position)
+            single_chord['fret_fingers'] = {};
+            for (finger_position in chord_single_chord['Fingers']) {
+                var finger = chord_single_chord['Fingers'][finger_position];
+                var position = parseInt(finger_position.substr(1, 1));
+                if (fret_start > 1) {
+                    position -= (fret_start-1);
+                }
+                single_chord['fret_fingers'][ finger_position.substr(0,1) + position ] = finger;
+            }
+
+            // Double scales to help us loop through it
+            var doubled_scales = scales.concat(scales);
+
+            // Show the notes and fingers for that chord
+            for (var finger_position in chord_single_chord['Fingers']) {
+                var string = finger_position.substr(0, 1);
+                var fret = parseInt(finger_position.substr(1, 1));
+
+                // Place notes
+                for (var i=0; i<doubled_scales.length; i++) {
+                    if (doubled_scales[i] == string) {
+                        single_chord['notes'][string] = doubled_scales[i + fret];
+                        if (single_chord['notes'][string].indexOf('/') >= 0) {
+                            var parts = single_chord['notes'][string].split('/');
+                            single_chord['notes'][string] = (scale.indexOf(parts[0]) >= 0 ? parts[0] : parts[1]);
+                        }
+                        break;
+                    }
+                }
+
+                // Place frets position
+                if (fret > single_chord['frets'][string]) {
+                    single_chord['frets'][string] = fret;
+                }
+            }
+
+            // Mute strings
+            single_chord['muted'] = {};
+            if (chord_single_chord['Mute'] != undefined) {
+                for (var i=0; i<chord_single_chord['Mute'].length; i++) {
+                    single_chord['muted'][ chord_single_chord['Mute'][i] ] = true;
+                    single_chord['notes'][chord_single_chord['Mute'][i]] = 'X';
+                    single_chord['frets'][chord_single_chord['Mute'][i]] = ' ';
+                }
+            }
+
+            return single_chord;
+        },
+        buildScale: function(chord_id, chord_type) {
+            var single_chord_type = ChordTypesFactory.get(chord_type);
+
+            // Double scales to help us loop through it
+            var doubled_scales = scales.concat(scales);
+
+            // Find the complete scale for this chord
+            // - Cannot have both flat and charp in the same scale
+            // - Cannot repeat a note
+            var current_scale = [];
+            for (var i=0; i<doubled_scales.length; i++) {
+                // Start with the correct chord
+                if (doubled_scales[i] == chord_id || doubled_scales[i].split('/').indexOf(chord_id) >= 0) {
+                    current_scale.push(chord_id);
+                    for (var j=0; j<single_chord_type.scale.length; j++) {
+                        i += single_chord_type.scale[j];
+                        var inline_scales = doubled_scales[i].split('/');
+                        var scale = inline_scales[0];
+                        if (inline_scales.length > 1) {
+                            // Choose the best note if it's a dual note (charp/flat)
+
+                            // If the previous note start with the same letter, use the flat
+                            if (current_scale[current_scale.length-1].substr(0, 1) == scale.substr(0, 1)) {
+                                scale = inline_scales[1];
+                            }
+
+                            // If the first note is a flat, use a flat
+                            if (chord_id.substr(1, 1) == '♭') {
+                                scale = inline_scales[1];
+                            }
+                        } else {
+                            // Special case where a Cb (instead of B) or a E# (instead of F) may be required...
+                            if (scale == 'B' || scale == 'F') {
+                                var scale_special_case = {'B': 'Cb', 'F': 'E#'};
+                                if (current_scale[current_scale.length-1].substr(0, 1) == scale) {
+                                    scale = scale_special_case[scale];
+                                }
+                            }
+                        }
+
+                        current_scale.push( scale );
+                    }
+                    break;
+                }
+            }
+
+            return current_scale;
         }
     }
 

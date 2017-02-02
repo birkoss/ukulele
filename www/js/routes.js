@@ -1,4 +1,6 @@
-ukuleleApp.config(function($stateProvider, $urlRouterProvider) {
+ukuleleApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    $ionicConfigProvider.tabs.position('bottom');
+
     $stateProvider.state('tab', {
         url: '/tab',
         abstract: true,
