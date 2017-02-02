@@ -1,10 +1,9 @@
-ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ionicSideMenuDelegate, $ionicPopover, ChordsFactory, ChordTypesFactory, ConfigService) {
+ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ionicSideMenuDelegate, $ionicPopover, ChordTypesFactory, ConfigService, ChordsService) {
 
     $scope.filters = ConfigService.load('filters');
 
     $scope.options = ConfigService.load('options');
 
-    $scope.chords = ChordsFactory.get();
     $scope.chord_types = ChordTypesFactory.get();
 
     $scope.chord_families = {};
@@ -45,8 +44,8 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
         var single_chord_type = ChordTypesFactory.get($scope.filters['chord_type']);
 
         var list = [];
-        for (var i=0; i<$scope.chords.length; i++) {
-            var single_chord = $scope.chords[i];
+        for (var chord_id in ChordsService.all()) {
+            var single_chord = ChordsService.all()[chord_id];
 
             var chord = {
                 'id':single_chord.name,
@@ -71,7 +70,7 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
     $scope.showChord = function(chord_id) {
         var single_chord_type = ChordTypesFactory.get($scope.filters['chord_type']);
 
-        var chord = $scope.getChordById(chord_id);
+        var chord = ChordsService.get(chord_id);
 
         // The current chord from ChordFactory
         $scope.current_chord = {
@@ -128,13 +127,6 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
     };
 
     /* Helpers */
-    $scope.getChordById = function(chord_id) {
-        for (var i=0; i<$scope.chords.length; i++) {
-            if ($scope.chords[i].name == chord_id) {
-                return $scope.chords[i];
-            }
-        }
-    };
 
     $scope.buildScale = function(chord_name, chord_type) {
         var single_chord_type = ChordTypesFactory.get(chord_type);
@@ -186,7 +178,7 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
     };
 
     $scope.buildChord = function(chord_id, chord_type, chord_index) {
-        var chord = $scope.getChordById(chord_id);
+        var chord = ChordsService.get(chord_id);
 
         var scale = $scope.buildScale(chord.name, chord_type);
 
