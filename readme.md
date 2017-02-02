@@ -19,5 +19,3 @@ TODO
 - Fix the @TODO
 
 - Add in the card, the chord type suffix (ie: m for minor)
-
-- Eb7 have D in scale, but show Db in notes...

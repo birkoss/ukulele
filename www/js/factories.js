@@ -224,7 +224,7 @@ ukuleleApp.factory('ChordTypesFactory', function() {
             types.push({
                 'name': '7',
                 'chord': 'Seventh',
-                'scale': [2, 2, 1, 2, 2, 2, 1],
+                'scale': [2, 2, 1, 2, 2, 1, 1],
                 'scale_parts': [1, 3, 5, 7],
             });
 
