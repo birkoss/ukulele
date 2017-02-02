@@ -3,6 +3,7 @@ ukuleleApp.component('chordFinger', {
         fingers:'=fingers',
         position:'=position',
         labels:'=labels',
+        muted:'=muted',
     },
 
     templateUrl:'chord-finger.html'

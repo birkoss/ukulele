@@ -1,13 +1,182 @@
 <div class="chords">
     <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="300" viewBox="0 0 210 300">
         <text ng-repeat="fret_label in $ctrl.labels track by $index" class="fret-label fret-label-{{$index + 1}}" x="-16" y="0" fill="black">{{fret_label}}</text>
-        <g ng-show="$ctrl.position == 'middle'" id="chord-middle">
-        <path style="fill:#000000" d="m 19.021245,150.40628 c 0,-134.812948 0.01321,-135.585519 2.317701,-135.585519 2.163193,0 2.317701,0.772571 2.317701,11.588508 l 0,11.588508 25.494717,0 25.494717,0 0,-11.588508 c 0,-10.815937 0.15451,-11.588508 2.317702,-11.588508 2.163192,0 2.317701,0.772571 2.317701,11.588508 l 0,11.588508 25.494726,0 25.49473,0 0,-11.588508 c 0,-10.815937 0.1545,-11.588508 2.31769,-11.588508 2.16319,0 2.31771,0.772571 2.31771,11.588508 l 0,11.588508 24.91529,0 24.91529,0 0,-11.588508 c 0,-10.815937 0.15451,-11.588508 2.3177,-11.588508 2.30449,0 2.3177,0.772571 2.3177,135.585519 0,134.81296 -0.0132,135.58553 -2.3177,135.58553 -2.17055,0 -2.3177,-0.77257 -2.3177,-12.16793 l 0,-12.16793 -24.91529,0 -24.91529,0 0,12.16793 c 0,11.39536 -0.14716,12.16793 -2.31771,12.16793 -2.17055,0 -2.31769,-0.77257 -2.31769,-12.16793 l 0,-12.16793 -25.49473,0 -25.494726,0 0,12.16793 c 0,11.39536 -0.147151,12.16793 -2.317701,12.16793 -2.170551,0 -2.317702,-0.77257 -2.317702,-12.16793 l 0,-12.16793 -25.494717,0 -25.494717,0 0,12.16793 c 0,11.39536 -0.14715,12.16793 -2.317701,12.16793 -2.30449,0 -2.317701,-0.77257 -2.317701,-135.58553 z m 55.624836,81.11955 0,-24.33587 -25.494717,0 -25.494717,0 0,24.33587 0,24.33586 25.494717,0 25.494717,0 z m 55.624859,0 0,-24.33587 -25.49473,0 -25.494726,0 0,24.33587 0,24.33586 25.494726,0 25.49473,0 z m 54.46598,0 0,-24.33587 -24.91529,0 -24.91529,0 0,24.33587 0,24.33586 24.91529,0 24.91529,0 z m -110.090839,-54.46599 0,-24.33586 -25.494717,0 -25.494717,0 0,24.33586 0,24.33587 25.494717,0 25.494717,0 z m 55.624859,0 0,-24.33586 -25.49473,0 -25.494726,0 0,24.33586 0,24.33587 25.494726,0 25.49473,0 z m 54.46598,0 0,-24.33586 -24.91529,0 -24.91529,0 0,24.33586 0,24.33587 24.91529,0 24.91529,0 z m -110.090839,-54.46597 0,-24.33585 -25.494717,0 -25.494717,0 0,24.33585 0,24.33585 25.494717,0 25.494717,0 z m 55.624859,0 0,-24.33585 -25.49473,0 -25.494726,0 0,24.33585 0,24.33585 25.494726,0 25.49473,0 z m 54.46598,0 0,-24.33585 -24.91529,0 -24.91529,0 0,24.33585 0,24.33585 24.91529,0 24.91529,0 z M 74.646081,68.127896 l 0,-24.335866 -25.494717,0 -25.494717,0 0,24.335866 0,24.335864 25.494717,0 25.494717,0 z m 55.624859,0 0,-24.335866 -25.49473,0 -25.494726,0 0,24.335866 0,24.335864 25.494726,0 25.49473,0 z m 54.46598,0 0,-24.335866 -24.91529,0 -24.91529,0 0,24.335866 0,24.335864 24.91529,0 24.91529,0 z" />
-        </g>
+
         <g ng-show="$ctrl.position == 'top'" id="chord-top">
-        <path style="fill:#000000" d="m 19.211191,162.37469 0.297144,-124.62532 85.223875,0 85.22387,0 0.29713,124.62532 C 190.54897,286.41428 190.53937,287 188.21017,287 186.01682,287 185.87,286.23092 185.87,274.74177 l 0,-12.25823 -25.10018,0 -25.10018,0 0,12.25823 c 0,11.47992 -0.14825,12.25823 -2.3349,12.25823 -2.18666,0 -2.3349,-0.77831 -2.3349,-12.25823 l 0,-12.25823 -25.6839,0 -25.683918,0 0,12.25823 c 0,11.47992 -0.148243,12.25823 -2.334901,12.25823 -2.186658,0 -2.334901,-0.77831 -2.334901,-12.25823 l 0,-12.25823 -25.683904,0 -25.683905,0 0,12.25823 c 0,11.48915 -0.146822,12.25823 -2.340182,12.25823 -2.329182,0 -2.338785,-0.58572 -2.043038,-124.62531 z m 55.751029,69.75515 0,-24.51646 -25.683904,0 -25.683905,0 0,24.51646 0,24.51645 25.683905,0 25.683904,0 z m 56.03762,0 0,-24.51646 -25.6839,0 -25.683918,0 0,24.51646 0,24.51645 25.683918,0 25.6839,0 z m 54.87016,0 0,-24.51646 -25.10018,0 -25.10018,0 0,24.51646 0,24.51645 25.10018,0 25.10018,0 z m -110.90778,-54.87017 0,-24.51645 -25.683904,0 -25.683905,0 0,24.51645 0,24.51646 25.683905,0 25.683904,0 z m 56.03762,0 0,-24.51645 -25.6839,0 -25.683918,0 0,24.51645 0,24.51646 25.683918,0 25.6839,0 z m 54.87016,0 0,-24.51645 -25.10018,0 -25.10018,0 0,24.51645 0,24.51646 25.10018,0 25.10018,0 z m -110.90778,-54.87015 0,-24.51646 -25.683904,0 -25.683905,0 0,24.51646 0,24.51645 25.683905,0 25.683904,0 z m 56.03762,0 0,-24.51646 -25.6839,0 -25.683918,0 0,24.51646 0,24.51645 25.683918,0 25.6839,0 z m 54.87016,0 0,-24.51646 -25.10018,0 -25.10018,0 0,24.51646 0,24.51645 25.10018,0 25.10018,0 z M 74.96222,67.519348 l 0,-24.516452 -25.683904,0 -25.683905,0 0,24.516452 0,24.516462 25.683905,0 25.683904,0 z m 56.03762,0 0,-24.516452 -25.6839,0 -25.683918,0 0,24.516452 0,24.516462 25.683918,0 25.6839,0 z m 54.87016,0 0,-24.516452 -25.10018,0 -25.10018,0 0,24.516452 0,24.516462 25.10018,0 25.10018,0 z M 19.135275,22.864379 l 0.37306,-2.626763 85.223875,0 85.22387,0 0.37305,2.626763 0.37306,2.626764 -85.96998,0 -85.969995,0 z" />
-        <text x="0" y="0" fill="black">{{$ctrl.thumbnail}}</text>
-        </g>
+            <g class="frets">
+              <rect
+                 transform="matrix(0,1,-1,0,0,0)"
+                 y="-188.5"
+                 x="257.19321"
+                 height="168.5"
+                 width="4.1208792"
+                 id="rect4458"
+                 style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+              <rect
+                 transform="matrix(0,1,-1,0,0,0)"
+                 y="-188.5"
+                 x="202.33516"
+                 height="168.5"
+                 width="4.1208792"
+                 id="rect4460"
+                 style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+              <rect
+                 transform="matrix(0,1,-1,0,0,0)"
+                 y="-188.5"
+                 x="147.39011"
+                 height="168.5"
+                 width="4.1208792"
+                 id="rect4462"
+                 style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+              <rect
+                 transform="matrix(0,1,-1,0,0,0)"
+                 y="-188.5"
+                 x="92.71978"
+                 height="168.5"
+                 width="4.1208792"
+                 id="rect4464"
+                 style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+              <rect
+                 transform="matrix(0,1,-1,0,0,0)"
+                 y="-188.5"
+                 x="38.598904"
+                 height="168.5"
+                 width="4.1208792"
+                 id="rect4466"
+                 style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+            </g>
+            <g class="string string-A" ng-class="{muted:$ctrl.muted['A']}">
+              <rect
+                 y="38.263737"
+                 x="185.3022"
+                 height="249.09891"
+                 width="4.1208792"
+                 id="rect4454"
+                 style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+            </g>
+            <g class="string string-E" ng-class="{muted:$ctrl.muted['E']}">
+              <rect
+                 y="38.263737"
+                 x="129.94505"
+                 height="249.09891"
+                 width="4.1208792"
+                 id="rect4444"
+                 style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+            </g>
+            <g class="string string-C" ng-class="{muted:$ctrl.muted['C']}">
+              <rect
+                 y="38.263737"
+                 x="74.587914"
+                 height="249.09891"
+                 width="4.1208792"
+                 id="rect4448"
+                 style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+            </g>
+            <g class="string string-G" ng-class="{muted:$ctrl.muted['G']}">
+              <rect
+                 y="38.263737"
+                 x="19.230768"
+                 height="249.09891"
+                 width="4.1208792"
+                 id="rect4456"
+                 style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+            </g>
+            <g
+               inkscape:groupmode="layer"
+               id="layer6"
+               inkscape:label="Top bar"
+               style="display:inline">
+              <rect
+                 style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                 id="rect3502-5-2-9"
+                 width="4.1208792"
+                 height="170.05495"
+                 x="20.654757"
+                 y="-189.56767"
+                 transform="matrix(0,1,-1,0,0,0)" />
+            </g>
+          </g>
+
+          <g ng-show="$ctrl.position == 'middle'" id="chord-middle">
+              <g class="frets">
+                <rect
+                   style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                   id="rect3502-5"
+                   width="4.1208792"
+                   height="168.5"
+                   x="257.19321"
+                   y="-188.5"
+                   transform="matrix(0,1,-1,0,0,0)" />
+                <rect
+                   style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                   id="rect3502-5-3"
+                   width="4.1208792"
+                   height="168.5"
+                   x="202.33516"
+                   y="-188.5"
+                   transform="matrix(0,1,-1,0,0,0)" />
+                <rect
+                   style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                   id="rect3502-5-5"
+                   width="4.1208792"
+                   height="168.5"
+                   x="147.39011"
+                   y="-188.5"
+                   transform="matrix(0,1,-1,0,0,0)" />
+                <rect
+                   style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                   id="rect3502-5-6"
+                   width="4.1208792"
+                   height="168.5"
+                   x="92.71978"
+                   y="-188.5"
+                   transform="matrix(0,1,-1,0,0,0)" />
+                <rect
+                   style="display:inline;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                   id="rect3502-5-2"
+                   width="4.1208792"
+                   height="168.5"
+                   x="38.598904"
+                   y="-188.5"
+                   transform="matrix(0,1,-1,0,0,0)" />
+              </g>
+              <g class="string string-A" ng-class="{muted:$ctrl.muted['A']}">
+                <rect
+                   style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                   id="rect3502-3-6-7"
+                   width="4.1208792"
+                   height="272.25275"
+                   x="185.3022"
+                   y="14.56044" />
+              </g>
+              <g class="string string-E" ng-class="{muted:$ctrl.muted['E']}">
+                <rect
+                   style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                   id="rect3502-3-6"
+                   width="4.1208792"
+                   height="272.25275"
+                   x="129.94505"
+                   y="14.56044" />
+              </g>
+              <g class="string string-C" ng-class="{muted:$ctrl.muted['C']}">
+                <rect
+                   style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                   id="rect3502-3"
+                   width="4.1208792"
+                   height="272.25275"
+                   x="74.587914"
+                   y="14.56044" />
+              </g>
+              <g class="string string-G" ng-class="{muted:$ctrl.muted['G']}">
+                <rect
+                   style="fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                   id="rect3502"
+                   width="4.1208792"
+                   height="272.25275"
+                   x="19.230768"
+                   y="14.56044" />
+              </g>
+            </g>
 
         <g ng-repeat="(fret, finger) in $ctrl.fingers" class="notes fret-{{fret}}">
         <path class="note-border" d="M 14.414842,85.18643 C 4.5178927,80.61869 0.29151272,69.35564 4.8048927,59.57648 c 7.0253593,-15.2219 28.1945493,-15.2219 35.2199093,0 7.45561,16.15412 -9.45583,33.06556 -25.60996,25.60995 z" />

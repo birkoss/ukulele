@@ -40,6 +40,15 @@
 .chords svg text {
     font-size: 20px;
 }
+.chords svg g.frets rect {
+    fill: #000000;
+}
+.chords svg g.string {
+    fill: #000000;
+}
+.chords svg g.string.muted {
+    fill: #f4f4f4;
+}
 
 div.card .chords > svg {
     width: 64px;;

@@ -21,7 +21,7 @@
             </li>
             <div ng-repeat="single_chord in current_chords">
                 <li class="item">
-                    <chord-finger fingers="single_chord['fret_fingers']" labels="single_chord['fret_labels']" position="single_chord['fret_position']"></chord-finger>
+                    <chord-finger muted="single_chord['muted']" fingers="single_chord['fret_fingers']" labels="single_chord['fret_labels']" position="single_chord['fret_position']"></chord-finger>
                 </li>
                 <li ng-show="options['show_notes']" class="item item-divider legend">
                     Notes:

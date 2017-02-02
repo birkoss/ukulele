@@ -229,9 +229,10 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
         }
 
         // Mute strings
-        // @TODO Should also change the string color in the SVG
+        single_chord['muted'] = {};
         if (chord_single_chord['Mute'] != undefined) {
             for (var i=0; i<chord_single_chord['Mute'].length; i++) {
+                single_chord['muted'][ chord_single_chord['Mute'][i] ] = true;
                 single_chord['notes'][chord_single_chord['Mute'][i]] = 'X';
                 single_chord['frets'][chord_single_chord['Mute'][i]] = ' ';
             }
