@@ -1,4 +1,4 @@
-ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ionicSideMenuDelegate, ChordsFactory, ChordTypesFactory, ConfigService) {
+ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ionicSideMenuDelegate, $ionicPopover, ChordsFactory, ChordTypesFactory, ConfigService) {
 
     $scope.filters = ConfigService.load('filters');
 
@@ -18,6 +18,19 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
     $scope.scales = ['A', 'A♯/B♭', 'B', 'C', 'C♯/D♭', 'D', 'D♯/E♭', 'E', 'F', 'F♯/G♭', 'G', 'G♯/A♭'];
 
     $scope.chords_list = [];
+
+    $scope.popups = {};
+
+    $ionicPopover.fromTemplateUrl('views/chords/options/options.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popups['options'] = popover;
+    });
+    $ionicPopover.fromTemplateUrl('views/chords/options/filters.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popups['filters'] = popover;
+    });
 
     /* Prepare the chord detail modal */
     $ionicModal.fromTemplateUrl('chord-detail.html', {
@@ -94,13 +107,17 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
     }
 
     /* Toggle the filters side-menu (from the button) */
-    $scope.showChordTypes = function() {
-        $ionicSideMenuDelegate.toggleRight();
+    $scope.showChordTypes = function($event) {
+        //$ionicSideMenuDelegate.toggleRight();
+        $scope.current_popup = $scope.popups['filters'];
+        $scope.current_popup.show($event);
     };
 
     /* Toggle the options side-menu (from the button) */
-    $scope.showOptions = function() {
-        $ionicSideMenuDelegate.toggleLeft();
+    $scope.showOptions = function($event) {
+        //$ionicSideMenuDelegate.toggleLeft();
+        $scope.current_popup = $scope.popups['options'];
+        $scope.current_popup.show($event);
     };
 
     /* Called when a config has changed */

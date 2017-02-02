@@ -1,0 +1,22 @@
+<ion-view view-title="Chords">
+    <ion-nav-bar class="bar-positive">
+        <ion-nav-buttons side="right">
+            <button class="button button-clear" ng-click="showChordTypes($event)">{{filters['chord_type']}}</button>
+            <button class="button button-clear" ng-click="showOptions($event)"><i class="icon ion-settings"></i></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content ng-init="generateChordsList()">
+        <div class="cards">
+            <div class="card_container" ng-repeat="chord in chords_list" ng-click="showChord(chord.id)">
+                <div class="list card">
+                    <div class="item item-image">
+                        <chord-finger muted="chord.first_chord['muted']" fingers="chord.first_chord['fret_fingers']" position="chord.first_chord['fret_position']"></chord-finger>
+                    </div>
+                    <div class="item item-text-wrap">
+                        {{chord.name}}<span ng-show="chord.alt_name"> / {{chord.alt_name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
