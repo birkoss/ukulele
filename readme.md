@@ -8,4 +8,4 @@ TODO
 - Favorites list (Allow the addition of multiple chords from different types) for a quick bookmark
   - Tabs: Chords, Favorites (maybe settings)
 
-- Fix the @TODO
+- Find a better way to show the muted string such as Dbm (the A string)
