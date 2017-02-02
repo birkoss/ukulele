@@ -6,5 +6,5 @@ ukuleleApp.component('chordFinger', {
         muted:'=muted',
     },
 
-    templateUrl:'chord-finger.html'
+    templateUrl:'views/components/chord-finger.html'
 });
