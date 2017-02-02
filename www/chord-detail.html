@@ -31,12 +31,12 @@
                         <span class="col" ng-repeat="(string, note) in single_chord.notes track by $index">{{note | replaceName}}</span>
                     </div>
                 </li>
-                <li ng-show="options['show_fingers']" class="item item-divider legend">
-                    Fingers:
+                <li ng-show="options['show_frets']" class="item item-divider legend">
+                    frets:
                 </li>
-                <li ng-show="options['show_fingers']" class="item legend">
+                <li ng-show="options['show_frets']" class="item legend">
                     <div class="row">
-                        <span class="col" ng-repeat="(string, finger) in single_chord.fingers track by $index">{{finger}}</span>
+                        <span class="col" ng-repeat="(string, fret) in single_chord.frets track by $index">{{fret}}</span>
                     </div>
                 </li>
             </div>

@@ -180,7 +180,7 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
         single_chord['index'] = chord_index;
 
         single_chord['notes'] = {'G':'G', 'C':'C', 'E':'E', 'A':'A'};
-        single_chord['fingers'] = {'G': 0, 'C': 0, 'E': 0, 'A': 0};
+        single_chord['frets'] = {'G': 0, 'C': 0, 'E': 0, 'A': 0};
 
         single_chord['fret_position'] = (chord_single_chord['Position'] == undefined ? 'top' : chord_single_chord['Position']);
 
@@ -222,9 +222,9 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
                 }
             }
 
-            // Place fingers
-            if (fret > single_chord['fingers'][string]) {
-                single_chord['fingers'][string] = fret;
+            // Place frets position
+            if (fret > single_chord['frets'][string]) {
+                single_chord['frets'][string] = fret;
             }
         }
 

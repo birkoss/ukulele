@@ -1,7 +1,7 @@
 ukuleleApp.service('ConfigService', function(localStorageService) {
     this.filters = {'chord_type':'Major'};
 
-    this.options = {'show_notes':true, 'show_scale':true, 'show_fingers':true, 'show_strings':true, 'show_in_french':false};
+    this.options = {'show_notes':true, 'show_scale':true, 'show_frets':true, 'show_strings':true, 'show_in_french':false};
 
     this.save = function(type, config) {
         localStorageService.set(type, config);
