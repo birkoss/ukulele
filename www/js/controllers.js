@@ -18,12 +18,12 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
 
     $scope.popups = {};
 
-    $ionicPopover.fromTemplateUrl('views/chords/options/options.html', {
+    $ionicPopover.fromTemplateUrl('views/chords/popups/options.html', {
         scope: $scope
     }).then(function(popover) {
         $scope.popups['options'] = popover;
     });
-    $ionicPopover.fromTemplateUrl('views/chords/options/filters.html', {
+    $ionicPopover.fromTemplateUrl('views/chords/popups/filters.html', {
         scope: $scope
     }).then(function(popover) {
         $scope.popups['filters'] = popover;
