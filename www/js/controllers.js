@@ -1,34 +1,10 @@
 ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, ChordsFavorites, ChordsService, ChordTypesFactory) {
-    $scope.generateChordsList = function() {
-        var list = [];
-
-        //ChordsFavorites.add('A', 'Major', 0);
-        for (var chord_favorite_index in ChordsFavorites.all()) {
-            var single_favorite = ChordsFavorites.get(chord_favorite_index);
-            var single_chord = ChordsService.get(single_favorite.chord_id);
-            var single_chord_type = ChordTypesFactory.get(single_favorite.chord_type);
-
-            var chord = {
-                'id':single_chord.name,
-                'name':$filter('replaceName')(single_chord.name)+single_chord_type.suffix,
-                'type':single_favorite.chord_type,
-            };
-
-            if (single_chord.alt_name) {
-                chord['alt_name'] = $filter('replaceName')(single_chord.alt_name)+single_chord_type.suffix;
-            }
-            
-            console.log(single_chord.name + ',' + single_favorite.chord_type + ',' + single_favorite.chord_index);
-            chord['first_chord'] = ChordsService.generate(single_chord.name, single_favorite.chord_type, single_favorite.chord_index);
-
-            list.push(chord);
-        }
-
-        $scope.chords_list = list;
-    };
-
     $scope.showDetail = function(chord_id, chord_type) {
         $state.go('tab.favorites-detail', {'chordType':chord_type, 'chordId':chord_id});
+    };
+
+    $scope.getChordsList = function() {
+        return ChordsFavorites.all();
     };
 });
 
@@ -42,30 +18,13 @@ ukuleleApp.controller('ChordDetail', function($scope, $stateParams, $filter, Cho
 
     var chord = ChordsService.get(chord_id);
 
-    // The current chord from ChordFactory
-    $scope.current_chord = {
-        'id':chord_id,
-        'name':$filter('replaceName')(chord.name) + single_chord_type.suffix,
-        'type':chord_type,
-    };
-
-    if (chord.alt_name) {
-        $scope.current_chord['name'] += ' / ' + $filter('replaceName')(chord.alt_name) + single_chord_type.suffix;
-    }
-
-
     $scope.strings = ['G', 'C', 'E', 'A'];
     $scope.scale_parts = single_chord_type.scale_parts;
 
     $scope.current_scale = ChordsService.buildScale(chord.name, chord_type);
 
-    var chords = [];
-    for (var c=0; c<chord.chords[ chord_type ].length; c++) {
-        var single_chord = ChordsService.generate(chord_id, chord_type, c);
-        chords.push(single_chord);
-    }
-
-    $scope.current_chords = chords;
+    $scope.chord = chord;
+    $scope.chord_type = chord_type;
 
     $scope.add = function(chord_id, chord_type, chord_index) {
         ChordsFavorites.add(chord_id, chord_type, chord_index);
@@ -76,6 +35,10 @@ ukuleleApp.controller('ChordDetail', function($scope, $stateParams, $filter, Cho
         if (favorite_index >= 0) {
             ChordsFavorites.remove(favorite_index);
         }
+    };
+
+    $scope.isFavorite = function(chord_id, chord_type, chord_index) {
+        return ChordsFavorites.exists(chord_id, chord_type, chord_index);
     };
 });
 
@@ -110,32 +73,6 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
         $scope.popups['filters'] = popover;
     });
 
-    /* Generate the chords list (depending of the current chord type, and the language) */
-    $scope.generateChordsList = function() {
-        var single_chord_type = ChordTypesFactory.get($scope.filters['chord_type']);
-
-        var list = [];
-        for (var chord_id in ChordsService.all()) {
-            var single_chord = ChordsService.all()[chord_id];
-
-            var chord = {
-                'id':single_chord.name,
-                'name':$filter('replaceName')(single_chord.name)+single_chord_type.suffix,
-            };
-
-            if (single_chord.alt_name) {
-                chord['alt_name'] = $filter('replaceName')(single_chord.alt_name)+single_chord_type.suffix;
-            }
-            
-            // Only add chords having that type available
-            if (single_chord.chords[$scope.filters['chord_type']] != undefined) {
-                // Can only build the chord if it's available in the current chord type...
-                chord['first_chord'] = ChordsService.generate(single_chord.name, $scope.filters['chord_type'], 0);
-                list.push(chord);
-            }
-        }
-        $scope.chords_list = list;
-    }
 
     $scope.showDetail = function(chord_id) {
         $state.go('tab.chord-detail', {'chordType':$scope.filters['chord_type'], 'chordId':chord_id});
@@ -156,8 +93,12 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
     /* Called when a config has changed */
     $scope.configChanged = function(type) {
         ConfigService.save(type, (type == 'filters' ? $scope.filters : $scope.options));
+    };
 
-        $scope.generateChordsList();
+    $scope.getChordsList = function() {
+        return ChordsService.all().filter(function(item) {
+            return (item.types[$scope.filters['chord_type']]);
+        });
     };
 
 });

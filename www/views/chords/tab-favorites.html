@@ -1,13 +1,13 @@
 <ion-view view-title="Favorites">
-    <ion-content ng-init="generateChordsList()">
+    <ion-content>
         <div class="cards">
-            <div class="card_container" ng-repeat="chord in chords_list" ng-click="showDetail(chord.id, chord.type);">
+            <div class="card_container" ng-repeat="favorite in getChordsList()" ng-click="showDetail(favorite.chord_id, favorite.chord_type);">
                 <div class="list card">
                     <div class="item item-image">
-                        <chord-finger muted="chord.first_chord['muted']" fingers="chord.first_chord['fret_fingers']" position="chord.first_chord['fret_position']"></chord-finger>
+                        <chord-finger muted="favorite.chord.getLayout(favorite.chord_type, favorite.chord_index).muted" fingers="favorite.chord.getLayout(favorite.chord_type, favorite.chord_index).fret_fingers" position="favorite.chord.getLayout(favorite.chord_type, favorite.chord_index).fret_position"></chord-finger>
                     </div>
                     <div class="item item-text-wrap">
-                        {{chord.name}}<span ng-show="chord.alt_name"> / {{chord.alt_name}}</span>
+                        {{favorite.chord.name | replaceName:favorite.chord_type}}<span ng-show="favorite.chord.alt_name"> / {{favorite.chord.alt_name | replaceName:favorite.chord_type}}</span>
                     </div>
                 </div>
             </div>

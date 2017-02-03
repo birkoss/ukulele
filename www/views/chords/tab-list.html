@@ -5,15 +5,15 @@
             <button class="button" ng-click="showOptions($event)"><i class="icon ion-settings"></i></button>
         </ion-nav-buttons>
     </ion-nav-bar>
-    <ion-content ng-init="generateChordsList()">
+    <ion-content>
         <div class="cards">
-            <div class="card_container" ng-repeat="chord in chords_list" ng-click="showDetail(chord.id);">
+            <div class="card_container" ng-repeat="chord in getChordsList()" ng-click="showDetail(chord.name);">
                 <div class="list card">
                     <div class="item item-image">
-                        <chord-finger muted="chord.first_chord['muted']" fingers="chord.first_chord['fret_fingers']" position="chord.first_chord['fret_position']"></chord-finger>
+                        <chord-finger muted="chord.getLayout(filters['chord_type']).muted" fingers="chord.getLayout(filters['chord_type']).fret_fingers" position="chord.getLayout(filters['chord_type']).fret_position"></chord-finger>
                     </div>
                     <div class="item item-text-wrap">
-                        {{chord.name}}<span ng-show="chord.alt_name"> / {{chord.alt_name}}</span>
+                        {{chord.name | replaceName:filters['chord_type']}}<span ng-show="chord.alt_name"> / {{chord.alt_name | replaceName:filters['chord_type']}}</span>
                     </div>
                 </div>
             </div>

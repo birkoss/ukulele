@@ -1,4 +1,4 @@
-<ion-view view-title="{{current_chord.name}}">
+<ion-view view-title="{{chord.name}}">
     <ion-content>
     <ul class="list">
             <li ng-show="options['show_scale']" class="item item-divider legend">Scale</li>
@@ -16,31 +16,32 @@
                 </div>
             </li>
             <li class="item all-chords">
-                <div class="list card" ng-repeat="single_chord in current_chords track by $index">
+                <div class="list card" ng-repeat="single_chord in chord.types[chord_type].chords track by $index">
                     <div class="item item-image">
-                        <chord-finger muted="single_chord['muted']" fingers="single_chord['fret_fingers']" labels="single_chord['fret_labels']" position="single_chord['fret_position']"></chord-finger>
+                        <chord-finger muted="single_chord.layout.muted" fingers="single_chord.layout.fret_fingers" labels="single_chord.layout.fret_labels" position="single_chord.layout.fret_position"></chord-finger>
                     </div>
                     <div ng-show="options['show_notes']" class="item chord-legend">
                         <h2>Notes</h2>
                         <div class="row">
-                            <span class="col" ng-repeat="(string, note) in single_chord.notes track by $index">{{note | replaceName}}</span>
+                            <span class="col" ng-repeat="(string, note) in single_chord.layout.notes track by $index">{{note | replaceName}}</span>
                         </div>
                     </div>
                     <div ng-show="options['show_fingers']" class="item chord-legend">
                         <h2>Frets</h2>
                         <div class="row">
-                            <span class="col" ng-repeat="(string, fret) in single_chord.frets track by $index">{{fret}}</span>
+                            <span class="col" ng-repeat="(string, fret) in single_chord.layout.frets track by $index">{{fret}}</span>
                         </div>
                     </div>
                     <div class="buttons">
-                        <a ng-click="add(current_chord.id, current_chord.type, $index)" ng-hide="single_chord.favorited" class="item item-icon-left assertive">
+                        <a ng-click="add(chord.name, chord_type, $index)" ng-hide="isFavorite(chord.name, chord_type, $index)" class="item item-icon-left assertive">
                             <i class="icon ion-star"></i>Add to favorite
                         </a>
-                        <a ng-click="remove(current_chord.id, current_chord.type, $index)" ng-show="single_chord.favorited" class="item item-icon-left assertive">
+                        <a ng-click="remove(chord.name, chord_type, $index)" ng-show="isFavorite(chord.name, chord_type, $index)" class="item item-icon-left assertive">
                             <i class="icon ion-star"></i>Remove from favorite
                         </a>
                     </div>
                 </div>
             </li>
-        </ul></ion-content>
+        </ul>
+    </ion-content>
 </ion-view>

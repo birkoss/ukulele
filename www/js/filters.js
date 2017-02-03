@@ -1,5 +1,11 @@
-ukuleleApp.filter('replaceName', function(ChordsService, ConfigService) {
-    return function(name) {
+ukuleleApp.filter('filterChordsByType', function() {
+    return function(items, chord_type) {
+
+    }
+});
+
+ukuleleApp.filter('replaceName', function(ChordsService, ChordTypesFactory, ConfigService) {
+    return function(name, chord_type) {
         var options = ConfigService.load('options');
         if (options['show_in_french']) {
             var french_names = ChordsService.get_french_names();
@@ -10,6 +16,12 @@ ukuleleApp.filter('replaceName', function(ChordsService, ConfigService) {
                 }
             }
         }
+
+        // Add the chord type suffix if available
+        if (chord_type != undefined) {
+            name += ChordTypesFactory.get(chord_type).suffix;
+        }
+
         return name;
     }
 });
