@@ -177,3 +177,20 @@
 .all-chords .buttons a {
     margin: 0 auto;
 }
+
+.message-empty-list {
+    flex-grow: 1;
+    display: flex;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+    align-items: center;
+}
+.message-empty-list p {
+    width: 100%;
+    color: #b2b2b2;
+}
+
+.favorite-container {
+    background-color: #f4f4f4;
+}

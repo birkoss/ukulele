@@ -1,6 +1,6 @@
 <ion-view view-title="Favorites">
-    <ion-content>
-        <div class="cards">
+    <ion-content class="favorite-container">
+        <div class="cards" ng-hide="getChordsList() == 0">
             <div class="card_container" ng-repeat="favorite in getChordsList()" ng-click="showDetail(favorite.chord_id, favorite.chord_type);">
                 <div class="list card">
                     <div class="item item-image">
@@ -11,6 +11,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="message-empty-list" fill-content ng-show="getChordsList() == 0">
+            <p>You have no favorite!</p>
         </div>
     </ion-content>
 </ion-view>
