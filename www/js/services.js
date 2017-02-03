@@ -1,3 +1,41 @@
+ukuleleApp.service('ChordTypesService', function() {
+    var types = [];
+
+    types.push({
+        'name': 'Major',
+        'chord': 'Triad',
+        'suffix': '',
+        'scale': [2, 2, 1, 2, 2, 2, 1],
+        'scale_parts': [1, 3, 5],
+    });
+    types.push({
+        'name': 'Minor',
+        'chord': 'Triad',
+        'suffix': 'm',
+        'scale': [2, 1, 2, 2, 1, 2, 2],
+        'scale_parts': [1, 3, 5],
+    });
+    types.push({
+        'name': '7',
+        'chord': 'Seventh',
+        'suffix': '7',
+        'scale': [2, 2, 1, 2, 2, 1, 2],
+        'scale_parts': [1, 3, 5, 7],
+    });
+
+    this.all = function() {
+        return types;
+    };
+
+    this.get = function(chord_type) {
+        for (var i=0; i<types.length; i++) {
+            if (types[i].name == chord_type) {
+                return types[i];
+            }
+        }
+        return null;
+    };
+});
 ukuleleApp.service('ChordsFavoritesService', function(localStorageService, ChordsService) {
     var favorites = [];
 
@@ -66,7 +104,7 @@ ukuleleApp.service('ChordsFavoritesService', function(localStorageService, Chord
     this.load();
 });
 
-ukuleleApp.service('ChordsService', function(ChordTypesFactory, ConfigService) {
+ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
 
     var scales = ['A', 'A♯/B♭', 'B', 'C', 'C♯/D♭', 'D', 'D♯/E♭', 'E', 'F', 'F♯/G♭', 'G', 'G♯/A♭'];
 
@@ -434,7 +472,7 @@ ukuleleApp.service('ChordsService', function(ChordTypesFactory, ConfigService) {
     };
 
     this.buildScale = function(chord_id, chord_type) {
-        var single_chord_type = ChordTypesFactory.get(chord_type);
+        var single_chord_type = ChordTypesService.get(chord_type);
 
         // Double scales to help us loop through it
         var doubled_scales = scales.concat(scales);

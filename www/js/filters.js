@@ -1,4 +1,4 @@
-ukuleleApp.filter('completeChord', function(ChordTypesFactory) {
+ukuleleApp.filter('completeChord', function(ChordTypesService) {
     return function(name, chord_type) {
         if (name == undefined) {
             return name;
@@ -6,7 +6,7 @@ ukuleleApp.filter('completeChord', function(ChordTypesFactory) {
 
         // Add the chord type suffix if available
         if (chord_type != undefined) {
-            name += ChordTypesFactory.get(chord_type).suffix;
+            name += ChordTypesService.get(chord_type).suffix;
         }
 
         return name;

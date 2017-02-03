@@ -1,4 +1,4 @@
-ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, ChordsFavoritesService, ChordsService, ChordTypesFactory, ConfigService) {
+ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, ChordsFavoritesService, ChordsService, ChordTypesService, ConfigService) {
     $scope.options = ConfigService.load('options');
 
     $scope.showDetail = function(chord_id, chord_type) {
@@ -10,13 +10,13 @@ ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, C
     };
 });
 
-ukuleleApp.controller('ChordDetailCtrl', function($scope, $stateParams, $filter, ChordsService, ChordTypesFactory, ConfigService, ChordsFavoritesService) {
+ukuleleApp.controller('ChordDetailCtrl', function($scope, $stateParams, $filter, ChordsService, ChordTypesService, ConfigService, ChordsFavoritesService) {
     $scope.options = ConfigService.load('options');
 
     var chord_id = $stateParams.chordId;
     var chord_type = $stateParams.chordType;
 
-    var single_chord_type = ChordTypesFactory.get(chord_type);
+    var single_chord_type = ChordTypesService.get(chord_type);
 
     var chord = ChordsService.get(chord_id);
 
@@ -44,13 +44,13 @@ ukuleleApp.controller('ChordDetailCtrl', function($scope, $stateParams, $filter,
     };
 });
 
-ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicModal, $ionicSideMenuDelegate, $ionicPopover, $state, ChordTypesFactory, ConfigService, ChordsService) {
+ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicModal, $ionicSideMenuDelegate, $ionicPopover, $state, ChordTypesService, ConfigService, ChordsService) {
 
     $scope.filters = ConfigService.load('filters');
 
     $scope.options = ConfigService.load('options');
 
-    $scope.chord_types = ChordTypesFactory.get();
+    $scope.chord_types = ChordTypesService.all();
 
     $scope.chord_families = {};
     for (var i=0; i<$scope.chord_types.length; i++) {
