@@ -12,7 +12,7 @@ ukuleleApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvi
         views: {
             'tab-chords-list': {
                 templateUrl: 'views/chords/tab-list.html',
-                controller: 'ChordsList'
+                controller: 'ChordsListCtrl',
             }
         }
     })
@@ -22,7 +22,7 @@ ukuleleApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvi
         views: {
             'tab-chords-list': {
                 templateUrl: 'views/chords/detail.html',
-                controller: 'ChordDetail',
+                controller: 'ChordDetailCtrl',
 
             }
         }
@@ -43,7 +43,7 @@ ukuleleApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvi
         views: {
             'tab-chords-favorites': {
                 templateUrl: 'views/chords/detail.html',
-                controller: 'ChordDetail',
+                controller: 'ChordDetailCtrl',
 
             }
         }

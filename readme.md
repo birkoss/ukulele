@@ -10,6 +10,4 @@ TODO
 
 - Factory : Add a all() and a get(id) in the ChordTypes
 
-- Modify ChordService into a real service
-
 - Remove Factory AND Service in theirs names
