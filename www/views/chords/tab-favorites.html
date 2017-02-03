@@ -1,7 +1,7 @@
 <ion-view view-title="Favorites">
     <ion-content ng-init="generateChordsList()">
         <div class="cards">
-            <div class="card_container" ng-repeat="chord in chords_list" ng-click="showDetail(chord.id);">
+            <div class="card_container" ng-repeat="chord in chords_list" ng-click="showDetail(chord.id, chord.type);">
                 <div class="list card">
                     <div class="item item-image">
                         <chord-finger muted="chord.first_chord['muted']" fingers="chord.first_chord['fret_fingers']" position="chord.first_chord['fret_position']"></chord-finger>

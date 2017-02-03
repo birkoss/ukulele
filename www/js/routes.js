@@ -18,7 +18,7 @@ ukuleleApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvi
     })
 
     .state('tab.chord-detail', {
-        url: '/chords/:chordId',
+        url: '/chords/:chordType/:chordId',
         views: {
             'tab-chords-list': {
                 templateUrl: 'views/chords/detail.html',
@@ -34,6 +34,17 @@ ukuleleApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvi
             'tab-chords-favorites': {
                 templateUrl: 'views/chords/tab-favorites.html',
                 controller: 'ChordsFavoritesCtrl',
+            }
+        }
+    })
+
+    .state('tab.favorites-detail', {
+        url: '/chords/:chordType/:chordId',
+        views: {
+            'tab-chords-favorites': {
+                templateUrl: 'views/chords/detail.html',
+                controller: 'ChordDetail',
+
             }
         }
     });

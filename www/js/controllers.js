@@ -1,4 +1,4 @@
-ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, ChordsFavorites, ChordsService, ChordTypesFactory) {
+ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, ChordsFavorites, ChordsService, ChordTypesFactory) {
     $scope.generateChordsList = function() {
         var list = [];
 
@@ -11,6 +11,7 @@ ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, ChordsFav
             var chord = {
                 'id':single_chord.name,
                 'name':$filter('replaceName')(single_chord.name)+single_chord_type.suffix,
+                'type':single_favorite.chord_type,
             };
 
             if (single_chord.alt_name) {
@@ -24,6 +25,10 @@ ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, ChordsFav
         }
 
         $scope.chords_list = list;
+    };
+
+    $scope.showDetail = function(chord_id, chord_type) {
+        $state.go('tab.favorites-detail', {'chordType':chord_type, 'chordId':chord_id});
     };
 });
 
@@ -120,7 +125,7 @@ ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ioni
     }
 
     $scope.showDetail = function(chord_id) {
-        $state.go('tab.chord-detail', {'chordId':chord_id});
+        $state.go('tab.chord-detail', {'chordType':$scope.filters['chord_type'], 'chordId':chord_id});
     };
 
     /* Toggle the filters side-menu (from the button) */
