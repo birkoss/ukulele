@@ -1,10 +1,24 @@
-ukuleleAll.service('ChordsFavorites', function(localStorageService) {
+ukuleleApp.service('ChordsFavorites', function(localStorageService) {
     var favorites = [];
-    this.load();
+
+    this.all = function() {
+        return favorites;
+    };
+
+    this.get = function(index) {
+        if (index < favorites.length) {
+            return favorites[index];
+        }
+        return null;
+    };
 
     this.add = function (chord_id, chord_type, chord_index) {
-        favorites.push( {'chord_id':chord_id, 'chord_type':chord_type, 'index':chord_index} );
-        this.save();
+        var favorite = {'chord_id':chord_id, 'chord_type':chord_type, 'chord_index':chord_index};
+
+        if (favorites.indexOf(favorite) == -1) {
+            favorites.push(favorite);
+            this.save();
+        }
     };
 
     this.remove = function(index) {
@@ -21,6 +35,8 @@ ukuleleAll.service('ChordsFavorites', function(localStorageService) {
             favorites = localStorageService.get('chords_favorites');
         }
     }
+
+    this.load();
 });
 
 ukuleleApp.factory('ChordsService', function(ChordTypesFactory, ConfigService) {

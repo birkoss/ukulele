@@ -33,6 +33,7 @@ ukuleleApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvi
         views: {
             'tab-chords-favorites': {
                 templateUrl: 'views/chords/tab-favorites.html',
+                controller: 'ChordsFavoritesCtrl',
             }
         }
     });
