@@ -1,4 +1,6 @@
-ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, ChordsFavorites, ChordsService, ChordTypesFactory) {
+ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, ChordsFavorites, ChordsService, ChordTypesFactory, ConfigService) {
+    $scope.options = ConfigService.load('options');
+
     $scope.showDetail = function(chord_id, chord_type) {
         $state.go('tab.favorites-detail', {'chordType':chord_type, 'chordId':chord_id});
     };

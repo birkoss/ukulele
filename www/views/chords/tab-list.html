@@ -13,7 +13,7 @@
                         <chord-finger muted="chord.getLayout(filters['chord_type']).muted" fingers="chord.getLayout(filters['chord_type']).fret_fingers" position="chord.getLayout(filters['chord_type']).fret_position"></chord-finger>
                     </div>
                     <div class="item item-text-wrap">
-                        {{chord.name | replaceName:filters['chord_type']}}<span ng-show="chord.alt_name"> / {{chord.alt_name | replaceName:filters['chord_type']}}</span>
+                        {{ chord.name | completeChord:filters['chord_type'] | translateChord:options['show_in_french'] }}<span ng-show="chord.alt_name"> / {{ chord.alt_name | completeChord:filters['chord_type'] | translateChord:options['show_in_french'] }}</span>
                     </div>
                 </div>
             </div>
