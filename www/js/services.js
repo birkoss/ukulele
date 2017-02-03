@@ -1,3 +1,28 @@
+ukuleleAll.service('ChordsFavorites', function(localStorageService) {
+    var favorites = [];
+    this.load();
+
+    this.add = function (chord_id, chord_type, chord_index) {
+        favorites.push( {'chord_id':chord_id, 'chord_type':chord_type, 'index':chord_index} );
+        this.save();
+    };
+
+    this.remove = function(index) {
+        favorites.splice(favorites.indexOf(index), 1);
+        this.save();
+    };
+
+    this.save = function() {
+        localStorageService.set('chords_favorites', favorites);
+    };
+
+    this.load = function() {
+        if (localStorageService.get('chords_favorites')) {
+            favorites = localStorageService.get('chords_favorites');
+        }
+    }
+});
+
 ukuleleApp.factory('ChordsService', function(ChordTypesFactory, ConfigService) {
 
     var scales = ['A', 'A♯/B♭', 'B', 'C', 'C♯/D♭', 'D', 'D♯/E♭', 'E', 'F', 'F♯/G♭', 'G', 'G♯/A♭'];

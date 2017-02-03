@@ -7,3 +7,9 @@ TODO
 
 - Favorites list (Allow the addition of multiple chords from different types) for a quick bookmark
   - Tabs: Chords, Favorites (maybe settings)
+
+- Factory : Add a all() and a get(id) in the ChordTypes
+
+- Modify ChordService into a real service
+
+- Remove Factory AND Service in theirs names
