@@ -1,4 +1,4 @@
-ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, ChordsFavorites, ChordsService, ChordTypesFactory, ConfigService) {
+ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, ChordsFavoritesService, ChordsService, ChordTypesFactory, ConfigService) {
     $scope.options = ConfigService.load('options');
 
     $scope.showDetail = function(chord_id, chord_type) {
@@ -6,11 +6,11 @@ ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, C
     };
 
     $scope.getChordsList = function() {
-        return ChordsFavorites.all();
+        return ChordsFavoritesService.all();
     };
 });
 
-ukuleleApp.controller('ChordDetailCtrl', function($scope, $stateParams, $filter, ChordsService, ChordTypesFactory, ConfigService, ChordsFavorites) {
+ukuleleApp.controller('ChordDetailCtrl', function($scope, $stateParams, $filter, ChordsService, ChordTypesFactory, ConfigService, ChordsFavoritesService) {
     $scope.options = ConfigService.load('options');
 
     var chord_id = $stateParams.chordId;
@@ -29,18 +29,18 @@ ukuleleApp.controller('ChordDetailCtrl', function($scope, $stateParams, $filter,
     $scope.chord_type = chord_type;
 
     $scope.add = function(chord_id, chord_type, chord_index) {
-        ChordsFavorites.add(chord_id, chord_type, chord_index);
+        ChordsFavoritesService.add(chord_id, chord_type, chord_index);
     };
 
     $scope.remove = function(chord_id, chord_type, chord_index) {
-        var favorite_index = ChordsFavorites.getIndex(chord_id, chord_type, chord_index);
+        var favorite_index = ChordsFavoritesService.getIndex(chord_id, chord_type, chord_index);
         if (favorite_index >= 0) {
-            ChordsFavorites.remove(favorite_index);
+            ChordsFavoritesService.remove(favorite_index);
         }
     };
 
     $scope.isFavorite = function(chord_id, chord_type, chord_index) {
-        return ChordsFavorites.exists(chord_id, chord_type, chord_index);
+        return ChordsFavoritesService.exists(chord_id, chord_type, chord_index);
     };
 });
 

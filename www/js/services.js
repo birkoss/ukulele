@@ -1,4 +1,4 @@
-ukuleleApp.service('ChordsFavorites', function(localStorageService, ChordsService) {
+ukuleleApp.service('ChordsFavoritesService', function(localStorageService, ChordsService) {
     var favorites = [];
 
     this.all = function() {
