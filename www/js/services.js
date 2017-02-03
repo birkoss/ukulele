@@ -12,11 +12,18 @@ ukuleleApp.service('ChordsFavorites', function(localStorageService) {
         return null;
     };
 
-    this.exists = function(chord_id, chord_type, chord_index) {
-        var favorite = {'chord_id':chord_id, 'chord_type':chord_type, 'chord_index':chord_index};
+    this.getIndex = function(chord_id, chord_type, chord_index) {
+        for (var i=0; i<favorites.length; i++) {
+            if (favorites[i].chord_id == chord_id && favorites[i].chord_type == chord_type && favorites[i].chord_index == chord_index) {
+                return i;
+            }
+        }
+        return -1;
+    };
 
-        return (favorites.indexOf(favorite) >= 0);
-    }
+    this.exists = function(chord_id, chord_type, chord_index) {
+        return (this.getIndex(chord_id, chord_type, chord_index) >= 0);
+    };
 
     this.add = function (chord_id, chord_type, chord_index) {
         var favorite = {'chord_id':chord_id, 'chord_type':chord_type, 'chord_index':chord_index};
@@ -305,7 +312,7 @@ ukuleleApp.factory('ChordsService', function(ChordTypesFactory, ConfigService, C
                 }
 
                 // Check if this current chord is favorited
-                single_chord['favorited'] = ChordsFavorites(chord_id, chord_type, chord_index);
+                single_chord['favorited'] = ChordsFavorites.exists(chord_id, chord_type, chord_index);
             }
 
             // Mute strings

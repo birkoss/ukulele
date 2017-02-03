@@ -16,7 +16,7 @@
                 </div>
             </li>
             <li class="item all-chords">
-                <div class="list card" ng-repeat="single_chord in current_chords">
+                <div class="list card" ng-repeat="single_chord in current_chords track by $index">
                     <div class="item item-image">
                         <chord-finger muted="single_chord['muted']" fingers="single_chord['fret_fingers']" labels="single_chord['fret_labels']" position="single_chord['fret_position']"></chord-finger>
                     </div>
@@ -33,9 +33,12 @@
                         </div>
                     </div>
                     <div class="buttons">
-                    <a style="margin: 0 auto;" class="item item-icon-left assertive">
-                        <i class="icon ion-star"></i>Add to favorite
-                    </a>
+                        <a ng-click="add(current_chord.id, current_chord.type, $index)" ng-hide="single_chord.favorited" class="item item-icon-left assertive">
+                            <i class="icon ion-star"></i>Add to favorite
+                        </a>
+                        <a ng-click="remove(current_chord.id, current_chord.type, $index)" ng-show="single_chord.favorited" class="item item-icon-left assertive">
+                            <i class="icon ion-star"></i>Remove from favorite
+                        </a>
                     </div>
                 </div>
             </li>

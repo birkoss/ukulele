@@ -174,3 +174,6 @@
 .all-chords .buttons {
     display: flex;
 }
+.all-chords .buttons a {
+    margin: 0 auto;
+}

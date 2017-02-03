@@ -32,7 +32,7 @@ ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, C
     };
 });
 
-ukuleleApp.controller('ChordDetail', function($scope, $stateParams, $filter, ChordsService, ChordTypesFactory, ConfigService) {
+ukuleleApp.controller('ChordDetail', function($scope, $stateParams, $filter, ChordsService, ChordTypesFactory, ConfigService, ChordsFavorites) {
     $scope.options = ConfigService.load('options');
 
     var chord_id = $stateParams.chordId;
@@ -44,7 +44,9 @@ ukuleleApp.controller('ChordDetail', function($scope, $stateParams, $filter, Cho
 
     // The current chord from ChordFactory
     $scope.current_chord = {
+        'id':chord_id,
         'name':$filter('replaceName')(chord.name) + single_chord_type.suffix,
+        'type':chord_type,
     };
 
     if (chord.alt_name) {
@@ -64,6 +66,17 @@ ukuleleApp.controller('ChordDetail', function($scope, $stateParams, $filter, Cho
     }
 
     $scope.current_chords = chords;
+
+    $scope.add = function(chord_id, chord_type, chord_index) {
+        ChordsFavorites.add(chord_id, chord_type, chord_index);
+    };
+
+    $scope.remove = function(chord_id, chord_type, chord_index) {
+        var favorite_index = ChordsFavorites.getIndex(chord_id, chord_type, chord_index);
+        if (favorite_index >= 0) {
+            ChordsFavorites.remove(favorite_index);
+        }
+    };
 });
 
 ukuleleApp.controller('ChordsList', function($scope, $filter, $ionicModal, $ionicSideMenuDelegate, $ionicPopover, $state, ChordTypesFactory, ConfigService, ChordsService) {
