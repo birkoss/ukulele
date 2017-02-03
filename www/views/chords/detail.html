@@ -1,4 +1,4 @@
-<ion-view view-title="{{chord.name}}">
+<ion-view view-title="{{chord.name | replaceName:chord_type}}{{ chord.alt_name ? ' / ' + (chord.alt_name | replaceName:chord_type) : '' }}">
     <ion-content>
     <ul class="list">
             <li ng-show="options['show_scale']" class="item item-divider legend">Scale</li>

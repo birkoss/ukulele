@@ -13,5 +13,3 @@ TODO
 - Modify ChordService into a real service
 
 - Remove Factory AND Service in theirs names
-
-- Add the alt_name in the detail
