@@ -12,10 +12,16 @@ ukuleleApp.service('ChordsFavorites', function(localStorageService) {
         return null;
     };
 
+    this.exists = function(chord_id, chord_type, chord_index) {
+        var favorite = {'chord_id':chord_id, 'chord_type':chord_type, 'chord_index':chord_index};
+
+        return (favorites.indexOf(favorite) >= 0);
+    }
+
     this.add = function (chord_id, chord_type, chord_index) {
         var favorite = {'chord_id':chord_id, 'chord_type':chord_type, 'chord_index':chord_index};
 
-        if (favorites.indexOf(favorite) == -1) {
+        if (!this.exists(chord_id, chord_type, chord_index)) {
             favorites.push(favorite);
             this.save();
         }
@@ -39,7 +45,7 @@ ukuleleApp.service('ChordsFavorites', function(localStorageService) {
     this.load();
 });
 
-ukuleleApp.factory('ChordsService', function(ChordTypesFactory, ConfigService) {
+ukuleleApp.factory('ChordsService', function(ChordTypesFactory, ConfigService, ChordsFavorites) {
 
     var scales = ['A', 'A♯/B♭', 'B', 'C', 'C♯/D♭', 'D', 'D♯/E♭', 'E', 'F', 'F♯/G♭', 'G', 'G♯/A♭'];
 
@@ -297,6 +303,9 @@ ukuleleApp.factory('ChordsService', function(ChordTypesFactory, ConfigService) {
                 if (fret > single_chord['frets'][string]) {
                     single_chord['frets'][string] = fret;
                 }
+
+                // Check if this current chord is favorited
+                single_chord['favorited'] = ChordsFavorites(chord_id, chord_type, chord_index);
             }
 
             // Mute strings
