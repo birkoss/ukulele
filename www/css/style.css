@@ -50,7 +50,7 @@
     fill: #f4f4f4;
 }
 
-div.card .chords > svg {
+.cards div.card .chords > svg {
     width: 64px;;
     height: auto; 
 }
@@ -60,7 +60,7 @@ div.card .chords > svg {
 .note-filling {
     fill: #ffffff;
 }
-div.card .chords > svg .note-filling {
+.cards div.card .chords > svg .note-filling {
    fill: #000000; 
 }
 .fret-G1 {
@@ -144,13 +144,17 @@ div.card .chords > svg .note-filling {
     background-color: #f4f4f4;
 }
 
-.item.item-divider.legend {
+.item.legend, .chord-legend .row .col {
     text-align: center;
 }
 .item.legend {
     padding: 4px;
 }
-.item.legend > .row {
+.chord-legend > h2 {
+    text-align: center;
+    font-weight: bold;
+}
+.item.legend > .row, .chord-legend > .row {
     max-width: 214px;
     margin: 0 auto;
     padding: 0;
@@ -161,4 +165,12 @@ div.card .chords > svg .note-filling {
 
 .buttons.buttons-right button {
     margin-left: 4px;
+}
+
+.all-chords {
+    background-color: #f4f4f4;
+}
+
+.all-chords .buttons {
+    display: flex;
 }

@@ -15,26 +15,29 @@
                     <span class="col" ng-repeat="string in strings track by $index">{{string | replaceName}}</span>
                 </div>
             </li>
-            <div ng-repeat="single_chord in current_chords">
-                <li class="item">
-                    <chord-finger muted="single_chord['muted']" fingers="single_chord['fret_fingers']" labels="single_chord['fret_labels']" position="single_chord['fret_position']"></chord-finger>
-                </li>
-                <li ng-show="options['show_notes']" class="item item-divider legend">
-                    Notes:
-                </li>
-                <li ng-show="options['show_notes']" class="item legend">
-                    <div class="row">
-                        <span class="col" ng-repeat="(string, note) in single_chord.notes track by $index">{{note | replaceName}}</span>
+            <li class="item all-chords">
+                <div class="list card" ng-repeat="single_chord in current_chords">
+                    <div class="item item-image">
+                        <chord-finger muted="single_chord['muted']" fingers="single_chord['fret_fingers']" labels="single_chord['fret_labels']" position="single_chord['fret_position']"></chord-finger>
                     </div>
-                </li>
-                <li ng-show="options['show_frets']" class="item item-divider legend">
-                    frets:
-                </li>
-                <li ng-show="options['show_frets']" class="item legend">
-                    <div class="row">
-                        <span class="col" ng-repeat="(string, fret) in single_chord.frets track by $index">{{fret}}</span>
+                    <div ng-show="options['show_notes']" class="item chord-legend">
+                        <h2>Notes</h2>
+                        <div class="row">
+                            <span class="col" ng-repeat="(string, note) in single_chord.notes track by $index">{{note | replaceName}}</span>
+                        </div>
                     </div>
-                </li>
-            </div>
+                    <div ng-show="options['show_fingers']" class="item chord-legend">
+                        <h2>Frets</h2>
+                        <div class="row">
+                            <span class="col" ng-repeat="(string, fret) in single_chord.frets track by $index">{{fret}}</span>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                    <a style="margin: 0 auto;" class="item item-icon-left assertive">
+                        <i class="icon ion-star"></i>Add to favorite
+                    </a>
+                    </div>
+                </div>
+            </li>
         </ul></ion-content>
 </ion-view>
