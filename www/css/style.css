@@ -173,9 +173,11 @@
 
 .all-chords .buttons {
     display: flex;
+    padding: 1px;
 }
 .all-chords .buttons a {
-    margin: 0 auto;
+    border: 0;
+    margin: 0 auto !important;
 }
 
 .message-empty-list {
