@@ -245,7 +245,7 @@ ukuleleApp.factory('ChordsService', function(ChordTypesFactory, ConfigService) {
             var scale = this.buildScale(chord_id, chord_type);
 
             // Build all available chords for this chord (and chord type)
-            var chord_single_chord = chord.chords[ConfigService.load('filters')['chord_type']][chord_index];
+            var chord_single_chord = chord.chords[chord_type][chord_index];
 
             var single_chord = {};
             single_chord['index'] = chord_index;

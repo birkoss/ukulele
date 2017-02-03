@@ -33,12 +33,12 @@ ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, C
 });
 
 ukuleleApp.controller('ChordDetail', function($scope, $stateParams, $filter, ChordsService, ChordTypesFactory, ConfigService) {
-    $scope.filters = ConfigService.load('filters');
     $scope.options = ConfigService.load('options');
 
     var chord_id = $stateParams.chordId;
+    var chord_type = $stateParams.chordType;
 
-    var single_chord_type = ChordTypesFactory.get($scope.filters['chord_type']);
+    var single_chord_type = ChordTypesFactory.get(chord_type);
 
     var chord = ChordsService.get(chord_id);
 
@@ -55,11 +55,11 @@ ukuleleApp.controller('ChordDetail', function($scope, $stateParams, $filter, Cho
     $scope.strings = ['G', 'C', 'E', 'A'];
     $scope.scale_parts = single_chord_type.scale_parts;
 
-    $scope.current_scale = ChordsService.buildScale(chord.name, $scope.filters['chord_type']);
+    $scope.current_scale = ChordsService.buildScale(chord.name, chord_type);
 
     var chords = [];
-    for (var c=0; c<chord.chords[ $scope.filters['chord_type'] ].length; c++) {
-        var single_chord = ChordsService.generate(chord_id, $scope.filters['chord_type'], c);
+    for (var c=0; c<chord.chords[ chord_type ].length; c++) {
+        var single_chord = ChordsService.generate(chord_id, chord_type, c);
         chords.push(single_chord);
     }
 
