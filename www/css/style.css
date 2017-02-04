@@ -243,3 +243,13 @@ background: #F7F7F7;
 .radio-positive .radio-icon:before{
   border-color: #0C63EE !important;
 }
+
+.radio-content {
+    border-bottom: 1px solid #b4b4b4;
+}
+
+.chord-type-family {
+    padding: 6px 16px;
+    font-weight: bold;
+    border-bottom: 1px solid #b4b4b4;
+}
