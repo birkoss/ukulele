@@ -1,4 +1,4 @@
-ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, ChordsFavoritesService, ChordsService, ChordTypesService, ConfigService) {
+ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, $ionicSideMenuDelegate, ChordsFavoritesService, ChordsService, ChordTypesService, ConfigService) {
     $scope.options = ConfigService.load('options');
 
     $scope.showDetail = function(chord_id, chord_type) {
@@ -7,6 +7,10 @@ ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, C
 
     $scope.getChordsList = function() {
         return ChordsFavoritesService.all();
+    };
+
+    $scope.toggleMenu = function() {
+        $ionicSideMenuDelegate.toggleLeft();
     };
 });
 
@@ -103,4 +107,15 @@ ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicModal, $
         });
     };
 
+    $scope.toggleMenu = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+
+});
+
+
+ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate) {
+    $scope.toggleMenu = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
 });
