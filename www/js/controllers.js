@@ -115,6 +115,8 @@ ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicModal, $
 
 
 ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate) {
+    $scope.chords = {}
+
     $scope.toggleMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
