@@ -122,11 +122,13 @@ ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, Chord
     $scope.chord_types = ChordTypesService.all();
 
     $scope.pickChord = function() {
-        var chord_type = $scope.chord_types[$scope.getRandomInt(0, $scope.chord_types.length)].name;
-        var chord = $scope.getChordsList(chord_type)[$scope.getRandomInt(0, $scope.getChordsList(chord_type).length)].name;
+        $scope.current_chord_type = $scope.chord_types[$scope.getRandomInt(0, $scope.chord_types.length)].name;
+        $scope.current_chord = $scope.getChordsList($scope.current_chord_type)[$scope.getRandomInt(0, $scope.getChordsList($scope.current_chord_type).length)].name;
 
-        console.log(chord_type);
-        console.log(chord);
+        $scope.current_chord_type = 'Major';
+        $scope.current_chord = 'C';
+        console.log( $scope.current_chord );
+        console.log($scope.current_chord_type);
     };
 
     $scope.getChordsList = function(chord_type) {
@@ -140,9 +142,30 @@ ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, Chord
     };
 
     $scope.validate = function() {
-        $scope.pickChord();
-        console.log( $scope.chords );
+        console.log( $scope.answer );
     };
+
+    $scope.$watch('answer', function(newVal, oldVal) {
+        if (newVal != oldVal) {
+            var answer = Object.keys($scope.answer);
+            answer.sort();
+            console.log(answer);
+
+            var all_chords = ChordsService.get($scope.current_chord).types[$scope.current_chord_type].chords;
+            for (var single_chord in all_chords) {
+
+                console.log( all_chords[single_chord] );
+                var chord_frets = Object.keys(all_chords[single_chord]['Fingers']);
+                chord_frets.sort();
+
+                console.log(chord_frets);
+
+                if (JSON.stringify(chord_frets) == JSON.stringify(answer)) {
+                    console.log("OUI");
+                }
+            }
+        }
+    }, true);
 
     $scope.getRandomInt = function(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
