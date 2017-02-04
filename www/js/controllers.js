@@ -114,10 +114,37 @@ ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicModal, $
 });
 
 
-ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate) {
-    $scope.chords = {}
+ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, ChordsService, ConfigService, ChordTypesService) {
+    $scope.answer = {};
+
+    $scope.options = ConfigService.load('options');
+
+    $scope.chord_types = ChordTypesService.all();
+
+    $scope.pickChord = function() {
+        var chord_type = $scope.chord_types[$scope.getRandomInt(0, $scope.chord_types.length)].name;
+        var chord = $scope.getChordsList(chord_type)[$scope.getRandomInt(0, $scope.getChordsList(chord_type).length)].name;
+
+        console.log(chord_type);
+        console.log(chord);
+    };
+
+    $scope.getChordsList = function(chord_type) {
+        return ChordsService.all().filter(function(item) {
+            return (item.types[chord_type]);
+        });
+    };
 
     $scope.toggleMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
+
+    $scope.validate = function() {
+        $scope.pickChord();
+        console.log( $scope.chords );
+    };
+
+    $scope.getRandomInt = function(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
 });

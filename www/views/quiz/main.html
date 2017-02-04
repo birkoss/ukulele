@@ -5,6 +5,8 @@
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content>
-        <chord-finger labels="{'a':1}" fingers="chords" position="'top'"></chord-finger>
+        <h1>Reproduce a <strong>{{ chord_id | completeChord:chord_type | translateChord:options['show_in_french'] }}</strong></h1>
+        <chord-finger labels="{'a':1}" fingers="answer" position="'top'"></chord-finger>
+        <button class="button button-positive" ng-click="validate()">Validate</button>
     </ion-content>
 </ion-view>

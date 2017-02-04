@@ -28,21 +28,19 @@ ukuleleApp.component('chordFinger', {
                 x-= origin_start;
                 y-= origin_start;
 
-                var p_x = Math.max(0, Math.floor(x / grid_size));
-                var p_y = Math.max(0, Math.floor(y / grid_size));
+                var p_x = Math.min(3, Math.max(0, Math.round(x / grid_size)));
+                var p_y = Math.min(3, Math.max(0, Math.floor(y / grid_size)));
 
                 var strings = {'0':'G', '1':'C', '2':'E', '3':'A'};
 
-                this.fingers[strings[p_x] + (p_y+1)] = '1';
-                console.log(this.labels);
-                console.log('sway2: ' + scale);
-                console.log('XY:' + x + 'x' + y);
-                console.log('Fret:' + p_x + 'x' + p_y);
-                console.log('Parent:' + parent_width + 'x' + parent_height);
+                var fret_id = strings[p_x] + (p_y+1);
+
+                if (this.fingers[fret_id]) {
+                    delete this.fingers[fret_id];
+                } else {
+                    this.fingers[fret_id] = '0';
+                }
             };
-        };
-        this.sway = function() {
-            console.log('sway');
         };
     },
 
