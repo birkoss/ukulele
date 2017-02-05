@@ -161,11 +161,11 @@ ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, $ioni
     };
 
     $scope.optionChanged = function() {
-        ConfigService.save('quiz_options', $scope.quiz_options);
+        ConfigService.save('quiz_options', $scope.options);
     };
 
     $scope.$watch('answer', function(newVal, oldVal) {
-        if (newVal != oldVal) {
+        if (newVal != oldVal && $scope.playing) {
             var answer = Object.keys($scope.answer);
             answer.sort();
 
@@ -177,6 +177,7 @@ ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, $ioni
 
 
                 if (JSON.stringify(chord_frets) == JSON.stringify(answer)) {
+                    $scope.answer = all_chords[single_chord]['Fingers'];
                     $scope.playing = false;
                     $scope.win();
                     break;
@@ -184,6 +185,14 @@ ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, $ioni
             }
         }
     }, true);
+
+    $scope.showSolution = function() {
+        var all_chords = ChordsService.get($scope.current_chord).types[$scope.current_chord_type].chords;
+        for (var single_chord in all_chords) {
+            $scope.playing = false;
+            $scope.answer = all_chords[single_chord]['Fingers'];
+        }
+    };
 
     $scope.win = function() {
         var alertPopup = $ionicPopup.alert({
