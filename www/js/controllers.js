@@ -211,16 +211,32 @@ ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, $ioni
 });
 
 
-ukuleleApp.controller('NotesListCtrl', function($scope, $filter, $ionicSideMenuDelegate, NotesService) {
+ukuleleApp.controller('NotesListCtrl', function($scope, $filter, $ionicSideMenuDelegate, $ionicPopover, NotesService, ConfigService) {
+
+    $scope.options = ConfigService.load('notes_options');
+
+    $ionicPopover.fromTemplateUrl('views/notes/popups/options.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
 
     $scope.getNotesList = function() {
         return NotesService.all().filter(function(item) {
-            return (item);
+            return ($scope.options['include_flat_sharp'] || item.name.length == 1);
         });
     };
 
     $scope.toggleMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
+    };
+
+    $scope.showOptions = function($event) {
+        $scope.popover.show($event);
+    };
+
+    $scope.configChanged = function() {
+        ConfigService.save('notes_options', $scope.options);
     };
 
 });

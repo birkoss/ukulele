@@ -644,6 +644,8 @@ ukuleleApp.service('ConfigService', function(localStorageService, ChordTypesServ
 
     this.quiz_options = {};
 
+    this.notes_options = {'show_flat_sharp':false, 'show_in_french':false};
+
     this.save = function(type, config) {
         localStorageService.set(type, config);
     };
@@ -664,6 +666,9 @@ ukuleleApp.service('ConfigService', function(localStorageService, ChordTypesServ
                 this.quiz_options['Major'] = true;
                 this.quiz_options['Minor'] = true;
                 config = this.quiz_options;
+                break;
+            case 'notes_options':
+                config = this.notes_options;
                 break;
         }
         if (localStorageService.get(type)) {

@@ -11,3 +11,5 @@ TODO
 
 - Add multiple finger positions for the same chords
   - Test that every options is available in the quiz
+
+- Add the french notation in the notes
