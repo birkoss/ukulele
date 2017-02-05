@@ -209,3 +209,18 @@ ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, $ioni
         return Math.floor(Math.random() * (max - min)) + min;
     }
 });
+
+
+ukuleleApp.controller('NotesListCtrl', function($scope, $filter, $ionicSideMenuDelegate, NotesService) {
+
+    $scope.getNotesList = function() {
+        return NotesService.all().filter(function(item) {
+            return (item);
+        });
+    };
+
+    $scope.toggleMenu = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+
+});

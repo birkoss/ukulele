@@ -1,3 +1,23 @@
+ukuleleApp.service('NotesService', function() {
+    var notes = [];
+
+    notes.push({
+        'name': 'F',
+    });
+
+    this.all = function() {
+        return notes;
+    };
+
+    this.get = function(note) {
+        for (var i=0; i<notes.length; i++) {
+            if (notes[i].name == note) {
+                return notes[i];
+            }
+        }
+        return null;
+    };
+});
 ukuleleApp.service('ChordTypesService', function() {
     var types = [];
 
