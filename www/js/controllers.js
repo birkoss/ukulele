@@ -114,27 +114,32 @@ ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicModal, $
 });
 
 
-ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, $ionicPopup, ChordsService, ConfigService, ChordTypesService) {
+ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, $ionicPopup, $ionicPopover, ChordsService, ConfigService, ChordTypesService) {
     $scope.answer = {};
 
-    $scope.options = ConfigService.load('options');
-
-    $scope.chord_types = ChordTypesService.all();
+    $scope.options = ConfigService.load('quiz_options');
 
     $scope.playing = false;
+
+    $ionicPopover.fromTemplateUrl('views/quiz/popups/options.html', {
+        scope: $scope
+    }).then(function(popover) {
+    $scope.popover = popover;
+});
 
     $scope.pickChord = function() {
         $scope.answer = {};
 
-        $scope.current_chord_type = $scope.chord_types[$scope.getRandomInt(0, $scope.chord_types.length)].name;
+        $scope.current_chord_type = $scope.getChordTypes()[$scope.getRandomInt(0, $scope.getChordTypes().length)].name;
         $scope.current_chord = $scope.getChordsList($scope.current_chord_type)[$scope.getRandomInt(0, $scope.getChordsList($scope.current_chord_type).length)].name;
 
-        /*
-        $scope.current_chord_type = 'Major';
-        $scope.current_chord = 'C';
-        */
-
         $scope.playing = true;
+    };
+
+    $scope.getChordTypes = function() {
+        return ChordTypesService.all().filter(function(item) {
+            return $scope.options[item.name]; 
+        });
     };
 
     $scope.getChordsList = function(chord_type) {
@@ -149,6 +154,14 @@ ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, $ioni
 
     $scope.validate = function() {
         console.log( $scope.answer );
+    };
+
+    $scope.showOptions = function($event) {
+        $scope.popover.show($event);
+    };
+
+    $scope.optionChanged = function() {
+        ConfigService.save('quiz_options', $scope.quiz_options);
     };
 
     $scope.$watch('answer', function(newVal, oldVal) {

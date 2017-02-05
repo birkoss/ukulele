@@ -524,17 +524,35 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
     this.init();
 });
 
-ukuleleApp.service('ConfigService', function(localStorageService) {
+ukuleleApp.service('ConfigService', function(localStorageService, ChordTypesService) {
     this.filters = {'chord_type':'Major'};
 
     this.options = {'show_notes':true, 'show_scale':false, 'show_frets':true, 'show_strings':true, 'show_in_french':false};
+
+    this.quiz_options = {};
 
     this.save = function(type, config) {
         localStorageService.set(type, config);
     };
 
     this.load = function(type) {
-        var config = (type == 'filters' ? this.filters : this.options);
+        var config = null;
+        switch (type) {
+            case 'filters':
+                config = this.filters;
+                break;
+            case 'options':
+                config = this.options;
+                break;
+            case 'quiz_options':
+                for (var type_index in ChordTypesService.all()) {
+                    this.quiz_options[ ChordTypesService.all()[type_index].name ] = false;
+                }
+                this.quiz_options['Major'] = true;
+                this.quiz_options['Minor'] = true;
+                config = this.quiz_options;
+                break;
+        }
         if (localStorageService.get(type)) {
             config = this.merge(config, localStorageService.get(type));
         }
