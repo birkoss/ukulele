@@ -206,3 +206,72 @@
     font-weight: bold;
     border-bottom: 1px solid #b4b4b4;
 }
+
+.notes svg {
+    width: 100%;
+    height: auto;
+}
+
+.notes svg.note #G-Key {
+    transform: translate(6px, 0);
+}
+.notes svg.note g#Stroke, .notes svg.note g#Sharp, .notes svg.note g#Flat {
+    display: none;
+}
+.notes svg.note.direction-up g#Down {
+    display: none;
+}
+.notes svg.note.direction-down g#Up {
+    display: none;
+}
+
+.notes svg.note.note-C.direction-up g#Stroke {
+    display: inline;
+}
+
+.notes svg.note.note-sharp g#Sharp {
+    display: inline;
+    transform: translate(16px, 0);
+}
+.notes svg.note.note-flat g#Flat {
+    display: inline;
+    transform: translate(16px, 0);
+}
+
+.notes svg.note.note-C g#Note {
+    transform: translate(0px, 40px);
+}
+.notes svg.note.note-D g#Note {
+    transform: translate(0px, 30px);
+}
+.notes svg.note.note-E g#Note {
+    transform: translate(0px, 13px);
+}
+.notes svg.note.note-G g#Note {
+    transform: translate(0px, -13px);
+}
+.notes svg.note.note-A g#Note {
+    transform: translate(0px, -28px);
+}
+.notes svg.note.note-B.direction-down g#Note {
+    transform: translate(0px, -42px);
+}
+.notes svg.note.note-C.direction-down g#Note {
+    transform: translate(0px, -57px);
+}
+.notes svg.note.note-D.direction-down g#Note {
+    transform: translate(0px, -70px);
+}
+.notes svg.note.note-E.direction-down g#Note {
+    transform: translate(0px, -86px);
+}
+.notes svg.note.note-F.direction-down g#Note {
+    transform: translate(0px, -100px);
+}
+.notes svg.note.note-G.direction-down g#Note {
+    transform: translate(0px, -114px);
+}
+
+.cards.cards_notes .card_container .item-image {
+    padding: 0;
+}

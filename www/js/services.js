@@ -2,9 +2,102 @@ ukuleleApp.service('NotesService', function() {
     var notes = [];
 
     notes.push({
+        'name':'C',
+    });
+    notes.push({
+        'name':'C♯',
+    });
+    notes.push({
+        'name':'D♭',
+    });
+    notes.push({
+        'name': 'D',
+    });
+    notes.push({
+        'name':'D♯',
+    });
+    notes.push({
+        'name':'E♭',
+    });
+    notes.push({
+        'name': 'E',
+    });
+    notes.push({
         'name': 'F',
     });
-
+    notes.push({
+        'name':'F♯',
+    });
+    notes.push({
+        'name':'G♭',
+    });
+    notes.push({
+        'name': 'G',
+    });
+    notes.push({
+        'name':'G♯',
+    });
+    notes.push({
+        'name':'A♭',
+    });
+    notes.push({
+        'name': 'A',
+    });
+    notes.push({
+        'name':'A♯',
+    });
+    notes.push({
+        'name':'B♭',
+        'direction':'down',
+    });
+    notes.push({
+        'name': 'B',
+        'direction':'down',
+    });
+    notes.push({
+        'name':'C',
+        'direction':'down',
+    });
+    notes.push({
+        'name':'C♯',
+        'direction':'down',
+    });
+    notes.push({
+        'name':'D♭',
+        'direction':'down',
+    });
+    notes.push({
+        'name': 'D',
+        'direction':'down',
+    });
+    notes.push({
+        'name':'D♯',
+        'direction':'down',
+    });
+    notes.push({
+        'name':'E♭',
+        'direction':'down',
+    });
+    notes.push({
+        'name': 'E',
+        'direction':'down',
+    });
+    notes.push({
+        'name': 'F',
+        'direction':'down',
+    });
+    notes.push({
+        'name':'F♯',
+        'direction':'down',
+    });
+    notes.push({
+        'name':'G♭',
+        'direction':'down',
+    });
+    notes.push({
+        'name': 'G',
+        'direction':'down',
+    });
     this.all = function() {
         return notes;
     };

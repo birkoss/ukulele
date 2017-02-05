@@ -1,3 +1,11 @@
+ukuleleApp.component('musicalNote', {
+    bindings: {
+        note:'=note',
+        direction:'=direction',
+    },
+
+    templateUrl:'views/components/musical-note.html'
+});
 ukuleleApp.component('chordFinger', {
     bindings: {
         fingers:'=fingers',
