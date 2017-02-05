@@ -1,10 +1,10 @@
 ukuleleApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
 
-    $stateProvider.state('quiz', {
-        url: '/quiz',
-        templateUrl: 'views/quiz/main.html',
-        controller: 'QuizCtrl',
+    $stateProvider.state('chords-quiz', {
+        url: '/chords-quiz',
+        templateUrl: 'views/chords/quiz/index.html',
+        controller: 'ChordsQuizCtrl',
     })
 
     $stateProvider.state('notes-list', {

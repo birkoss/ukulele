@@ -114,14 +114,14 @@ ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicModal, $
 });
 
 
-ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, $ionicPopup, $ionicPopover, ChordsService, ConfigService, ChordTypesService) {
+ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate, $ionicPopup, $ionicPopover, ChordsService, ConfigService, ChordTypesService) {
     $scope.answer = {};
 
     $scope.options = ConfigService.load('quiz_options');
 
     $scope.playing = false;
 
-    $ionicPopover.fromTemplateUrl('views/quiz/popups/options.html', {
+    $ionicPopover.fromTemplateUrl('views/chords/quiz/popups/options.html', {
         scope: $scope
     }).then(function(popover) {
     $scope.popover = popover;
