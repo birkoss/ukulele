@@ -114,6 +114,94 @@ ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicModal, $
 });
 
 
+ukuleleApp.controller('NotesQuizCtrl', function($scope, $ionicSideMenuDelegate, $ionicPopup, $ionicPopover, ConfigService, NotesService) {
+    $scope.answers = [];
+    $scope.answers_tried = [];
+
+    $scope.playing = false;
+
+    $scope.options = ConfigService.load('notes_quiz_options');
+
+    $ionicPopover.fromTemplateUrl('views/notes/quiz/popups/options.html', {
+        scope: $scope
+    }).then(function(popover) {
+    $scope.popover = popover;
+});
+
+    $scope.pickNote = function() {
+        $scope.playing = true;
+        $scope.answers = [];
+        $scope.answers_tried = [];
+
+        $scope.current_note = $scope.getNotesList()[$scope.getRandomInt(0, $scope.getNotesList().length)];
+
+        $scope.answers.push($scope.current_note.name);
+
+        do {
+            var junk_note = $scope.getNotesList()[$scope.getRandomInt(0, $scope.getNotesList().length)].name;
+
+            if ($scope.answers.indexOf(junk_note) == -1) {
+                $scope.answers.push(junk_note);
+            }
+
+        } while ($scope.answers.length < 5);
+
+        $scope.answers.sort();
+    };
+
+    $scope.pickAnswer = function(answer) {
+        if ($scope.playing) {
+            $scope.answers_tried.push(answer);
+            if ($scope.current_note.name == answer) {
+                $scope.playing = false;
+                $scope.goodAnswer();
+            } else {
+                $scope.wrongAnswer(answer);
+            }
+        }
+    };
+
+    $scope.getNotesList = function() {
+        return NotesService.all().filter(function(item) {
+            return ($scope.options['include_flat_sharp'] || item.name.length == 1);
+        });
+    };
+
+    $scope.toggleMenu = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+
+    $scope.showOptions = function($event) {
+        $scope.popover.show($event);
+    };
+
+    $scope.optionChanged = function() {
+        ConfigService.save('notes_quiz_options', $scope.options);
+    };
+
+    $scope.wrongAnswer = function(answer) {
+        var alertPopup = $ionicPopup.alert({
+            title: 'Wrong!',
+            template: 'It\'s not the correct note!'
+        });
+    };
+
+    $scope.goodAnswer = function() {
+        var alertPopup = $ionicPopup.alert({
+            title: 'Correct!',
+            template: 'It\'s the correct note!'
+        });
+
+        alertPopup.then(function(res) {
+            /*$scope.allowNextQuestion();*/
+        });
+    };
+
+    $scope.getRandomInt = function(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+});
+
 ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate, $ionicPopup, $ionicPopover, ChordsService, ConfigService, ChordTypesService) {
     $scope.answer = {};
 

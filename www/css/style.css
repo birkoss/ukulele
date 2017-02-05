@@ -275,3 +275,13 @@
 .cards.cards_notes .card_container .item-image {
     padding: 0;
 }
+
+.buttons.buttons-notes {
+    text-align: center;
+}
+.buttons.buttons-notes button {
+    margin-left: 10px;
+}
+.buttons.buttons-notes button:first-child {
+    margin-left: 0;
+}

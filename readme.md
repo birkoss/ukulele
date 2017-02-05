@@ -10,11 +10,4 @@ TODO
 - Add multiple finger positions for the same chords
   - Test that every options is available in the quiz
 
-- Better grouping of the Side Menu
-    - Chords
-        - List
-        - Favorites
-        - Quiz
-    - Notes
-        - List
-        - Quiz
+- Add french option in the chords quiz
