@@ -6,6 +6,12 @@ ukuleleApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvi
         templateUrl: 'views/quiz/main.html',
         controller: 'QuizCtrl',
     })
+
+    $stateProvider.state('notes-list', {
+        url: '/notes',
+        templateUrl: 'views/notes/index.html',
+        controller: 'NotesListCtrl',
+    })
     
     $stateProvider.state('tab', {
         url: '/tab',
