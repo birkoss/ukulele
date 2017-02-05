@@ -1,8 +1,6 @@
 TODO
 ====
 
-- New page with quiz asking to finger the correct chord depending on a chord name and type
-
 - New page allowing us to finger the fret and it will show the chord name (if possible)
 
 - Faire que les items du menu sont dans un controller a part 
@@ -12,4 +10,11 @@ TODO
 - Add multiple finger positions for the same chords
   - Test that every options is available in the quiz
 
-- Add the french notation in the notes
+- Better grouping of the Side Menu
+    - Chords
+        - List
+        - Favorites
+        - Quiz
+    - Notes
+        - List
+        - Quiz
