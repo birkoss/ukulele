@@ -8,8 +8,8 @@
         <div class="list">
             <h1 class="item">Reproduce a <strong>{{ current_chord | completeChord:current_chord_type | translateChord:options['show_in_french'] }}</strong></h1>
             <chord-finger class="item" labels="[1, 2, 3, 4]" fingers="answer" position="'top'"></chord-finger>
-            <div class="buttons item">
-                <button class="button button-positive" ng-click="validate()">Validate</button>
+            <div ng-hide="playing" class="buttons item" style="text-align: center">
+                <button class="button button-positive" ng-click="pickChord()">Next chord</button>
             </div>
         </div>
     </ion-content>

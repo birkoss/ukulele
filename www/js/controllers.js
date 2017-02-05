@@ -114,21 +114,27 @@ ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicModal, $
 });
 
 
-ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, ChordsService, ConfigService, ChordTypesService) {
+ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, $ionicPopup, ChordsService, ConfigService, ChordTypesService) {
     $scope.answer = {};
 
     $scope.options = ConfigService.load('options');
 
     $scope.chord_types = ChordTypesService.all();
 
+    $scope.playing = false;
+
     $scope.pickChord = function() {
+        $scope.answer = {};
+
         $scope.current_chord_type = $scope.chord_types[$scope.getRandomInt(0, $scope.chord_types.length)].name;
         $scope.current_chord = $scope.getChordsList($scope.current_chord_type)[$scope.getRandomInt(0, $scope.getChordsList($scope.current_chord_type).length)].name;
 
+        /*
         $scope.current_chord_type = 'Major';
         $scope.current_chord = 'C';
-        console.log( $scope.current_chord );
-        console.log($scope.current_chord_type);
+        */
+
+        $scope.playing = true;
     };
 
     $scope.getChordsList = function(chord_type) {
@@ -149,23 +155,33 @@ ukuleleApp.controller('QuizCtrl', function($scope, $ionicSideMenuDelegate, Chord
         if (newVal != oldVal) {
             var answer = Object.keys($scope.answer);
             answer.sort();
-            console.log(answer);
 
             var all_chords = ChordsService.get($scope.current_chord).types[$scope.current_chord_type].chords;
             for (var single_chord in all_chords) {
 
-                console.log( all_chords[single_chord] );
                 var chord_frets = Object.keys(all_chords[single_chord]['Fingers']);
                 chord_frets.sort();
 
-                console.log(chord_frets);
 
                 if (JSON.stringify(chord_frets) == JSON.stringify(answer)) {
-                    console.log("OUI");
+                    $scope.playing = false;
+                    $scope.win();
+                    break;
                 }
             }
         }
     }, true);
+
+    $scope.win = function() {
+        var alertPopup = $ionicPopup.alert({
+            title: 'Correct!',
+            template: 'It\'s a valid chord!'
+        });
+
+        alertPopup.then(function(res) {
+            /*$scope.allowNextQuestion();*/
+        });
+    };
 
     $scope.getRandomInt = function(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
