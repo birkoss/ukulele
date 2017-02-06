@@ -229,6 +229,22 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             'Major': {
                 'chords': [{
                     'Fingers':{'C1':'1', 'G2':'2'}
+                },{
+                    'Position':'middle',
+                    'Start':2,
+                    'Fingers':{'G2':'1', 'C4':'2', 'E5':'4', 'A4':'3'} 
+                },{
+                    'Position':'middle',
+                    'Start':3,
+                    'Fingers':{'G6':'3', 'C4':'1', 'E5':'2', 'A4':'1'}
+                },{
+                    'Position':'middle',
+                    'Start':6,
+                    'Fingers':{'G9':'3', 'C9':'3', 'E9':'3', 'A7':'1'}
+                },{
+                    'Position':'middle',
+                    'Start':9,
+                    'Fingers':{'G9':'1', 'C9':'1', 'E9':'1', 'A12':'4'} 
                 }]
             }, 
             'Minor': {
@@ -535,7 +551,7 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
         single_chord['fret_fingers'] = {};
         for (finger_position in chord_single_chord['Fingers']) {
             var finger = chord_single_chord['Fingers'][finger_position];
-            var position = parseInt(finger_position.substr(1, 1));
+            var position = parseInt(finger_position.substr(1));
             if (fret_start > 1) {
                 position -= (fret_start-1);
             }
@@ -548,7 +564,7 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
         // Show the notes and fingers for that chord
         for (var finger_position in chord_single_chord['Fingers']) {
             var string = finger_position.substr(0, 1);
-            var fret = parseInt(finger_position.substr(1, 1));
+            var fret = parseInt(finger_position.substr(1));
 
             // Place notes
             for (var i=0; i<doubled_scales.length; i++) {

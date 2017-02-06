@@ -9,3 +9,5 @@ TODO
 
 - Add multiple finger positions for the same chords
   - Test that every options is available in the quiz
+
+- When we click on a link from the favorite, we should use an anchor #index, to get to the correct chord
