@@ -642,7 +642,7 @@ ukuleleApp.service('ConfigService', function(localStorageService, ChordTypesServ
 
     this.options = {'show_notes':true, 'show_scale':false, 'show_frets':true, 'show_strings':true, 'show_in_french':false};
 
-    this.quiz_options = {};
+    this.quiz_options = {'show_in_french':false};
 
     this.notes_options = {'show_flat_sharp':false, 'show_in_french':false};
     this.notes_quiz_options = {'include_flat_sharp':false, 'show_in_french':false};
@@ -662,10 +662,10 @@ ukuleleApp.service('ConfigService', function(localStorageService, ChordTypesServ
                 break;
             case 'quiz_options':
                 for (var type_index in ChordTypesService.all()) {
-                    this.quiz_options[ ChordTypesService.all()[type_index].name ] = false;
+                    this.quiz_options['include_type_' + ChordTypesService.all()[type_index].name] = false;
                 }
-                this.quiz_options['Major'] = true;
-                this.quiz_options['Minor'] = true;
+                this.quiz_options['include_type_Major'] = true;
+                this.quiz_options['include_type_Minor'] = true;
                 config = this.quiz_options;
                 break;
             case 'notes_options':

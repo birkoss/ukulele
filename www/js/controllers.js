@@ -224,9 +224,19 @@ ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate,
         $scope.playing = true;
     };
 
+    $scope.getChordTypesFilters = function() {
+        var filters = [];
+        for (var key in $scope.options) {
+            if (key.substr(0, 13) == 'include_type_') {
+                filters.push(key.substr(13));
+            }
+        }
+        return filters;
+    };
+
     $scope.getChordTypes = function() {
         return ChordTypesService.all().filter(function(item) {
-            return $scope.options[item.name]; 
+            return $scope.options['include_type_' + item.name];
         });
     };
 

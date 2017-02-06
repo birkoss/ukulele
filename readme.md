@@ -9,5 +9,3 @@ TODO
 
 - Add multiple finger positions for the same chords
   - Test that every options is available in the quiz
-
-- Add french option in the chords quiz

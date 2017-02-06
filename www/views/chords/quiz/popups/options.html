@@ -1,10 +1,13 @@
 <ion-popover-view>
     <ion-header-bar class="bar-dark bar-stable">
-        <h1 class="title">Pick from: </h1>
+        <h1 class="title">Options</h1>
     </ion-header-bar>
     <ion-content>
         <ion-list>
-            <ion-checkbox ng-repeat="(type, value) in options" ng-model="options[type]" ng-change="optionChanged('options')">{{type}}</ion-checkbox>
+            <div class="item item-divider">Pick from:</div>
+            <ion-checkbox ng-repeat="type in getChordTypesFilters()" ng-model="options['include_type_'+type]" ng-change="optionChanged()">{{type}}</ion-checkbox>
+            <div class="item item-divider">Misc</div>
+            <ion-checkbox ng-model="options['show_in_french']" ng-change="optionChanged()">Show in French</ion-checkbox>
         </ion-list>
     </ion-content>
 </ion-popover-view>
