@@ -11,3 +11,5 @@ TODO
   - Test that every options is available in the quiz
 
 - When we click on a link from the favorite, we should use an anchor #index, to get to the correct chord
+
+- When a fret > 10, the finger is too close (like the 3rd B major)
