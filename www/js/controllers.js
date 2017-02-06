@@ -1,8 +1,8 @@
 ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, $ionicSideMenuDelegate, ChordsFavoritesService, ChordsService, ChordTypesService, ConfigService) {
     $scope.options = ConfigService.load('options');
 
-    $scope.showDetail = function(chord_id, chord_type) {
-        $state.go('tab.favorites-detail', {'chordType':chord_type, 'chordId':chord_id});
+    $scope.showDetail = function(chord_id, chord_type, chord_index) {
+        $state.go('tab.favorites-detail-index', {'chordType':chord_type, 'chordId':chord_id, 'chordIndex':chord_index});
     };
 
     $scope.getChordsList = function() {
@@ -14,11 +14,19 @@ ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, $
     };
 });
 
-ukuleleApp.controller('ChordDetailCtrl', function($scope, $stateParams, $filter, ChordsService, ChordTypesService, ConfigService, ChordsFavoritesService) {
+ukuleleApp.controller('ChordDetailCtrl', function($scope, $stateParams, $timeout, $filter, $location, $ionicScrollDelegate, ChordsService, ChordTypesService, ConfigService, ChordsFavoritesService) {
     $scope.options = ConfigService.load('options');
 
     var chord_id = $stateParams.chordId;
     var chord_type = $stateParams.chordType;
+
+    // Go to the correct index if provided (mostly from the favorites)
+    if ($stateParams.chordIndex != undefined) {
+        $timeout(function() {
+            $location.hash('chord_index_' + $stateParams.chordIndex);
+            $ionicScrollDelegate.anchorScroll();
+        }, 250);
+    }
 
     var single_chord_type = ChordTypesService.get(chord_type);
 

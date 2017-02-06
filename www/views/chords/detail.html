@@ -16,7 +16,7 @@
                 </div>
             </li>
             <li class="item all-chords">
-                <div class="list card" ng-repeat="single_chord in chord.types[chord_type].chords track by $index">
+                <div id="chord_index_{{$index}}" class="list card" ng-repeat="single_chord in chord.types[chord_type].chords track by $index">
                     <div class="item item-image">
                         <chord-finger muted="single_chord.layout.muted" fingers="single_chord.layout.fret_fingers" labels="single_chord.layout.fret_labels" position="single_chord.layout.fret_position"></chord-finger>
                     </div>

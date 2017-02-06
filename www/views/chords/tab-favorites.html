@@ -6,7 +6,7 @@
     </ion-nav-bar>
     <ion-content class="favorite-container">
         <div class="cards" ng-hide="getChordsList() == 0">
-            <div class="card_container" ng-repeat="favorite in getChordsList()" ng-click="showDetail(favorite.chord_id, favorite.chord_type);">
+            <div class="card_container" ng-repeat="favorite in getChordsList()" ng-click="showDetail(favorite.chord_id, favorite.chord_type, favorite.chord_index);">
                 <div class="list card">
                     <div class="item item-image">
                         <chord-finger muted="favorite.chord.getLayout(favorite.chord_type, favorite.chord_index).muted" fingers="favorite.chord.getLayout(favorite.chord_type, favorite.chord_index).fret_fingers" position="favorite.chord.getLayout(favorite.chord_type, favorite.chord_index).fret_position"></chord-finger>
