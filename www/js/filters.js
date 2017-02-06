@@ -21,8 +21,14 @@ ukuleleApp.filter('translateChord', function(ChordsService) {
         if (show_in_french) {
             var french_names = ChordsService.get_french_names();
             for (var note in french_names) {
+                var scale = '';
+                if (name.indexOf('♭') >= 0) {
+                    scale = '♭';
+                } else if (name.indexOf('♯') >= 0) {
+                    scale = '♯';
+                }
                 if (name.indexOf(note) >= 0) {
-                    name = name.replace(note, french_names[note]);
+                    name = name.replace(note + scale, french_names[note] + scale + " ");
                     break;
                 }
             }
