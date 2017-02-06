@@ -13,3 +13,5 @@ TODO
 - When we click on a link from the favorite, we should use an anchor #index, to get to the correct chord
 
 - When a fret > 10, the finger is too close (like the 3rd B major)
+
+- Db Major contain a 5 frets chords, should allow that
