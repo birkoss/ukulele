@@ -10,9 +10,13 @@
     <ion-content ng-init="pickChord()">
         <div class="list">
             <h1 class="item">Reproduce a <strong>{{ current_chord | completeChord:current_chord_type | translateChord:options['show_in_french'] }}</strong></h1>
-            <chord-finger class="item" interactive="'true'" labels="[1, 2, 3, 4]" fingers="answer" position="'top'"></chord-finger>
+            <chord-finger class="item" interactive="'true'" labels="fret_labels" fingers="answer" position="fret_start == 1 ? 'top' : 'middle'"></chord-finger>
             <div class="buttons item" style="text-align: center">
+
+                <button ng-show="playing" ng-disabled="fret_start <= 1" class="button button-dark" ng-click="moveFret(-1)"><i class="icon ion-arrow-up-c"></i></button>
                 <button ng-show="playing" class="button button-dark" ng-click="showSolution()">Show the solution</button>
+                <button ng-show="playing" ng-disabled="fret_start >= 12" class="button button-dark" ng-click="moveFret(1)"><i class="icon ion-arrow-down-c"></i></button>
+
                 <button ng-hide="playing" class="button button-positive" ng-click="pickChord()">Next chord</button>
             </div>
         </div>
