@@ -329,6 +329,15 @@ ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate,
         for (var single_chord in all_chords) {
             $scope.playing = false;
             $scope.answer = all_chords[single_chord]['Fingers'];
+
+            $scope.fret_start = 1;
+
+            if (all_chords[single_chord]['Start'] != undefined) {
+                $scope.fret_start = parseInt(all_chords[single_chord]['Start']) - 1;
+            }
+
+            $scope.moveFret(0);
+            break;
         }
     };
 
