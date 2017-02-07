@@ -122,16 +122,16 @@
     fill: #000000;
 }
 .fret-label-1 {
-    transform: translate(0, 73px);
+    transform: translate(-5px, 73px);
 }
 .fret-label-2 {
-    transform: translate(0, 128px);
+    transform: translate(-5px, 128px);
 }
 .fret-label-3 {
-    transform: translate(0, 185px);
+    transform: translate(-5px, 185px);
 }
 .fret-label-4 {
-    transform: translate(0, 238px);
+    transform: translate(-5px, 238px);
 }
 
 .scale {
