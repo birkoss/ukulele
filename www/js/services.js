@@ -250,6 +250,22 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             'Minor': {
                 'chords': [{
                     'Fingers':{'G2':'2'}
+                },{
+                    'Position':'middle',
+                    'Start':2,
+                    'Fingers':{'G2':'1', 'C4':'3', 'E5':'4', 'A3':'2'}
+                },{
+                    'Position':'middle',
+                    'Start':2,
+                    'Fingers':{'G5':3, 'C4':2, 'E5':4, 'A3':1}
+                },{
+                    'Position':'middle',
+                    'Start':4,
+                    'Fingers':{'G5':2, 'C4':1, 'E5':3, 'A7':4}
+                },{
+                    'Position':'middle',
+                    'Start':7,
+                    'Fingers':{'G9':3, 'C9':4, 'E8':2, 'A7':1}
                 }]
             },
             '7': {
@@ -271,6 +287,14 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             'Minor': {
                 'chords': [{
                     'Fingers':{'G3':'3', 'C1':'1', 'E1':'1', 'A1':'1'}
+                },{
+                    'Position':'middle',
+                    'Start':5,
+                    'Fingers':{'G6':2, 'C5':1, 'E6':3, 'A8':4}
+                },{
+                    'Position':'middle',
+                    'Start':7,
+                    'Fingers':{'G10':3, 'C10':4, 'E9':2, 'A8':1}
                 }]
             },
             '7': {
@@ -299,6 +323,22 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             'Minor':{
                 'chords': [{
                     'Fingers':{'G4':'3', 'C2':'2', 'E2':'2', 'A2':'2'}
+                },{
+                    'Position':'middle',
+                    'Start':4,
+                    'Fingers':{'G4':1, 'C6':3, 'E7':4, 'A5':2}
+                },{
+                    'Position':'middle',
+                    'Start':5,
+                    'Fingers':{'G7':3, 'C6':2, 'E7':4, 'A5':1}
+                },{
+                    'Position':'middle',
+                    'Start':6,
+                    'Fingers':{'G7':2, 'C6':1, 'E7':3, 'A9':4}
+                },{
+                    'Position':'middle',
+                    'Start':9,
+                    'Fingers':{'G11':3, 'C11':4, 'E10':2, 'A9':1}
                 }]
             },
             '7': {
@@ -327,6 +367,22 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             'Minor':{
                 'chords': [{
                     'Fingers':{'C3':'1', 'E3':'1', 'A3':'1'}
+                },{
+                    'Position':'middle',
+                    'Start':3,
+                    'Fingers':{'G5':3, 'C3':1, 'E3':1, 'A3':1}
+                },{
+                    'Position':'middle',
+                    'Start':5,
+                    'Fingers':{'G5':1, 'C7':3, 'E8':4, 'A6':2}
+                },{
+                    'Position':'middle',
+                    'Start':5,
+                    'Fingers':{'G8':3, 'C7':2, 'E8':4, 'A6':1}
+                },{
+                    'Position':'middle',
+                    'Start':7,
+                    'Fingers':{'G8':2, 'C7':1, 'E8':3, 'A10':4}
                 }]
             },
             '7': {
@@ -365,6 +421,24 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
                 'chords': [{
                     'Mute':['A'],
                     'Fingers':{'G1':'1', 'C1':'1'}
+                },{
+                    'Fingers':{'G1':1, 'C4':3, 'E4':3, 'A4':3}
+                },{
+                    'Position':'middle',
+                    'Start':3,
+                    'Fingers':{'G6':3, 'C4':1, 'E4':1, 'A4':1}
+                },{
+                    'Position':'middle',
+                    'Start':4,
+                    'Fingers':{'G6':3, 'C4':1, 'E4':1, 'A7':4}
+                },{
+                    'Position':'middle',
+                    'Start':6,
+                    'Fingers':{'G6':1, 'C8':3, 'E9':4, 'A7':2}
+                },{
+                    'Position':'middle',
+                    'Start':7,
+                    'Fingers':{'G9':3, 'C8':2, 'E9':4, 'A7':1}
                 }]
             },
             '7':{
