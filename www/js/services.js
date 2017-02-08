@@ -271,6 +271,18 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             '7': {
                 'chords': [{
                     'Fingers':{'C1':'1'}
+                },{
+                    'Position':'middle',
+                    'Start':2,
+                    'Fingers':{'G2':1, 'C4':3, 'E3':2, 'A4':4}
+                },{
+                    'Position':'middle',
+                    'Start':5,
+                    'Fingers':{'G6':2, 'C7':3, 'E5':1, 'A7':4}
+                },{
+                    'Position':'middle',
+                    'Start':8,
+                    'Fingers':{'G9':1, 'C9':1, 'E9':1, 'A10':2}
                 }]
             }
         }
@@ -300,6 +312,14 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             '7': {
                 'chords': [{
                     'Fingers':{'G1':'1', 'C2':'2', 'E1':'1', 'A1':'1'}
+                },{
+                    'Position':'middle',
+                    'Start':5,
+                    'Fingers':{'G7':2, 'C8':3, 'E6':1, 'A8':4}
+                },{
+                    'Position':'middle',
+                    'Start':9,
+                    'Fingers':{'G10':1, 'C10':1, 'E10':1, 'A11':2}
                 }]
             }
         }
@@ -344,6 +364,16 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             '7': {
                 'chords': [{
                     'Fingers':{'G2':'1', 'C3':'2', 'E2':'1', 'A2':'1'}
+                },{
+                    'Fingers':{'G4':3, 'C3':2, 'E2':1}
+                },{
+                    'Position':'middle',
+                    'Start':4,
+                    'Fingers':{'G4':1, 'C6':3, 'E5':2, 'A6':4}
+                },{
+                    'Position':'middle',
+                    'Start':6,
+                    'Fingers':{'G8':2, 'C9':3, 'E7':1, 'A9':4}
                 }]
             }
         }
@@ -388,6 +418,16 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             '7': {
                 'chords': [{
                     'Fingers':{'A1':'1'}
+                },{
+                    'Fingers':{'G3':1, 'C4':2, 'E3':1, 'A3':1}
+                },{
+                    'Position':'middle',
+                    'Start':5,
+                    'Fingers':{'G5':1, 'C7':3, 'E6':2, 'A7':4}
+                },{
+                    'Position':'middle',
+                    'Start':7,
+                    'Fingers':{'C10':4, 'E8':2, 'A7':1}
                 }]
             }
         }
@@ -444,6 +484,18 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             '7':{
                 'chords': [{
                     'Fingers':{'G1':'1', 'C1':'1', 'E1':'1', 'A2':'2'}
+                },{
+                    'Position':'middle',
+                    'Start':3,
+                    'Fingers':{'G4':1, 'C5':2, 'E4':1, 'A4':1}
+                }/*,{
+                    'Position':'middle',
+                    'Start':2,
+                    'Fingers':{'G6':4, 'C5'3, 'E4':2, 'A2':1}
+                }*/,{
+                    'Position':'middle',
+                    'Start':6,
+                    'Fingers':{'G6':1, 'C8':3, 'E7':2, 'A8':4}
                 }]
             }
         }
@@ -500,6 +552,23 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             '7':{
                 'chords': [{
                     'Fingers':{'G2':'1', 'C2':'1', 'E2':'1', 'A3':'2'}
+                }/*,{
+                    'Position':'middle',
+                    'Start':3,
+                    'Fingers':{'G7':4, 'C6':3, 'E5':2, 'A3':1}
+                }*/,{
+
+                    'Position':'middle',
+                    'Start':4,
+                    'Fingers':{'G5':1, 'C6':2, 'E5':1, 'A5':1}
+                },{
+                    'Position':'middle',
+                    'Start':5,
+                    'Fingers':{'G7':2, 'C6':1, 'E8':3}
+                },{
+                    'Position':'middle',
+                    'Start':6,
+                    'Fingers':{'G7':1, 'C9':3, 'E8':2, 'A9':4}
                 }]
             }
         }
@@ -539,6 +608,18 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
                     'Position':'middle',
                     'Start':2,
                     'Fingers':{'G3':'1', 'C3':'1', 'E3':'1', 'A4':'2'}
+                },{
+                    'Position':'middle',
+                    'Start':3,
+                    'Fingers':{'C3':1, 'E6':4, 'A4':2}
+                },{
+                    'Position':'middle',
+                    'Start':5,
+                    'Fingers':{'G6':1, 'C7':2, 'E6':1, 'A6':1}
+                },{
+                    'Position':'middle',
+                    'Start':7,
+                    'Fingers':{'G8':1, 'C10':3, 'E9':2, 'A10':4}
                 }]
             }
         }
@@ -581,6 +662,14 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             '7':{
                 'chords': [{
                     'Fingers':{'G1':'1', 'C2':'2', 'A2':'3'}
+                },{
+                    'Position':'middle',
+                    'Start':3,
+                    'Fingers':{'G4':1, 'C4':1, 'E4':1, 'A5':2} 
+                },{
+                    'Position':'middle',
+                    'Start':5,
+                    'Fingers':{'G7':1, 'C8':2, 'E7':1, 'A7':1}
                 }]
             }
         }
@@ -627,6 +716,14 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             '7':{
                 'chords': [{
                     'Fingers':{'G2':'2', 'C3':'3', 'E1':'1', 'A3':'4'}
+                },{
+                    'Position':'middle',
+                    'Start':4,
+                    'Fingers':{'G5':1, 'E5':1, 'C5':1, 'A6':2}
+                },{
+                    'Position':'middle',
+                    'Start':6,
+                    'Fingers':{'G8':1, 'C9':2, 'E8':1, 'A8':1}
                 }]
             }
         }
@@ -676,6 +773,14 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             '7':{
                 'chords': [{
                     'Fingers':{'G3':'2', 'C4':'3', 'E2':'1', 'A4':'4'}
+                },{
+                    'Position':'middle',
+                    'Start':3,
+                    'Fingers':{'G3':1, 'C6':4, 'A4':2}
+                },{
+                    'Position':'middle',
+                    'Start':5,
+                    'Fingers':{'G6':1, 'C6':1, 'E6':1, 'A7':2}
                 }]
             }
         }
@@ -720,6 +825,18 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             '7':{
                 'chords': [{
                     'Fingers':{'C2':'2', 'E1':'1', 'A2':'3'}
+                },{
+                    'Position':'middle',
+                    'Start':3,
+                    'Fingers':{'G4':2, 'C5':3, 'E3':1, 'A5':4}
+                },{
+                    'Position':'middle',
+                    'Start':4,
+                    'Fingers':{'C5':1, 'E7':3, 'A5':2}
+                },{
+                    'Position':'middle',
+                    'Start':6,
+                    'Fingers':{'G7':1, 'C7':1, 'E7':1, 'A8':2}
                 }]
             }
         }
@@ -759,6 +876,14 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
             '7':{
                 'chords': [{
                     'Fingers':{'G1':'1', 'C3':'3', 'E2':'2', 'A3':'4'}
+                },{
+                    'Position':'middle',
+                    'Start':4,
+                    'Fingers':{'G5':2, 'C6':3, 'E4':1, 'A6':4}
+                },{
+                    'Position':'middle',
+                    'Start':7,
+                    'Fingers':{'G8':1, 'C8':1, 'E8':1, 'A9':2}
                 }]
             }
         }
