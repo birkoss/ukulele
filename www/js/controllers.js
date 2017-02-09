@@ -56,7 +56,7 @@ ukuleleApp.controller('ChordDetailCtrl', function($scope, $stateParams, $timeout
     };
 });
 
-ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicModal, $ionicSideMenuDelegate, $ionicPopover, $state, ChordTypesService, ConfigService, ChordsService) {
+ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicSideMenuDelegate, $ionicPopover, $state, ChordTypesService, ConfigService, ChordsService) {
 
     $scope.filters = ConfigService.load('filters');
 
@@ -273,10 +273,6 @@ ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate,
         $ionicSideMenuDelegate.toggleLeft();
     };
 
-    $scope.validate = function() {
-        console.log( $scope.answer );
-    };
-
     $scope.showOptions = function($event) {
         $scope.popover.show($event);
     };
@@ -306,15 +302,7 @@ ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate,
                 if (JSON.stringify(chord_frets) == JSON.stringify(answer)) {
                     $scope.answer = all_chords[single_chord]['Fingers'];
 
-                    for (var key in $scope.answer) {
-                        var string = key.substr(0, 1);
-                        var fret = parseInt(key.substr(1)) - $scope.fret_start + 1;
-
-                        var finger = $scope.answer[key];
-                        delete $scope.answer[key];
-
-                        $scope.answer[string + fret] = finger;
-                    }
+                    $scope.adaptAnswerFretStart();
 
                     $scope.playing = false;
                     $scope.win();
@@ -333,11 +321,25 @@ ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate,
             $scope.fret_start = 1;
 
             if (all_chords[single_chord]['Start'] != undefined) {
-                $scope.fret_start = parseInt(all_chords[single_chord]['Start']) - 1;
+                $scope.fret_start = parseInt(all_chords[single_chord]['Start']) ;
+
+                $scope.adaptAnswerFretStart();
             }
 
             $scope.moveFret(0);
             break;
+        }
+    };
+
+    $scope.adaptAnswerFretStart = function() {
+        for (var key in $scope.answer) {
+            var string = key.substr(0, 1);
+            var fret = parseInt(key.substr(1)) - $scope.fret_start + 1;
+
+            var finger = $scope.answer[key];
+            delete $scope.answer[key];
+
+            $scope.answer[string + fret] = finger;
         }
     };
 
