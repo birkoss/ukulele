@@ -15,7 +15,15 @@
                         <musical-note note="note.name" direction="note.direction"></musical-note>
                     </div>
                     <div class="item item-text-wrap">
-                        {{ note.name | translateChord:options['show_in_french'] }}<span ng-show="chord.alt_name"> / {{ chord.alt_name | translateChord:options['show_in_french'] }}</span>
+                        {{ note.name | translateChord:options['show_in_french'] }}
+                    </div>
+                    <div class="item buttons">
+                        <a ng-click="add(note.name)" ng-hide="isFavorite(note.name)" class="item item-icon-left assertive">
+                            <i class="icon ion-star"></i>Add
+                        </a>
+                        <a ng-click="remove(note.name)" ng-show="isFavorite(note.name)" class="item item-icon-left assertive">
+                            <i class="icon ion-star"></i>Remove
+                        </a>
                     </div>
                 </div>
             </div>

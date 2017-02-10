@@ -5,19 +5,24 @@
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content class="favorite-container">
-        <div class="cards" ng-hide="getChordsList() == 0">
-            <div class="card_container" ng-repeat="favorite in getChordsList()" ng-click="showDetail(favorite.chord_id, favorite.chord_type, favorite.chord_index);">
+        <div class="cards" ng-hide="getNotesList() == 0">
+            <div class="card_container" ng-repeat="favorite in getNotesList()">
                 <div class="list card">
                     <div class="item item-image">
-                        <chord-finger muted="favorite.chord.getLayout(favorite.chord_type, favorite.chord_index).muted" fingers="favorite.chord.getLayout(favorite.chord_type, favorite.chord_index).fret_fingers" position="favorite.chord.getLayout(favorite.chord_type, favorite.chord_index).fret_position"></chord-finger>
+                        <musical-note note="favorite.note_id" direction="favorite.note.direction"></musical-note>
                     </div>
                     <div class="item item-text-wrap">
-                        {{ favorite.chord.name | completeChord:favorite.chord_type | translateChord:options['show_in_french'] }}<span ng-show="favorite.chord.alt_name"> / {{ favorite.chord.alt_name | completeChord:favorite.chord_type | translateChord:options['show_in_french'] }}</span>
+                        {{ favorite.note.name | translateChord:options['show_in_french'] }}
+                    </div>
+                    <div class="item buttons">
+                        <a ng-click="remove(favorite.note_id)" class="item item-icon-left assertive">
+                            <i class="icon ion-star"></i>Remove
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="message-empty-list" fill-content ng-show="getChordsList() == 0">
+        <div class="message-empty-list" fill-content ng-show="getNotesList() == 0">
             <p>You have no favorite!</p>
         </div>
     </ion-content>

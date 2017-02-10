@@ -1119,3 +1119,71 @@ ukuleleApp.service('ConfigService', function(localStorageService, ChordTypesServ
         return to;
     };
 });
+
+ukuleleApp.service('NotesFavoritesService', function(localStorageService, NotesService) {
+    var favorites = [];
+
+    this.all = function() {
+        return favorites;
+    };
+
+    this.get = function(index) {
+        if (index < favorites.length) {
+            return favorites[index];
+        }
+        return null;
+    };
+
+    this.getIndex = function(note_id) {
+        for (var i=0; i<favorites.length; i++) {
+            if (favorites[i].note_id == note_id) {
+                return i;
+            }
+        }
+        return -1;
+    };
+
+    this.exists = function(note_id) {
+        return (this.getIndex(note_id) >= 0);
+    };
+
+    this.add = function (note_id) {
+        var favorite = {'note_id':note_id};
+
+        if (!this.exists(note_id)) {
+            favorites.push(favorite);
+            this.generate();
+            this.save();
+        }
+    };
+
+    this.remove = function(index) {
+        favorites.splice(favorites.indexOf(index), 1);
+        this.save();
+    };
+
+    this.save = function() {
+        var striped_favorites = favorites.slice(0);
+
+        for (var i=0; i<striped_favorites.length; i++) {
+            delete striped_favorites.note;
+        }
+        
+        localStorageService.set('notes_favorites', striped_favorites);
+    };
+
+    this.load = function() {
+        if (localStorageService.get('notes_favorites')) {
+            favorites = localStorageService.get('notes_favorites');
+        }
+        this.generate();
+    };
+
+    this.generate = function() {
+        for (var i=0; i<favorites.length; i++) {
+            favorites[i].note = NotesService.get(favorites[i].note_id);
+        }
+    };
+
+    this.load();
+});

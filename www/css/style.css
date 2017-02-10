@@ -170,6 +170,10 @@
     margin-left: 4px;
 }
 
+.buttons a.item {
+    border: 0;
+}
+
 .all-chords {
     background-color: #f4f4f4;
 }
