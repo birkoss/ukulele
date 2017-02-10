@@ -1,82 +1,85 @@
 ukuleleApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
 
-    $stateProvider.state('chords-quiz', {
-        url: '/chords-quiz',
-        templateUrl: 'views/chords/quiz/index.html',
-        controller: 'ChordsQuizCtrl',
-    })
+    /* Chords */
 
-    $stateProvider.state('notes-list', {
-        url: '/notes-list',
-        templateUrl: 'views/notes/index.html',
-        controller: 'NotesListCtrl',
+    $stateProvider.state('chords', {
+        url:'/chords',
+        templateUrl:'views/chords/tabs.html',
+        abstract:true
     })
-    
-    $stateProvider.state('notes-quiz', {
-        url: '/notes-quiz',
-        templateUrl: 'views/notes/quiz/index.html',
-        controller: 'NotesQuizCtrl',
-    })
-
-    $stateProvider.state('tab', {
-        url: '/tab',
-        abstract: true,
-        templateUrl: 'views/chords/tabs.html'
-    })
-
-    .state('tab.chords-list', {
-        url: '/chords-list',
+    .state('chords.list', {
+        url:'/list',
         views: {
-            'tab-chords-list': {
-                templateUrl: 'views/chords/tab-list.html',
-                controller: 'ChordsListCtrl',
+            'chords-list': {
+                templateUrl:'views/chords/tab-list.html',
+                controller:'ChordsListCtrl',
             }
         }
     })
-
-    .state('tab.chord-detail', {
-        url: '/chords/:chordType/:chordId',
+    .state('chords.detail', {
+        url: '/:chordType/:chordId',
         views: {
-            'tab-chords-list': {
+            'chords-list': {
                 templateUrl: 'views/chords/detail.html',
                 controller: 'ChordDetailCtrl',
-
             }
         }
     })
-
-    .state('tab.chords-favorites', {
-        url: '/chords-favorites',
+    .state('chords.favorites', {
+        url: '/favorites',
         views: {
-            'tab-chords-favorites': {
+            'chords-favorites': {
                 templateUrl: 'views/chords/tab-favorites.html',
                 controller: 'ChordsFavoritesCtrl',
             }
         }
     })
-
-    .state('tab.favorites-detail', {
-        url: '/chords/:chordType/:chordId',
+    .state('chords.detail-position', {
+        url: '/:chordType/:chordId/:chordIndex',
         views: {
-            'tab-chords-favorites': {
+            'chords-favorites': {
                 templateUrl: 'views/chords/detail.html',
                 controller: 'ChordDetailCtrl',
-
             }
         }
     })
-
-    .state('tab.favorites-detail-index', {
-        url: '/chords/:chordType/:chordId/:chordIndex',
-        views: {
-            'tab-chords-favorites': {
-                templateUrl: 'views/chords/detail.html',
-                controller: 'ChordDetailCtrl',
-
-            }
-        }
+    .state('chords-quiz', {
+        url: '/chords/quiz',
+        templateUrl: 'views/chords/quiz/index.html',
+        controller: 'ChordsQuizCtrl',
     });
 
-    $urlRouterProvider.otherwise('/tab/chords-list');
+    /* Notes */
+
+    $stateProvider.state('notes', {
+        url:'/notes',
+        templateUrl:'views/notes/tabs.html',
+        abstract:true
+    })
+    .state('notes.list', {
+        url:'/list',
+        views: {
+            'notes-list': {
+                templateUrl:'views/notes/tab-list.html',
+                controller:'NotesListCtrl',
+            }
+        }
+    })
+    .state('notes.favorites', {
+        url: '/favorites',
+        views: {
+            'notes-favorites': {
+                templateUrl:'views/notes/tab-favorites.html',
+                controller:'NotesFavoritesCtrl',
+            }
+        }
+    })
+    .state('notes-quiz', {
+        url: '/notes/quiz',
+        templateUrl:'views/notes/quiz/index.html',
+        controller:'NotesQuizCtrl',
+    });
+
+    $urlRouterProvider.otherwise('/chords/list');
 });

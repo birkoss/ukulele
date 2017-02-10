@@ -6,3 +6,5 @@ TODO
 - Faire que les items du menu sont dans un controller a part 
 
 - Db Major contain a 5 frets chords, should allow that
+
+- Allow the quiz to fetch from the favorites (if not empty)

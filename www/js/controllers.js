@@ -2,7 +2,7 @@ ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, $
     $scope.options = ConfigService.load('options');
 
     $scope.showDetail = function(chord_id, chord_type, chord_index) {
-        $state.go('tab.favorites-detail-index', {'chordType':chord_type, 'chordId':chord_id, 'chordIndex':chord_index});
+        $state.go('chords.detail-position', {'chordType':chord_type, 'chordId':chord_id, 'chordIndex':chord_index});
     };
 
     $scope.getChordsList = function() {
@@ -89,7 +89,7 @@ ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicSideMenu
 
 
     $scope.showDetail = function(chord_id) {
-        $state.go('tab.chord-detail', {'chordType':$scope.filters['chord_type'], 'chordId':chord_id});
+        $state.go('chords.detail', {'chordType':$scope.filters['chord_type'], 'chordId':chord_id});
     };
 
     /* Toggle the filters side-menu (from the button) */
