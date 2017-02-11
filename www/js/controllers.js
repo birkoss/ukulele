@@ -234,7 +234,7 @@ ukuleleApp.controller('NotesQuizCtrl', function($scope, $ionicSideMenuDelegate, 
     }
 });
 
-ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate, $ionicPopup, $ionicPopover, ChordsService, ConfigService, ChordTypesService) {
+ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate, $ionicPopup, $ionicPopover, ChordsService, ConfigService, ChordTypesService, ChordsFavoritesService) {
     $scope.answer = {};
 
     $scope.options = ConfigService.load('quiz_options');
@@ -256,8 +256,16 @@ ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate,
 
         $scope.answer = {};
 
-        $scope.current_chord_type = $scope.getChordTypes()[$scope.getRandomInt(0, $scope.getChordTypes().length)].name;
-        $scope.current_chord = $scope.getChordsList($scope.current_chord_type)[$scope.getRandomInt(0, $scope.getChordsList($scope.current_chord_type).length)].name;
+        if ($scope.options['use_only_favorites'] && ChordsFavoritesService.all().length > 0) {
+            var favorites = ChordsFavoritesService.all();
+            var favorite = favorites[$scope.getRandomInt(0, favorites.length)];
+
+            $scope.current_chord_type = favorite.chord_type;
+            $scope.current_chord = favorite.chord_id;
+        } else {
+            $scope.current_chord_type = $scope.getChordTypes()[$scope.getRandomInt(0, $scope.getChordTypes().length)].name;
+            $scope.current_chord = $scope.getChordsList($scope.current_chord_type)[$scope.getRandomInt(0, $scope.getChordsList($scope.current_chord_type).length)].name;
+        }
 
         $scope.playing = true;
     };
