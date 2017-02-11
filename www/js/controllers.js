@@ -407,8 +407,8 @@ ukuleleApp.controller('NotesListCtrl', function($scope, $filter, $ionicSideMenuD
         }
     };
 
-    $scope.isFavorite = function(note_id) {
-        return NotesFavoritesService.exists(note_id);
+    $scope.isFavorite = function(note_id, direction) {
+        return NotesFavoritesService.exists(note_id, direction);
     };
 
     $ionicPopover.fromTemplateUrl('views/notes/popups/options.html', {

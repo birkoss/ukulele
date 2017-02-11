@@ -1158,7 +1158,7 @@ ukuleleApp.service('NotesFavoritesService', function(localStorageService, NotesS
     };
 
     this.remove = function(index) {
-        favorites.splice(favorites.indexOf(index), 1);
+        favorites.splice(index, 1);
         this.save();
     };
 
