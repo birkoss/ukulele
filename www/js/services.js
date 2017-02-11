@@ -1057,10 +1057,10 @@ ukuleleApp.service('ConfigService', function(localStorageService, ChordTypesServ
 
     this.options = {'show_notes':true, 'show_scale':false, 'show_frets':true, 'show_strings':true, 'show_in_french':false};
 
-    this.quiz_options = {'show_in_french':false};
+    this.quiz_options = {'show_in_french':false, 'use_only_favorites':false};
 
     this.notes_options = {'show_flat_sharp':false, 'show_in_french':false};
-    this.notes_quiz_options = {'include_flat_sharp':false, 'show_in_french':false};
+    this.notes_quiz_options = {'include_flat_sharp':false, 'show_in_french':false, 'use_only_favorites':false};
 
     this.save = function(type, config) {
         localStorageService.set(type, config);
@@ -1134,23 +1134,23 @@ ukuleleApp.service('NotesFavoritesService', function(localStorageService, NotesS
         return null;
     };
 
-    this.getIndex = function(note_id) {
+    this.getIndex = function(note_id, direction) {
         for (var i=0; i<favorites.length; i++) {
-            if (favorites[i].note_id == note_id) {
+            if (favorites[i].note_id == note_id && favorites[i].direction == direction) {
                 return i;
             }
         }
         return -1;
     };
 
-    this.exists = function(note_id) {
-        return (this.getIndex(note_id) >= 0);
+    this.exists = function(note_id, direction) {
+        return (this.getIndex(note_id, direction) >= 0);
     };
 
-    this.add = function (note_id) {
-        var favorite = {'note_id':note_id};
+    this.add = function (note_id, direction) {
+        var favorite = {'note_id':note_id, 'direction':direction};
 
-        if (!this.exists(note_id)) {
+        if (!this.exists(note_id, direction)) {
             favorites.push(favorite);
             this.generate();
             this.save();

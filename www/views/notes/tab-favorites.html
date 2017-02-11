@@ -15,7 +15,7 @@
                         {{ favorite.note.name | translateChord:options['show_in_french'] }}
                     </div>
                     <div class="item buttons">
-                        <a ng-click="remove(favorite.note_id)" class="item item-icon-left assertive">
+                        <a ng-click="remove(favorite.note_id, favorite.note.direction)" class="item item-icon-left assertive">
                             <i class="icon ion-star"></i>Remove
                         </a>
                     </div>

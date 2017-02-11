@@ -7,6 +7,7 @@
             <div class="item item-divider">Pick from:</div>
             <ion-checkbox ng-repeat="type in getChordTypesFilters()" ng-model="options['include_type_'+type]" ng-change="optionChanged()">{{type}}</ion-checkbox>
             <div class="item item-divider">Misc</div>
+            <ion-checkbox ng-model="options.use_only_favorite" ng-change="optionChanged()">Only use the favorites</ion-checkbox>
             <ion-checkbox ng-model="options['show_in_french']" ng-change="optionChanged()">Show in French</ion-checkbox>
         </ion-list>
     </ion-content>

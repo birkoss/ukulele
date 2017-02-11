@@ -18,10 +18,10 @@
                         {{ note.name | translateChord:options['show_in_french'] }}
                     </div>
                     <div class="item buttons">
-                        <a ng-click="add(note.name)" ng-hide="isFavorite(note.name)" class="item item-icon-left assertive">
+                        <a ng-click="add(note.name, note.direction)" ng-hide="isFavorite(note.name, note.direction)" class="item item-icon-left assertive">
                             <i class="icon ion-star"></i>Add
                         </a>
-                        <a ng-click="remove(note.name)" ng-show="isFavorite(note.name)" class="item item-icon-left assertive">
+                        <a ng-click="remove(note.name, note.direction)" ng-show="isFavorite(note.name, note.direction)" class="item item-icon-left assertive">
                             <i class="icon ion-star"></i>Remove
                         </a>
                     </div>
