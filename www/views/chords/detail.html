@@ -1,4 +1,10 @@
 <ion-view view-title="{{ chord.name | completeChord:chord_type | translateChord:options['show_in_french'] }}{{ chord.alt_name ? ' / ' + (chord.alt_name | completeChord:chord_type | translateChord:options['show_in_french']) : '' }}">
+    <ion-nav-bar class="bar-positive">
+            <ion-nav-back-button></ion-nav-back-button>
+        <ion-nav-buttons side="right">
+            <button class="button" ng-click="showOptions($event)"><i class="icon ion-android-funnel"></i></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
     <ion-content>
     <ul class="list">
             <li ng-show="options['show_scale']" class="item item-divider legend">Scale</li>
