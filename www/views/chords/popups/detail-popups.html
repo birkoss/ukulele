@@ -1,0 +1,14 @@
+<ion-popover-view>
+    <ion-header-bar class="bar-dark bar-stable">
+        <h1 class="title">Options</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-checkbox ng-model="options.show_scale" ng-change="configChanged('options')">Show scale</ion-checkbox>
+            <ion-checkbox ng-model="options.show_strings" ng-change="configChanged('options')">Show strings</ion-checkbox>
+            <ion-checkbox ng-model="options.show_notes" ng-change="configChanged('options')">Show notes</ion-checkbox>
+            <ion-checkbox ng-model="options.show_fingers" ng-change="configChanged('options')">Show frets</ion-checkbox>
+            <ion-checkbox ng-model="options.show_in_french" ng-change="configChanged('options')">Show French name</ion-checkbox>
+        </ion-list>
+    </ion-content>
+</ion-popover-view>
