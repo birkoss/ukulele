@@ -148,6 +148,22 @@ ukuleleApp.service('ChordTypesService', function() {
         }
         return null;
     };
+
+    this.getFamily = function(family_name) {
+        return this.all().filter(function(item) {
+            return item.chord == family_name;
+        });
+    };
+
+    this.getFamilies = function() {
+       families = [];
+        for (var i=0; i<types.length; i++) {
+            if (families.indexOf(types[i].chord) == -1) {
+                families.push(types[i].chord);
+            }
+        }
+       return families;
+    };
 });
 ukuleleApp.service('ChordsFavoritesService', function(localStorageService, ChordsService) {
     var favorites = [];
@@ -1053,71 +1069,68 @@ ukuleleApp.service('ChordsService', function(ChordTypesService, ConfigService) {
 });
 
 ukuleleApp.service('ConfigService', function(localStorageService, ChordTypesService) {
-    this.filters = {'chord_type':'Major'};
 
-    this.options = {'show_notes':true, 'show_scale':false, 'show_frets':true, 'show_strings':true, 'show_in_french':false};
+    this.configs = {'chords':{}, 'notes':{}};
 
-    this.quiz_options = {'show_in_french':false, 'use_only_favorites':false};
-
-    this.notes_options = {'show_flat_sharp':false, 'show_in_french':false};
-    this.notes_quiz_options = {'include_flat_sharp':false, 'show_in_french':false, 'use_only_favorites':false};
-
-    this.save = function(type, config) {
-        localStorageService.set(type, config);
+    this.save = function() {
+        localStorageService.set('configs', this.configs);
     };
 
-    this.load = function(type) {
-        var config = null;
-        switch (type) {
-            case 'filters':
-                config = this.filters;
-                break;
-            case 'options':
-                config = this.options;
-                break;
-            case 'quiz_options':
-                for (var type_index in ChordTypesService.all()) {
-                    this.quiz_options['include_type_' + ChordTypesService.all()[type_index].name] = false;
-                }
-                this.quiz_options['include_type_Major'] = true;
-                this.quiz_options['include_type_Minor'] = true;
-                config = this.quiz_options;
-                break;
-            case 'notes_options':
-                config = this.notes_options;
-                break;
-            case 'notes_quiz_options':
-                config = this.notes_quiz_options;
-                break;
-        }
-        if (localStorageService.get(type)) {
-            config = this.merge(config, localStorageService.get(type));
-        }
-        return config;
+    this.getOptions = function(section) {
+        return this.configs[section]['options'];
     };
 
-    this.merge = function(target, varArgs) { // .length of function is 2
-        'use strict';
-        if (target == null) { // TypeError if undefined or null
-            throw new TypeError('Cannot convert undefined or null to object');
+    this.getOption = function(section, name) {
+        return this.getOptions(section)[name];
+    };
+
+    this.getFilters = function(section) {
+        return this.configs[section]['filters'];
+    };
+
+    this.getFilter = function(section, name) {
+        return this.getFilters(section)[name];
+    };
+
+    this.load = function() {
+        if (localStorageService.get('configs')) {
+            this.configs = this.merge(this.configs, localStorageService.get('configs'));
         }
+    };
 
-        var to = Object(target);
+    this.init = function() {
+        this.configs['chords']['filters'] = {'list_chord_type':'Major', 'quiz_only_use_favorites':false, 'quiz_chord_type':{}};
+        this.configs['chords']['options'] = {'show_notes':true, 'show_scale':false, 'show_frets':true, 'show_strings':true, 'show_in_french':false};
 
-        for (var index = 1; index < arguments.length; index++) {
-            var nextSource = arguments[index];
+        // Add all chords types
+        for (var type_index in ChordTypesService.all()) {
+            this.configs['chords']['filters']['quiz_chord_type'][ChordTypesService.all()[type_index].name] = false;
+        }
+        this.configs['chords']['filters']['quiz_chord_type']['Major'] = true;
+        this.configs['chords']['filters']['quiz_chord_type']['Minor'] = true;
 
-            if (nextSource != null) { // Skip over if undefined or null
-                for (var nextKey in nextSource) {
-                    // Avoid bugs when hasOwnProperty is shadowed
-                    if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-                        to[nextKey] = nextSource[nextKey];
-                    }
+        this.configs['notes']['filters'] = {'list_include_flat_sharp':false, 'quiz_include_flat_sharp':false, 'quiz_only_use_favorites':false};
+        this.configs['notes']['options'] = {'show_in_french':false};
+
+        this.load();
+    };
+
+    this.merge = function(obj1, obj2) {
+        for (var p in obj2) {
+            try {
+                if (obj2[p].constructor == Object) {
+                    obj1[p] = this.merge(obj1[p], obj2[p]);
+                } else {
+                    obj1[p] = obj2[p];
                 }
+            } catch(e) {
+                obj1[p] = obj2[p];
             }
         }
-        return to;
+        return obj1;
     };
+
+    this.init();
 });
 
 ukuleleApp.service('NotesFavoritesService', function(localStorageService, NotesService) {

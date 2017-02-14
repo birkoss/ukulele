@@ -4,8 +4,8 @@
             <button class="button button-icon" ng-click="toggleMenu()" ion-stop-event="click"><i class="icon ion-navicon"></i></button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-            <button class="button" ng-click="showChordTypes($event)">{{filters['chord_type']}}</button>
-            <button class="button" ng-click="showOptions($event)"><i class="icon ion-android-funnel"></i></button>
+            <button class="button" ng-click="showPopup($event, 'filters')">{{filters.list_chord_type}}</button>
+            <button class="button" ng-click="showPopup($event, 'options')"><i class="icon ion-android-funnel"></i></button>
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content>
@@ -13,10 +13,10 @@
             <div class="card_container" ng-repeat="chord in getChordsList()" ng-click="showDetail(chord.name);">
                 <div class="list card">
                     <div class="item item-image">
-                        <chord-finger muted="chord.getLayout(filters['chord_type']).muted" fingers="chord.getLayout(filters['chord_type']).fret_fingers" position="chord.getLayout(filters['chord_type']).fret_position"></chord-finger>
+                        <chord-finger muted="chord.getLayout(filters.list_chord_type).muted" fingers="chord.getLayout(filters.list_chord_type).fret_fingers" position="chord.getLayout(filters.list_chord_type).fret_position"></chord-finger>
                     </div>
                     <div class="item item-text-wrap">
-                        {{ chord.name | completeChord:filters['chord_type'] | translateChord:options['show_in_french'] }}<span ng-show="chord.alt_name"> / {{ chord.alt_name | completeChord:filters['chord_type'] | translateChord:options['show_in_french'] }}</span>
+                        {{ chord.name | completeChord:filters.list_chord_type | translateChord:options.show_in_french }}<span ng-show="chord.alt_name"> / {{ chord.alt_name | completeChord:filters.list_chord_type | translateChord:options.show_in_french }}</span>
                     </div>
                 </div>
             </div>

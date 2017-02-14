@@ -3,10 +3,10 @@
         <h1 class="title">Chord types</h1>
     </ion-header-bar>
     <ion-content>
-        <div ng-repeat="(family_name, chord_types) in chord_families">
+        <div ng-repeat="family_name in ChordTypes.getFamilies()">
             <div class="chord-type-family">{{family_name}}</div>
-            <ion-list ng-repeat="single_chord_type in chord_types">
-                <ion-radio name="chord_type" ng-model="$parent.filters['chord_type']" ng-change="configChanged('filters')" ng-value="'{{single_chord_type}}'">{{single_chord_type}}</ion-radio>
+            <ion-list ng-repeat="single_chord_type in ChordTypes.getFamily(family_name)">
+                <ion-radio name="chord_type" ng-model="$parent.filters.list_chord_type" ng-change="configChanged()" ng-value="'{{single_chord_type.name}}'">{{single_chord_type.name}}</ion-radio>
             </ion-list>
         </div>
     </ion-content>

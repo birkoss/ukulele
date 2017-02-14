@@ -1,0 +1,13 @@
+<ion-popover-view>
+    <ion-header-bar class="bar-dark bar-stable">
+        <h1 class="title">Options</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <div class="item item-divider">Chord types:</div>
+            <ion-checkbox ng-disabled="filters.quiz_only_use_favorites" ng-repeat="(type, value) in filters.quiz_chord_type" ng-model="filters.quiz_chord_type[type]" ng-change="configChanged(); pickChord();">{{type}}</ion-checkbox>
+            <div class="item item-divider">Misc</div>
+            <ion-checkbox ng-model="filters.quiz_only_use_favorites" ng-change="configChanged(); pickChord();">Only use the favorites</ion-checkbox>
+        </ion-list>
+    </ion-content>
+</ion-popover-view>

@@ -25,7 +25,7 @@ ukuleleApp.controller('NotesFavoritesCtrl', function($scope, $filter, $state, $i
 
 ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, $ionicSideMenuDelegate, $ionicPopover, ChordsFavoritesService, ChordsService, ChordTypesService, ConfigService) {
 
-    $scope.options = ConfigService.load('options');
+    $scope.options = ConfigService.getOptions('chords');
 
     $scope.showDetail = function(chord_id, chord_type, chord_index) {
         $state.go('chords.detail-position', {'chordType':chord_type, 'chordId':chord_id, 'chordIndex':chord_index});
@@ -35,7 +35,7 @@ ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, $
         return ChordsFavoritesService.all();
     };
 
-    $scope.showOptions = function($event) {
+    $scope.showPopup = function($event) {
         $scope.current_popup = $scope.popups['options'];
         $scope.current_popup.show($event);
     };
@@ -51,13 +51,13 @@ ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, $
         $scope.popups['options'] = popover;
     });
 
-    $scope.configChanged = function(type) {
-        ConfigService.save(type, $scope.options);
+    $scope.configChanged = function() {
+        ConfigService.save();
     };
 });
 
 ukuleleApp.controller('ChordDetailCtrl', function($scope, $stateParams, $timeout, $filter, $location, $ionicScrollDelegate, $ionicPopover, ChordsService, ChordTypesService, ConfigService, ChordsFavoritesService) {
-    $scope.options = ConfigService.load('options');
+    $scope.options = ConfigService.getOptions('chords');
 
     var chord_id = $stateParams.chordId;
     var chord_type = $stateParams.chordType;
@@ -104,33 +104,21 @@ ukuleleApp.controller('ChordDetailCtrl', function($scope, $stateParams, $timeout
         $scope.popups['options'] = popover;
     });
 
-    $scope.configChanged = function(type) {
-        ConfigService.save(type, $scope.options);
+    $scope.configChanged = function() {
+        ConfigService.save();
     };
 
-    $scope.showOptions = function($event) {
+    $scope.showPopup = function($event) {
         $scope.current_popup = $scope.popups['options'];
         $scope.current_popup.show($event);
     };
 });
 
 ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicSideMenuDelegate, $ionicPopover, $state, ChordTypesService, ConfigService, ChordsService) {
+    $scope.options = ConfigService.getOptions('chords');
+    $scope.filters = ConfigService.getFilters('chords');
 
-    $scope.filters = ConfigService.load('filters');
-
-    $scope.options = ConfigService.load('options');
-
-    $scope.chord_types = ChordTypesService.all();
-
-    $scope.chord_families = {};
-    for (var i=0; i<$scope.chord_types.length; i++) {
-        if ($scope.chord_families[$scope.chord_types[i].chord] == undefined) {
-            $scope.chord_families[$scope.chord_types[i].chord] = [];
-        }
-        $scope.chord_families[$scope.chord_types[i].chord].push($scope.chord_types[i].name);
-    }
-
-    $scope.chords_list = [];
+    $scope.ChordTypes = ChordTypesService;
 
     $scope.popups = {};
 
@@ -147,29 +135,22 @@ ukuleleApp.controller('ChordsListCtrl', function($scope, $filter, $ionicSideMenu
 
 
     $scope.showDetail = function(chord_id) {
-        $state.go('chords.detail', {'chordType':$scope.filters['chord_type'], 'chordId':chord_id});
+        $state.go('chords.detail', {'chordType':ConfigService.getFilter('chords', 'list_chord_type'), 'chordId':chord_id});
     };
 
-    /* Toggle the filters side-menu (from the button) */
-    $scope.showChordTypes = function($event) {
-        $scope.current_popup = $scope.popups['filters'];
-        $scope.current_popup.show($event);
-    };
-
-    /* Toggle the options side-menu (from the button) */
-    $scope.showOptions = function($event) {
-        $scope.current_popup = $scope.popups['options'];
+    $scope.showPopup = function($event, name) {
+        $scope.current_popup = $scope.popups[name];
         $scope.current_popup.show($event);
     };
 
     /* Called when a config has changed */
     $scope.configChanged = function(type) {
-        ConfigService.save(type, (type == 'filters' ? $scope.filters : $scope.options));
+        ConfigService.save();
     };
 
     $scope.getChordsList = function() {
         return ChordsService.all().filter(function(item) {
-            return (item.types[$scope.filters['chord_type']]);
+            return (item.types[ConfigService.getFilter('chords', 'list_chord_type')]);
         });
     };
 
@@ -271,18 +252,25 @@ ukuleleApp.controller('NotesQuizCtrl', function($scope, $ionicSideMenuDelegate, 
 ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate, $ionicPopup, $ionicPopover, ChordsService, ConfigService, ChordTypesService, ChordsFavoritesService) {
     $scope.answer = {};
 
-    $scope.options = ConfigService.load('quiz_options');
+    $scope.options = ConfigService.getOptions('chords');
+    $scope.filters = ConfigService.getFilters('chords');
 
     $scope.playing = false;
 
     $scope.fret_start = 0;
     $scope.fret_labels = [];
 
+    $scope.popups = {};
     $ionicPopover.fromTemplateUrl('views/chords/quiz/popups/options.html', {
         scope: $scope
     }).then(function(popover) {
-    $scope.popover = popover;
-});
+        $scope.popups['options'] = popover;
+    });
+    $ionicPopover.fromTemplateUrl('views/chords/quiz/popups/filters.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popups['filters'] = popover;
+    });
 
     $scope.pickChord = function() {
         $scope.fret_start = 0;
@@ -290,7 +278,7 @@ ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate,
 
         $scope.answer = {};
 
-        if ($scope.options['use_only_favorites'] && ChordsFavoritesService.all().length > 0) {
+        if ($scope.options.use_only_favorites && ChordsFavoritesService.all().length > 0) {
             var favorites = ChordsFavoritesService.all();
             var favorite = favorites[$scope.getRandomInt(0, favorites.length)];
 
@@ -325,7 +313,7 @@ ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate,
 
     $scope.getChordTypes = function() {
         return ChordTypesService.all().filter(function(item) {
-            return $scope.options['include_type_' + item.name];
+            return $scope.filters.quiz_chord_type[item.name];
         });
     };
 
@@ -339,12 +327,23 @@ ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate,
         $ionicSideMenuDelegate.toggleLeft();
     };
 
-    $scope.showOptions = function($event) {
-        $scope.popover.show($event);
+    $scope.showPopup = function($event, name) {
+        $scope.popups[name].show($event);
     };
 
-    $scope.optionChanged = function() {
-        ConfigService.save('quiz_options', $scope.options);
+    $scope.configChanged = function() {
+        var at_least_one_type = false;
+        for (var type in $scope.filters.quiz_chord_type) {
+            if ($scope.filters.quiz_chord_type[type]) {
+                at_least_one_type = true;
+                break;
+            }
+        }
+        /* Force at least one type if none are selected */
+        if (!at_least_one_type) {
+            $scope.filters.quiz_chord_type['Major'] = true;
+        }
+        ConfigService.save();
     };
 
     $scope.$watch('answer', function(newVal, oldVal) {

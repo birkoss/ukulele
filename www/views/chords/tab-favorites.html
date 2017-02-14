@@ -4,7 +4,7 @@
             <button class="button button-icon" ng-click="toggleMenu()" ion-stop-event="click"><i class="icon ion-navicon"></i></button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-            <button class="button" ng-click="showOptions($event)"><i class="icon ion-android-funnel"></i></button>
+            <button class="button" ng-click="showPopup($event)"><i class="icon ion-android-funnel"></i></button>
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content class="favorite-container">
@@ -15,7 +15,7 @@
                         <chord-finger muted="favorite.chord.getLayout(favorite.chord_type, favorite.chord_index).muted" fingers="favorite.chord.getLayout(favorite.chord_type, favorite.chord_index).fret_fingers" position="favorite.chord.getLayout(favorite.chord_type, favorite.chord_index).fret_position"></chord-finger>
                     </div>
                     <div class="item item-text-wrap">
-                        {{ favorite.chord.name | completeChord:favorite.chord_type | translateChord:options['show_in_french'] }}<span ng-show="favorite.chord.alt_name"> / {{ favorite.chord.alt_name | completeChord:favorite.chord_type | translateChord:options['show_in_french'] }}</span>
+                        {{ favorite.chord.name | completeChord:favorite.chord_type | translateChord:options.show_in_french }}<span ng-show="favorite.chord.alt_name"> / {{ favorite.chord.alt_name | completeChord:favorite.chord_type | translateChord:options.show_in_french }}</span>
                     </div>
                 </div>
             </div>

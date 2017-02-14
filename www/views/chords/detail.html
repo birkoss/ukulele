@@ -1,24 +1,24 @@
-<ion-view view-title="{{ chord.name | completeChord:chord_type | translateChord:options['show_in_french'] }}{{ chord.alt_name ? ' / ' + (chord.alt_name | completeChord:chord_type | translateChord:options['show_in_french']) : '' }}">
+<ion-view view-title="{{ chord.name | completeChord:chord_type | translateChord:options.show_in_french }}{{ chord.alt_name ? ' / ' + (chord.alt_name | completeChord:chord_type | translateChord:options.show_in_french) : '' }}">
     <ion-nav-bar class="bar-positive">
             <ion-nav-back-button></ion-nav-back-button>
         <ion-nav-buttons side="right">
-            <button class="button" ng-click="showOptions($event)"><i class="icon ion-android-funnel"></i></button>
+            <button class="button" ng-click="showPopup($event)"><i class="icon ion-android-funnel"></i></button>
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content>
     <ul class="list">
-            <li ng-show="options['show_scale']" class="item item-divider legend">Scale</li>
-            <li ng-show="options['show_scale']" class="item">
+            <li ng-show="options.show_scale" class="item item-divider legend">Scale</li>
+            <li ng-show="options.show_scale" class="item">
                 <div class="row">
-                    <span class="col scale" ng-class="{'active':scale_parts.indexOf($index+1)>=0}" ng-repeat="scale in current_scale track by $index">{{ scale | translateChord:options['show_in_french'] }}</span>
+                    <span class="col scale" ng-class="{'active':scale_parts.indexOf($index+1)>=0}" ng-repeat="scale in current_scale track by $index">{{ scale | translateChord:options.show_in_french }}</span>
                 </div>
             </li>
-            <li ng-show="options['show_strings']" class="item item-divider legend">
+            <li ng-show="options.show_strings" class="item item-divider legend">
                 Strings:
             </li>
-            <li ng-show="options['show_strings']" class="item legend">
+            <li ng-show="options.show_strings" class="item legend">
                 <div class="row">
-                    <span class="col" ng-repeat="string in strings track by $index">{{ string | translateChord:options['show_in_french'] }}</span>
+                    <span class="col" ng-repeat="string in strings track by $index">{{ string | translateChord:options.show_in_french }}</span>
                 </div>
             </li>
             <li class="item all-chords">
@@ -26,13 +26,13 @@
                     <div class="item item-image">
                         <chord-finger muted="single_chord.layout.muted" fingers="single_chord.layout.fret_fingers" labels="single_chord.layout.fret_labels" position="single_chord.layout.fret_position"></chord-finger>
                     </div>
-                    <div ng-show="options['show_notes']" class="item chord-legend">
+                    <div ng-show="options.show_notes" class="item chord-legend">
                         <h2>Notes</h2>
                         <div class="row">
-                            <span class="col" ng-repeat="(string, note) in single_chord.layout.notes track by $index">{{ note | translateChord:options['show_in_french'] }}</span>
+                            <span class="col" ng-repeat="(string, note) in single_chord.layout.notes track by $index">{{ note | translateChord:options.show_in_french }}</span>
                         </div>
                     </div>
-                    <div ng-show="options['show_fingers']" class="item chord-legend">
+                    <div ng-show="options.show_fingers" class="item chord-legend">
                         <h2>Frets</h2>
                         <div class="row">
                             <span class="col" ng-repeat="(string, fret) in single_chord.layout.frets track by $index">{{fret}}</span>

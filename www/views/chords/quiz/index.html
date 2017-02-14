@@ -4,12 +4,13 @@
             <button class="button button-icon" ng-click="toggleMenu()" ion-stop-event="click"><i class="icon ion-navicon"></i></button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-            <button class="button" ng-click="showOptions($event)"><i class="icon ion-settings"></i></button>
+            <button class="button" ng-click="showPopup($event, 'filters')">Source</button>
+            <button class="button" ng-click="showPopup($event, 'options')"><i class="icon ion-android-funnel"></i></button>
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content ng-init="pickChord()">
         <div class="list">
-            <h1 class="item">Reproduce a <strong>{{ current_chord | completeChord:current_chord_type | translateChord:options['show_in_french'] }}</strong></h1>
+            <h1 class="item">Reproduce a <strong>{{ current_chord | completeChord:current_chord_type | translateChord:options.show_in_french }}</strong></h1>
             <chord-finger class="item" interactive="'true'" labels="fret_labels" fingers="answer" position="fret_start == 1 ? 'top' : 'middle'"></chord-finger>
             <div class="buttons item" style="text-align: center">
 
