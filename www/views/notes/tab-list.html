@@ -4,7 +4,8 @@
             <button class="button button-icon" ng-click="toggleMenu()" ion-stop-event="click"><i class="icon ion-navicon"></i></button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-            <button class="button" ng-click="showOptions($event)"><i class="icon ion-settings"></i></button>
+            <button class="button" ng-click="showPopup($event,'filters')"><i class="icon ion-settings"></i></button>
+            <button class="button" ng-click="showPopup($event,'options')"><i class="icon ion-settings"></i></button>
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content>
@@ -15,7 +16,7 @@
                         <musical-note note="note.name" direction="note.direction"></musical-note>
                     </div>
                     <div class="item item-text-wrap">
-                        {{ note.name | translateChord:options['show_in_french'] }}
+                        {{ note.name | translateChord:options.show_in_french }}
                     </div>
                     <div class="item buttons">
                         <a ng-click="add(note.name, note.direction)" ng-hide="isFavorite(note.name, note.direction)" class="item item-icon-left assertive">

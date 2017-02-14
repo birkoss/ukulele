@@ -1,0 +1,11 @@
+<ion-popover-view>
+    <ion-header-bar class="bar-dark bar-stable">
+        <h1 class="title">Filters</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-checkbox ng-model="options.quiz_include_flat_sharp" ng-change="configChanged(); pickNote();">Include Flat / Sharp</ion-checkbox>
+            <ion-checkbox ng-model="options.quiz_only_use_favorites" ng-change="configChanged(); pickNote();">Only use the favorites</ion-checkbox>
+        </ion-list>
+    </ion-content>
+</ion-popover-view>

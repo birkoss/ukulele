@@ -1,6 +1,11 @@
 ukuleleApp.controller('NotesFavoritesCtrl', function($scope, $filter, $state, $ionicSideMenuDelegate, $ionicPopover, NotesFavoritesService, NotesService, NotesFavoritesService, ConfigService) {
 
-    $scope.options = ConfigService.load('notes_options');
+    $scope.options = ConfigService.getOptions('notes');
+
+    $scope.showPopup = function($event, name) {
+        $scope.current_popup = $scope.popups[name];
+        $scope.current_popup.show($event);
+    };
 
     $scope.remove = function(note_id, direction) {
         var favorite_index = NotesFavoritesService.getIndex(note_id, direction);
@@ -21,6 +26,16 @@ ukuleleApp.controller('NotesFavoritesCtrl', function($scope, $filter, $state, $i
         $ionicSideMenuDelegate.toggleLeft();
     };
 
+    $scope.popups = [];
+    $ionicPopover.fromTemplateUrl('views/notes/popups/options.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popups['options'] = popover;
+    });
+
+    $scope.configChanged = function() {
+        ConfigService.save();
+    };
 });
 
 ukuleleApp.controller('ChordsFavoritesCtrl', function($scope, $filter, $state, $ionicSideMenuDelegate, $ionicPopover, ChordsFavoritesService, ChordsService, ChordTypesService, ConfigService) {
@@ -167,14 +182,21 @@ ukuleleApp.controller('NotesQuizCtrl', function($scope, $ionicSideMenuDelegate, 
 
     $scope.playing = false;
 
-    $scope.options = ConfigService.load('notes_quiz_options');
+    $scope.options = ConfigService.getOptions('notes');
+    $scope.filters = ConfigService.getFilters('notes');
 
+    $scope.popups = {};
     $ionicPopover.fromTemplateUrl('views/notes/quiz/popups/options.html', {
         scope: $scope
     }).then(function(popover) {
-    $scope.popover = popover;
-});
+        $scope.popups['options'] = popover;
+    });
+    $ionicPopover.fromTemplateUrl('views/notes/quiz/popups/filters.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popups['filters'] = popover;
 
+    });
     $scope.pickNote = function() {
         $scope.playing = true;
         $scope.answers = [];
@@ -210,7 +232,7 @@ ukuleleApp.controller('NotesQuizCtrl', function($scope, $ionicSideMenuDelegate, 
 
     $scope.getNotesList = function(bypass_filters) {
         return NotesService.all().filter(function(item) {
-            return ( ((!$scope.options['use_only_favorite'] || NotesFavoritesService.exists(item.name, item.direction) || NotesFavoritesService.all().length == 0) || bypass_filters) && ($scope.options['include_flat_sharp'] || item.name.length == 1) );
+            return ( ((!$scope.options.quiz_only_use_favorites || NotesFavoritesService.exists(item.name, item.direction) || NotesFavoritesService.all().length == 0) || bypass_filters) && ($scope.options.quiz_include_flat_sharp || item.name.length == 1) );
         });
     };
 
@@ -218,12 +240,12 @@ ukuleleApp.controller('NotesQuizCtrl', function($scope, $ionicSideMenuDelegate, 
         $ionicSideMenuDelegate.toggleLeft();
     };
 
-    $scope.showOptions = function($event) {
-        $scope.popover.show($event);
+    $scope.showPopup = function($event, name) {
+        $scope.popups[name].show($event);
     };
 
-    $scope.optionChanged = function() {
-        ConfigService.save('notes_quiz_options', $scope.options);
+    $scope.configChanged = function() {
+        ConfigService.save();
     };
 
     $scope.wrongAnswer = function(answer) {
@@ -427,7 +449,8 @@ ukuleleApp.controller('ChordsQuizCtrl', function($scope, $ionicSideMenuDelegate,
 
 ukuleleApp.controller('NotesListCtrl', function($scope, $filter, $ionicSideMenuDelegate, $ionicPopover, NotesService, ConfigService, NotesFavoritesService) {
 
-    $scope.options = ConfigService.load('notes_options');
+    $scope.options = ConfigService.getOptions('notes');
+    $scope.filters = ConfigService.getFilters('notes');
 
     $scope.add = function(note_id, direction) {
         NotesFavoritesService.add(note_id, direction);
@@ -444,15 +467,21 @@ ukuleleApp.controller('NotesListCtrl', function($scope, $filter, $ionicSideMenuD
         return NotesFavoritesService.exists(note_id, direction);
     };
 
+    $scope.popups = {};
+    $ionicPopover.fromTemplateUrl('views/notes/popups/filters.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popups['filters'] = popover;
+    });
     $ionicPopover.fromTemplateUrl('views/notes/popups/options.html', {
         scope: $scope
     }).then(function(popover) {
-        $scope.popover = popover;
+        $scope.popups['options'] = popover;
     });
 
     $scope.getNotesList = function() {
         return NotesService.all().filter(function(item) {
-            return ($scope.options['include_flat_sharp'] || item.name.length == 1);
+            return ($scope.options.list_include_flat_sharp || item.name.length == 1);
         });
     };
 
@@ -460,12 +489,12 @@ ukuleleApp.controller('NotesListCtrl', function($scope, $filter, $ionicSideMenuD
         $ionicSideMenuDelegate.toggleLeft();
     };
 
-    $scope.showOptions = function($event) {
-        $scope.popover.show($event);
+    $scope.showPopup = function($event, name) {
+        $scope.popups[name].show($event);
     };
 
     $scope.configChanged = function() {
-        ConfigService.save('notes_options', $scope.options);
+        ConfigService.save();
     };
 
 });

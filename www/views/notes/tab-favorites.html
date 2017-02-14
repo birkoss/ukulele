@@ -3,7 +3,9 @@
         <ion-nav-buttons side="left">
             <button class="button button-icon" ng-click="toggleMenu()" ion-stop-event="click"><i class="icon ion-navicon"></i></button>
         </ion-nav-buttons>
-    </ion-nav-bar>
+        <ion-nav-buttons side="right">
+            <button class="button" ng-click="showPopup($event,'options')"><i class="icon ion-settings"></i></button>
+        </ion-nav-buttons>    </ion-nav-bar>
     <ion-content class="favorite-container">
         <div class="cards" ng-hide="getNotesList() == 0">
             <div class="card_container" ng-repeat="favorite in getNotesList()">

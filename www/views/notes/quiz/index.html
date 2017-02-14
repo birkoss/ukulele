@@ -4,7 +4,8 @@
             <button class="button button-icon" ng-click="toggleMenu()" ion-stop-event="click"><i class="icon ion-navicon"></i></button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-            <button class="button" ng-click="showOptions($event)"><i class="icon ion-settings"></i></button>
+            <button class="button" ng-click="showPopup($event,'filters')"><i class="icon ion-settings"></i></button>
+            <button class="button" ng-click="showPopup($event,'options')"><i class="icon ion-settings"></i></button>
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content ng-init="pickNote()">
@@ -15,7 +16,7 @@
                 <button class="button button-positive" ng-click="pickNote()">Pick another note</button>
             </div>
             <div class="buttons buttons-notes item">
-                <button ng-disabled="answers_tried.indexOf(answer) >= 0" ng-repeat="answer in answers" class="button button-dark" ng-click="pickAnswer(answer)">{{ answer | translateChord:options['show_in_french'] }}</button>
+                <button ng-disabled="answers_tried.indexOf(answer) >= 0" ng-repeat="answer in answers" class="button button-dark" ng-click="pickAnswer(answer)">{{ answer | translateChord:options.show_in_french }}</button>
             </div>
         </div>
     </ion-content>
